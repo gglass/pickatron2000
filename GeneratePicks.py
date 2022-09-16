@@ -59,6 +59,7 @@ base_injury_type_weights = {
 base_pyth_constant = 2.3
 base_uh_oh_multiplier = 1
 base_home_advantage_multiplier = 1.15
+base_freshness_coefficient = 1
 
 picks = generate_picks(
     current_season,
@@ -66,6 +67,7 @@ picks = generate_picks(
     base_pyth_constant,
     base_uh_oh_multiplier,
     base_home_advantage_multiplier,
+    base_freshness_coefficient,
     base_position_weights,
     base_injury_type_weights
 )

@@ -59,6 +59,7 @@ base_injury_type_weights = {
 base_pyth_constant = 2.3
 base_uh_oh_multiplier = 1
 base_home_advantage_multiplier = 1.15
+base_freshness_coefficient = 1
 
 generation_counter = 1
 generation = []
@@ -74,6 +75,7 @@ while generation_counter < 1001:
                 "pyth_constant": base_pyth_constant,
                 "uh_oh_multiplier": base_uh_oh_multiplier,
                 "home_advantage_multiplier": base_home_advantage_multiplier,
+                "freshness_coefficient": base_freshness_coefficient,
                 "position_weights": base_position_weights.copy(),
                 "injury_type_weights": base_injury_type_weights.copy()
             }
@@ -87,6 +89,7 @@ while generation_counter < 1001:
             seed["pyth_constant"],
             seed["uh_oh_multiplier"],
             seed["home_advantage_multiplier"],
+            seed["freshness_coefficient"],
             seed["position_weights"].copy(),
             seed["injury_type_weights"].copy()
         )
@@ -94,7 +97,7 @@ while generation_counter < 1001:
         generation.append(
             generate_picks(
                 current_season, week, mutated['pyth_constant'], mutated['uh_oh_multiplier'],
-                mutated['home_advantage_multiplier'], mutated['position_weights'],
+                mutated['home_advantage_multiplier'], mutated['freshness_coefficient'], mutated['position_weights'],
                 mutated['injury_type_weights']
             )
         )

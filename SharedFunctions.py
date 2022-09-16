@@ -1,23 +1,26 @@
 import math
-
+import datetime
 import requests
 import json
 import hashlib
 import random
 
-def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advantage_multiplier, base_position_weights,
+def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advantage_multiplier,
+                     base_freshness_coefficient, base_position_weights,
                    base_injury_type_weights):
     mutated = {
         "pyth_constant": base_pyth_constant,
         "uh_oh_multiplier": base_uh_oh_multiplier,
         "home_advantage_multiplier": base_home_advantage_multiplier,
+        "freshness_coefficient": base_freshness_coefficient,
         "position_weights": base_position_weights.copy(),
         "injury_type_weights": base_injury_type_weights.copy()
     }
 
     # we are just gonna nudge each of these around by 0.0 - 0.1 up or down for each one. This is ~10% randomness in each one (which is a fair amount of genetic drift)
     mutated['pyth_constant'] = base_pyth_constant + ((random.random() - 0.5)/5)
-    # mutated['uh_oh_multiplier'] = base_uh_oh_multiplier + ((random.random() - 0.5)/10)
+    mutated['uh_oh_multiplier'] = base_uh_oh_multiplier + ((random.random() - 0.5)/10)
+    mutated['freshness_coefficient'] = base_freshness_coefficient + ((random.random() - 0.5)/10)
     mutated['home_advantage_multiplier'] = base_home_advantage_multiplier + ((random.random() - 0.5)/10)
 
     # for position in base_position_weights.keys():
@@ -95,7 +98,36 @@ def rank_impact_weight(total_in_position, rank_in_position):
     inv_rank_importance = float(folks_in_front)/float(total_in_position)
     return 1 - inv_rank_importance
 
-def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, position_weights, injury_type_weights):
+# freshness is represented in terms of 7 days being a "base" freshness of 0, resulting in no adjustment of their overall score
+# teams that have a bye week resulting in 14 days since they last played will have a freshness of 1
+# while teams that have 4 or 5 days since the last time they played will have a negative freshness
+def evaluate_freshness(week, team):
+    previous_game_date = None
+    this_game_date = None
+    team_events = get_or_fetch_from_cache(team['events']["$ref"])
+    # lets go get the game they played before this weeks game
+    for event in team_events['items']:
+        event_info = get_or_fetch_from_cache(event['$ref'])
+        season_type = get_or_fetch_from_cache(event_info['seasonType']['$ref'])
+        # looking for regular season games
+        if season_type['type'] == 2:
+            event_week = get_or_fetch_from_cache(event_info['week']['$ref'])
+            if int(event_week['number']) == int(week):
+                this_game_date = event_info['date']
+                break
+            else:
+                # this assumes that the events listing is in chronological order
+                previous_game_date = event_info['date']
+    # "date": "2022-08-14T01:00Z",
+    if not previous_game_date or not this_game_date:
+        return 1
+    else:
+        previous_datetime = datetime.datetime.strptime(previous_game_date, "%Y-%m-%dT%H:%MZ")
+        this_datetime = datetime.datetime.strptime(this_game_date, "%Y-%m-%dT%H:%MZ")
+        delta = this_datetime - previous_datetime
+        return (delta.days - 7)/7
+
+def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, base_freshness_coefficient, position_weights, injury_type_weights):
     espn_api_base_url = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/"
 
     depth_charts_file = open("depth_charts.json", "r")
@@ -114,6 +146,9 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
 
         # now injuries so we can calculate the uh oh factor
         injuries = get_or_fetch_from_cache(espn_api_base_url + "teams/" + team_info['id'] + "/injuries")
+
+        # lets evaluate the teams freshness
+        freshness_rating = evaluate_freshness(week, team_info)
 
         # lets place a limit on this so we don't make a million api calls
         injurycounter = 1
@@ -156,7 +191,8 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
             'LSPF': last_season_record['stats'][9]['value'],
             'LSPA': last_season_record['stats'][10]['value'],
             'LSGP': last_season_record['stats'][8]['value'],
-            'UHOH': total_uh_oh_factor
+            'UHOH': total_uh_oh_factor,
+            'FRESHNESS': freshness_rating
         }
 
         LSWEIGHT = (this_team['LSGP'] - this_team['GP'])/this_team['LSGP']
@@ -166,7 +202,7 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         # now using the numbers from above, lets calculate their
         pyth = ((17)*((this_team['PF']+(this_team['LSPF']*LSWEIGHT))**pyth_constant))/((this_team['PF']+(this_team['LSPF']*LSWEIGHT))**pyth_constant + (this_team['PA']+(this_team['LSPA']*LSWEIGHT))**pyth_constant)
         this_team['PYTH'] = pyth
-        this_team['SCORE'] = pyth - (total_uh_oh_factor * uh_oh_multiplier)
+        this_team['SCORE'] = pyth + (base_freshness_coefficient*freshness_rating) - (total_uh_oh_factor * uh_oh_multiplier)
         teams.append(this_team)
 
     predictions = {}
@@ -181,6 +217,7 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         competition = event['competitions'][0]
         competitors = competition['competitors']
         prediction['name'] = event['name']
+        prediction['date'] = event['date']
         for competitor in competitors:
             for team in teams:
                 if competitor['id'] == team['id']:
@@ -190,7 +227,8 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
                         'PYTH': team['PYTH'],
                         'UHOH': team['UHOH'],
                         'INJADJ': team['SCORE'],
-                        'SCORE': team['SCORE']
+                        'SCORE': team['SCORE'],
+                        'FRESHNESS': team['FRESHNESS']
                     }
                     if(competitor['homeAway'] == 'home'):
                         this_team['SCORE'] = this_team['SCORE'] * home_advantage_multiplier
@@ -204,7 +242,6 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
             prediction['winner'] = prediction['teams'][1]['name']
             prediction['winner_id'] = prediction['teams'][1]['id']
             prediction['predicted_spread'] = math.floor((prediction['teams'][1]['SCORE'] - prediction['teams'][0]['SCORE'])*1.5)
-
 
         predictions[competition["id"]] = prediction
 
