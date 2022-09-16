@@ -1,0 +1,440 @@
+{
+    "pyth_constant": 2.3,
+    "uh_oh_multiplier": 1,
+    "home_advantage_multiplier": 1.15,
+    "position_weights": {
+        "WR": 3,
+        "LT": 3,
+        "LG": 3,
+        "C": 2,
+        "RG": 1,
+        "RT": 3,
+        "TE": 3,
+        "QB": 5,
+        "RB": 4,
+        "FB": 3,
+        "NT": 3,
+        "RDE": 2,
+        "LOLB": 2,
+        "LILB": 2,
+        "RILB": 2,
+        "ROLB": 2,
+        "LCB": 3,
+        "RCB": 3,
+        "SS": 3,
+        "FS": 3,
+        "PK": 2,
+        "P": 1,
+        "LDT": 4,
+        "WLB": 4,
+        "MLB": 4,
+        "SLB": 4,
+        "CB": 4,
+        "LB": 3,
+        "DE": 3,
+        "DT": 4,
+        "UT": 1,
+        "NB": 1,
+        "DB": 2,
+        "S": 3,
+        "DL": 4,
+        "H": 1,
+        "PR": 2,
+        "KR": 2,
+        "LS": 2,
+        "OT": 3,
+        "G": 3
+    },
+    "injury_type_weights": {
+        "Active": 0,
+        "Questionable": 0.5,
+        "Out": 1,
+        "Injured Reserve": 0.8
+    },
+    "predictions": {
+        "401434030": {
+            "winner": "Kansas City Chiefs",
+            "winner_id": "12",
+            "teams": [
+                {
+                    "id": "12",
+                    "name": "Kansas City Chiefs",
+                    "PYTH": 11.408768570232256,
+                    "UHOH": 3.0,
+                    "INJADJ": 8.408768570232256,
+                    "SCORE": 9.670083855767095
+                },
+                {
+                    "id": "24",
+                    "name": "Los Angeles Chargers",
+                    "PYTH": 8.905507292822838,
+                    "UHOH": 2.625,
+                    "INJADJ": 6.280507292822838,
+                    "SCORE": 6.280507292822838
+                }
+            ],
+            "name": "Los Angeles Chargers at Kansas City Chiefs",
+            "predicted_spread": 5
+        },
+        "401437635": {
+            "winner": "Cleveland Browns",
+            "winner_id": "5",
+            "teams": [
+                {
+                    "id": "5",
+                    "name": "Cleveland Browns",
+                    "PYTH": 7.997895662739657,
+                    "UHOH": 0.75,
+                    "INJADJ": 7.247895662739657,
+                    "SCORE": 8.335080012150604
+                },
+                {
+                    "id": "20",
+                    "name": "New York Jets",
+                    "PYTH": 4.05285209059081,
+                    "UHOH": 5.0,
+                    "INJADJ": -0.9471479094091899,
+                    "SCORE": -0.9471479094091899
+                }
+            ],
+            "name": "New York Jets at Cleveland Browns",
+            "predicted_spread": 13
+        },
+        "401437732": {
+            "winner": "Detroit Lions",
+            "winner_id": "8",
+            "teams": [
+                {
+                    "id": "8",
+                    "name": "Detroit Lions",
+                    "PYTH": 5.360661659315737,
+                    "UHOH": 0.0,
+                    "INJADJ": 5.360661659315737,
+                    "SCORE": 6.164760908213097
+                },
+                {
+                    "id": "28",
+                    "name": "Washington Commanders",
+                    "PYTH": 6.336618552167646,
+                    "UHOH": 1.0,
+                    "INJADJ": 5.336618552167646,
+                    "SCORE": 5.336618552167646
+                }
+            ],
+            "name": "Washington Commanders at Detroit Lions",
+            "predicted_spread": 1
+        },
+        "401437652": {
+            "winner": "Tampa Bay Buccaneers",
+            "winner_id": "27",
+            "teams": [
+                {
+                    "id": "18",
+                    "name": "New Orleans Saints",
+                    "PYTH": 9.276359025565945,
+                    "UHOH": 3.642857142857143,
+                    "INJADJ": 5.633501882708803,
+                    "SCORE": 6.478527165115123
+                },
+                {
+                    "id": "27",
+                    "name": "Tampa Bay Buccaneers",
+                    "PYTH": 12.152988973908514,
+                    "UHOH": 1.2857142857142858,
+                    "INJADJ": 10.867274688194227,
+                    "SCORE": 10.867274688194227
+                }
+            ],
+            "name": "Tampa Bay Buccaneers at New Orleans Saints",
+            "predicted_spread": 6
+        },
+        "401437645": {
+            "winner": "Carolina Panthers",
+            "winner_id": "29",
+            "teams": [
+                {
+                    "id": "19",
+                    "name": "New York Giants",
+                    "PYTH": 4.4969271246785905,
+                    "UHOH": 0.75,
+                    "INJADJ": 3.7469271246785905,
+                    "SCORE": 4.308966193380379
+                },
+                {
+                    "id": "29",
+                    "name": "Carolina Panthers",
+                    "PYTH": 5.942589544327933,
+                    "UHOH": 0.21428571428571436,
+                    "INJADJ": 5.728303830042218,
+                    "SCORE": 5.728303830042218
+                }
+            ],
+            "name": "Carolina Panthers at New York Giants",
+            "predicted_spread": 2
+        },
+        "401437636": {
+            "winner": "New England Patriots",
+            "winner_id": "17",
+            "teams": [
+                {
+                    "id": "23",
+                    "name": "Pittsburgh Steelers",
+                    "PYTH": 7.220340402755198,
+                    "UHOH": 2.0,
+                    "INJADJ": 5.220340402755198,
+                    "SCORE": 6.0033914631684775
+                },
+                {
+                    "id": "17",
+                    "name": "New England Patriots",
+                    "PYTH": 11.913373658412562,
+                    "UHOH": 2.5,
+                    "INJADJ": 9.413373658412562,
+                    "SCORE": 9.413373658412562
+                }
+            ],
+            "name": "New England Patriots at Pittsburgh Steelers",
+            "predicted_spread": 5
+        },
+        "401437639": {
+            "winner": "Indianapolis Colts",
+            "winner_id": "11",
+            "teams": [
+                {
+                    "id": "30",
+                    "name": "Jacksonville Jaguars",
+                    "PYTH": 3.635710564538947,
+                    "UHOH": 0.0,
+                    "INJADJ": 3.635710564538947,
+                    "SCORE": 4.181067149219789
+                },
+                {
+                    "id": "11",
+                    "name": "Indianapolis Colts",
+                    "PYTH": 10.430733700310038,
+                    "UHOH": 0.0,
+                    "INJADJ": 10.430733700310038,
+                    "SCORE": 10.430733700310038
+                }
+            ],
+            "name": "Indianapolis Colts at Jacksonville Jaguars",
+            "predicted_spread": 9
+        },
+        "401437633": {
+            "winner": "Baltimore Ravens",
+            "winner_id": "33",
+            "teams": [
+                {
+                    "id": "33",
+                    "name": "Baltimore Ravens",
+                    "PYTH": 8.76260015949132,
+                    "UHOH": 2.0,
+                    "INJADJ": 6.7626001594913205,
+                    "SCORE": 7.776990183415018
+                },
+                {
+                    "id": "15",
+                    "name": "Miami Dolphins",
+                    "PYTH": 8.021654828732851,
+                    "UHOH": 1.75,
+                    "INJADJ": 6.271654828732851,
+                    "SCORE": 6.271654828732851
+                }
+            ],
+            "name": "Miami Dolphins at Baltimore Ravens",
+            "predicted_spread": 2
+        },
+        "401437733": {
+            "winner": "Los Angeles Rams",
+            "winner_id": "14",
+            "teams": [
+                {
+                    "id": "14",
+                    "name": "Los Angeles Rams",
+                    "PYTH": 9.954998332591114,
+                    "UHOH": 4.125,
+                    "INJADJ": 5.8299983325911136,
+                    "SCORE": 6.70449808247978
+                },
+                {
+                    "id": "1",
+                    "name": "Atlanta Falcons",
+                    "PYTH": 5.1783247592501445,
+                    "UHOH": 1.5,
+                    "INJADJ": 3.6783247592501445,
+                    "SCORE": 3.6783247592501445
+                }
+            ],
+            "name": "Atlanta Falcons at Los Angeles Rams",
+            "predicted_spread": 4
+        },
+        "401437605": {
+            "winner": "Seattle Seahawks",
+            "winner_id": "26",
+            "teams": [
+                {
+                    "id": "25",
+                    "name": "San Francisco 49ers",
+                    "PYTH": 9.738721563753634,
+                    "UHOH": 2.5,
+                    "INJADJ": 7.238721563753634,
+                    "SCORE": 8.324529798316679
+                },
+                {
+                    "id": "26",
+                    "name": "Seattle Seahawks",
+                    "PYTH": 9.236783719603288,
+                    "UHOH": 0.0,
+                    "INJADJ": 9.236783719603288,
+                    "SCORE": 9.236783719603288
+                }
+            ],
+            "name": "Seattle Seahawks at San Francisco 49ers",
+            "predicted_spread": 1
+        },
+        "401437734": {
+            "winner": "Cincinnati Bengals",
+            "winner_id": "4",
+            "teams": [
+                {
+                    "id": "6",
+                    "name": "Dallas Cowboys",
+                    "PYTH": 11.693172745554017,
+                    "UHOH": 6.3125,
+                    "INJADJ": 5.380672745554017,
+                    "SCORE": 6.18777365738712
+                },
+                {
+                    "id": "4",
+                    "name": "Cincinnati Bengals",
+                    "PYTH": 10.270631183345161,
+                    "UHOH": 1.975,
+                    "INJADJ": 8.295631183345161,
+                    "SCORE": 8.295631183345161
+                }
+            ],
+            "name": "Cincinnati Bengals at Dallas Cowboys",
+            "predicted_spread": 3
+        },
+        "401437641": {
+            "winner": "Denver Broncos",
+            "winner_id": "7",
+            "teams": [
+                {
+                    "id": "7",
+                    "name": "Denver Broncos",
+                    "PYTH": 8.837077754739532,
+                    "UHOH": 0.0,
+                    "INJADJ": 8.837077754739532,
+                    "SCORE": 10.16263941795046
+                },
+                {
+                    "id": "34",
+                    "name": "Houston Texans",
+                    "PYTH": 4.44325222115089,
+                    "UHOH": 0.0,
+                    "INJADJ": 4.44325222115089,
+                    "SCORE": 4.44325222115089
+                }
+            ],
+            "name": "Houston Texans at Denver Broncos",
+            "predicted_spread": 8
+        },
+        "401437642": {
+            "winner": "Arizona Cardinals",
+            "winner_id": "22",
+            "teams": [
+                {
+                    "id": "13",
+                    "name": "Las Vegas Raiders",
+                    "PYTH": 6.914368252436996,
+                    "UHOH": 0.0,
+                    "INJADJ": 6.914368252436996,
+                    "SCORE": 7.951523490302545
+                },
+                {
+                    "id": "22",
+                    "name": "Arizona Cardinals",
+                    "PYTH": 9.786968055748366,
+                    "UHOH": 1.125,
+                    "INJADJ": 8.661968055748366,
+                    "SCORE": 8.661968055748366
+                }
+            ],
+            "name": "Arizona Cardinals at Las Vegas Raiders",
+            "predicted_spread": 1
+        },
+        "401437606": {
+            "winner": "Green Bay Packers",
+            "winner_id": "9",
+            "teams": [
+                {
+                    "id": "9",
+                    "name": "Green Bay Packers",
+                    "PYTH": 9.910538448512947,
+                    "UHOH": 1.5,
+                    "INJADJ": 8.410538448512947,
+                    "SCORE": 9.672119215789888
+                },
+                {
+                    "id": "3",
+                    "name": "Chicago Bears",
+                    "PYTH": 6.285438057397041,
+                    "UHOH": 0.75,
+                    "INJADJ": 5.535438057397041,
+                    "SCORE": 5.535438057397041
+                }
+            ],
+            "name": "Chicago Bears at Green Bay Packers",
+            "predicted_spread": 6
+        },
+        "401436831": {
+            "winner": "Buffalo Bills",
+            "winner_id": "2",
+            "teams": [
+                {
+                    "id": "2",
+                    "name": "Buffalo Bills",
+                    "PYTH": 13.213933033316186,
+                    "UHOH": 0.5,
+                    "INJADJ": 12.713933033316186,
+                    "SCORE": 14.621022988313612
+                },
+                {
+                    "id": "10",
+                    "name": "Tennessee Titans",
+                    "PYTH": 10.017483415340863,
+                    "UHOH": 0.0,
+                    "INJADJ": 10.017483415340863,
+                    "SCORE": 10.017483415340863
+                }
+            ],
+            "name": "Tennessee Titans at Buffalo Bills",
+            "predicted_spread": 6
+        },
+        "401436832": {
+            "winner": "Philadelphia Eagles",
+            "winner_id": "21",
+            "teams": [
+                {
+                    "id": "21",
+                    "name": "Philadelphia Eagles",
+                    "PYTH": 9.832111968778195,
+                    "UHOH": 0.0,
+                    "INJADJ": 9.832111968778195,
+                    "SCORE": 11.306928764094923
+                },
+                {
+                    "id": "16",
+                    "name": "Minnesota Vikings",
+                    "PYTH": 8.854130726879394,
+                    "UHOH": 0.6000000000000001,
+                    "INJADJ": 8.254130726879394,
+                    "SCORE": 8.254130726879394
+                }
+            ],
+            "name": "Minnesota Vikings at Philadelphia Eagles",
+            "predicted_spread": 4
+        }
+    }
+}
