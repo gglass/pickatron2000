@@ -3,7 +3,7 @@ import json
 from SharedFunctions import generate_picks, mutate_constants, evaluate_picks
 
 current_season = 2022
-week = "1"
+week = "2"
 
 base_position_weights = {
     'WR': 3,
@@ -119,6 +119,8 @@ while generation_counter < 1001:
 
     generation_counter = generation_counter + 1
 
+best_performer = random.choice(generation)
+
 f = open("predictions/week" + week + "/" + "genetics.json", "w")
-f.write(json.dumps(generation, indent=4))
+f.write(json.dumps(best_performer, indent=4))
 f.close()

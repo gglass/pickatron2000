@@ -69,10 +69,10 @@ def evaluate_picks(current_season, week, generation):
 
     return evaluations
 
-def get_or_fetch_from_cache(url):
+def get_or_fetch_from_cache(url, directory = "caches"):
     file_key = hashlib.md5(url.encode('UTF-8')).hexdigest()
     try:
-        f = open("caches/"+file_key, "r")
+        f = open(directory+"/"+file_key, "r")
         data = json.load(f)
         f.close()
         return data
@@ -80,7 +80,7 @@ def get_or_fetch_from_cache(url):
         # couldn't find that file yet, lets fetch the thing and put it there in the file
         response = requests.get(url)
         data = response.json()
-        f = open("caches/"+file_key, "x")
+        f = open(directory+"/"+file_key, "x")
         f.write(json.dumps(data, indent=4))
         f.close()
         return data
@@ -145,7 +145,7 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         this_season_record = get_or_fetch_from_cache(espn_api_base_url+"seasons/"+str(current_season)+"/types/2/teams/"+team_info['id']+"/records/0/?lang=en&region=us")
 
         # now injuries so we can calculate the uh oh factor
-        injuries = get_or_fetch_from_cache(espn_api_base_url + "teams/" + team_info['id'] + "/injuries")
+        injuries = get_or_fetch_from_cache(espn_api_base_url + "teams/" + team_info['id'] + "/injuries", "caches/week"+str(week))
 
         # lets evaluate the teams freshness
         freshness_rating = evaluate_freshness(week, team_info)

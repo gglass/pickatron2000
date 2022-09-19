@@ -3,7 +3,7 @@ import json
 from SharedFunctions import generate_picks
 
 current_season = 2022
-week = "2"
+week = "3"
 
 base_position_weights = {
     'WR': 3,
