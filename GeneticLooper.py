@@ -63,6 +63,7 @@ base_freshness_coefficient = 1
 
 generation_counter = 1
 generation = []
+visualization_set = []
 
 while generation_counter < 1001:
     print("Generating picks for generation " + str(generation_counter))

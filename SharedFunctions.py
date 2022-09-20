@@ -127,7 +127,7 @@ def evaluate_freshness(week, team):
         delta = this_datetime - previous_datetime
         return (delta.days - 7)/7
 
-def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, base_freshness_coefficient, position_weights, injury_type_weights):
+def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, freshness_coefficient, position_weights, injury_type_weights):
     espn_api_base_url = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/"
 
     depth_charts_file = open("depth_charts.json", "r")
@@ -202,7 +202,7 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         # now using the numbers from above, lets calculate their
         pyth = ((17)*((this_team['PF']+(this_team['LSPF']*LSWEIGHT))**pyth_constant))/((this_team['PF']+(this_team['LSPF']*LSWEIGHT))**pyth_constant + (this_team['PA']+(this_team['LSPA']*LSWEIGHT))**pyth_constant)
         this_team['PYTH'] = pyth
-        this_team['SCORE'] = pyth + (base_freshness_coefficient*freshness_rating) - (total_uh_oh_factor * uh_oh_multiplier)
+        this_team['SCORE'] = pyth + (freshness_coefficient*freshness_rating) - (total_uh_oh_factor * uh_oh_multiplier)
         teams.append(this_team)
 
     predictions = {}
@@ -255,5 +255,6 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         "home_advantage_multiplier": home_advantage_multiplier,
         "position_weights": position_weights,
         "injury_type_weights": injury_type_weights,
+        "freshness_coefficient": freshness_coefficient,
         "predictions": predictions
     }
