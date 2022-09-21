@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 
 current_season = 2022
-week = "2"
+week = "1"
 
 f = open("predictions/week"+str(week)+"/visualization.json", "r")
 df = pd.read_json(f)

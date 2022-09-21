@@ -3,7 +3,7 @@ import json
 from SharedFunctions import generate_picks
 
 current_season = 2022
-week = "2"
+week = "3"
 
 base_position_weights = {
     'WR': 3,
@@ -58,10 +58,11 @@ base_injury_type_weights = {
     "Doubtful": 0.8
 }
 
-base_pyth_constant = 3
-base_uh_oh_multiplier = 3
-base_home_advantage_multiplier = 1.5
-base_freshness_coefficient = 0.18
+base_pyth_constant = 2.86
+base_uh_oh_multiplier = 2.25
+base_home_advantage_multiplier = 1.47
+base_freshness_coefficient = 0.83
+base_spread_coefficient = 0.928
 
 picks = generate_picks(
     current_season,
@@ -71,7 +72,8 @@ picks = generate_picks(
     base_home_advantage_multiplier,
     base_freshness_coefficient,
     base_position_weights,
-    base_injury_type_weights
+    base_injury_type_weights,
+    base_spread_coefficient
 )
 
 f = open("predictions/week" + week + "/" + "picks.json", "w")
