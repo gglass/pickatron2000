@@ -3,63 +3,65 @@ import json
 from SharedFunctions import generate_picks
 
 current_season = 2022
-week = "3"
+week = "2"
 
 base_position_weights = {
     'WR': 3,
-    'LT': 3,
+    'LT': 4,
     'LG': 3,
     'C': 2,
     'RG': 1,
-    'RT': 3,
+    'RT': 2,
     'TE': 3,
     'QB': 5,
-    'RB': 4,
+    'RB': 5,
     'FB': 3,
     'NT': 3,
-    'RDE': 2,
+    'RDE': 1,
     'LOLB': 2,
     'LILB': 2,
-    'RILB': 2,
+    'RILB': 1,
     'ROLB': 2,
     'LCB': 3,
     'RCB': 3,
-    'SS': 3,
+    'SS': 4,
     'FS': 3,
     'PK': 2,
     'P': 1,
     'LDT': 4,
-    'WLB': 4,
+    'WLB': 5,
     'MLB': 4,
-    'SLB': 4,
+    'SLB': 5,
     'CB': 4,
     'LB': 3,
     'DE': 3,
     'DT': 4,
-    'UT': 1,
+    'UT': 2,
     'NB': 1,
     'DB': 2,
     'S': 3,
     'DL': 4,
-    'H': 1,
+    'H': 2,
     'PR': 2,
     'KR': 2,
     'LS': 2,
     'OT': 3,
-    'G': 3,
+    'G': 2,
 }
 
 base_injury_type_weights = {
     "Active": 0,
     "Questionable": 0.5,
     "Out": 1,
-    "Injured Reserve": 0.8
+    "Suspension": 1,
+    "Injured Reserve": 0.8,
+    "Doubtful": 0.8
 }
 
-base_pyth_constant = 2.3
-base_uh_oh_multiplier = 1
-base_home_advantage_multiplier = 1.15
-base_freshness_coefficient = 1
+base_pyth_constant = 3
+base_uh_oh_multiplier = 3
+base_home_advantage_multiplier = 1.5
+base_freshness_coefficient = 0.18
 
 picks = generate_picks(
     current_season,

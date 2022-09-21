@@ -5,34 +5,43 @@ import json
 import hashlib
 import random
 
+
 def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advantage_multiplier,
                      base_freshness_coefficient, base_position_weights,
-                   base_injury_type_weights):
+                   base_injury_type_weights, base_spread_coefficient):
     mutated = {
         "pyth_constant": base_pyth_constant,
         "uh_oh_multiplier": base_uh_oh_multiplier,
         "home_advantage_multiplier": base_home_advantage_multiplier,
         "freshness_coefficient": base_freshness_coefficient,
         "position_weights": base_position_weights.copy(),
-        "injury_type_weights": base_injury_type_weights.copy()
+        "injury_type_weights": base_injury_type_weights.copy(),
+        "spread_coefficient": base_spread_coefficient
     }
 
     # we are just gonna nudge each of these around by 0.0 - 0.1 up or down for each one. This is ~10% randomness in each one (which is a fair amount of genetic drift)
-    mutated['pyth_constant'] = base_pyth_constant + ((random.random() - 0.5)/5)
-    mutated['uh_oh_multiplier'] = base_uh_oh_multiplier + ((random.random() - 0.5)/10)
-    mutated['freshness_coefficient'] = base_freshness_coefficient + ((random.random() - 0.5)/10)
-    mutated['home_advantage_multiplier'] = base_home_advantage_multiplier + ((random.random() - 0.5)/10)
+    mutated['pyth_constant'] = base_pyth_constant + ((random.random() - 0.5)/2.5)
+    mutated['uh_oh_multiplier'] = base_uh_oh_multiplier + ((random.random() - 0.5)/2)
+    mutated['freshness_coefficient'] = base_freshness_coefficient + ((random.random() - 0.5)/2)
+    mutated['home_advantage_multiplier'] = base_home_advantage_multiplier + ((random.random() - 0.5)/2)
+    mutated['spread_coefficient'] = base_spread_coefficient + ((random.random() - 0.5)*2)
 
     # for position in base_position_weights.keys():
-    #     chaos = random.random()
-    #     if chaos < 0.2:
-    #         if base_position_weights[position] > 1:
-    #             mutated['position_weights'][position] = base_position_weights[position] - 1
-    #     elif chaos > 0.8:
-    #         if base_position_weights[position] < 5:
-    #             mutated['position_weights'][position] = base_position_weights[position] + 1
+    #     mutated['position_weights'][position] = base_position_weights[position] + ((random.random() - 0.5)/5)
+    #     if mutated['position_weights'][position] < 0:
+    #         mutated['position_weights'][position] = 0
+    #     elif mutated['position_weights'][position] > 5:
+    #         mutated['position_weights'][position] = 5
+        # chaos = random.random()
+        # if chaos < 0.05:
+        #     if base_position_weights[position] > 1:
+        #         mutated['position_weights'][position] = base_position_weights[position] - 1
+        # elif chaos > 0.95:
+        #     if base_position_weights[position] < 5:
+        #         mutated['position_weights'][position] = base_position_weights[position] + 1
 
     return mutated
+
 
 def evaluate_picks(current_season, week, generation):
     espn_api_base_url = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/"
@@ -41,6 +50,7 @@ def evaluate_picks(current_season, week, generation):
 
     for prediction_set in generation:
         prediction_set['accuracy_score'] = 0
+        prediction_set['spread_score'] = 0
         predictions = prediction_set['predictions']
 
         for event_link in matchups['items']:
@@ -50,24 +60,28 @@ def evaluate_picks(current_season, week, generation):
             predicted_result = predictions[competition["id"]]
             predicted_winner_id = predicted_result['winner_id']
             competitors = competition['competitors']
+            tempspread = 0
             for competitor in competitors:
                 score = get_or_fetch_from_cache(competitor['score']['$ref'])
-                if 'scores' in predicted_result:
-                    predicted_result['scores'].append(score['value'])
+                if tempspread == 0:
+                    tempspread = score['value']
                 else:
-                    predicted_result['scores'] = [score['value']]
+                    tempspread = tempspread - score['value']
                 if competitor['winner']:
                     actual_winner_id = competitor['id']
             if(predicted_winner_id == actual_winner_id):
                 prediction_set['accuracy_score'] = prediction_set['accuracy_score'] + 1
                 predicted_result['chicken_dinner'] = 1
-            predicted_result['actual_spread'] = predicted_result['scores'][0] - predicted_result['scores'][1]
+            predicted_result['actual_spread'] = tempspread
+            predicted_result['spread_diff'] = predicted_result['predicted_spread'] - predicted_result['actual_spread']
+            prediction_set['spread_score'] = prediction_set['spread_score'] + abs(predicted_result['spread_diff'])
         if prediction_set['accuracy_score'] in evaluations:
             evaluations[prediction_set['accuracy_score']].append(prediction_set)
         else:
             evaluations[prediction_set['accuracy_score']] = [prediction_set]
 
     return evaluations
+
 
 def get_or_fetch_from_cache(url, directory = "caches"):
     file_key = hashlib.md5(url.encode('UTF-8')).hexdigest()
@@ -85,6 +99,7 @@ def get_or_fetch_from_cache(url, directory = "caches"):
         f.close()
         return data
 
+
 def rank_impact_weight(total_in_position, rank_in_position):
     # the goal here is to give more weight to positions that have a lot of people in them
     # the 1 rank being out will always be the highest weighted (1.0)
@@ -96,7 +111,8 @@ def rank_impact_weight(total_in_position, rank_in_position):
     # so if you are missing your 2 or 3 wide, it'll have a higher impact than if you are missing your pos 2 kicker
     folks_in_front = rank_in_position - 1
     inv_rank_importance = float(folks_in_front)/float(total_in_position)
-    return 1 - inv_rank_importance
+    return (1 - inv_rank_importance)/float(total_in_position)
+
 
 # freshness is represented in terms of 7 days being a "base" freshness of 0, resulting in no adjustment of their overall score
 # teams that have a bye week resulting in 14 days since they last played will have a freshness of 1
@@ -127,7 +143,8 @@ def evaluate_freshness(week, team):
         delta = this_datetime - previous_datetime
         return (delta.days - 7)/7
 
-def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, freshness_coefficient, position_weights, injury_type_weights):
+
+def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, freshness_coefficient, position_weights, injury_type_weights, spread_coefficient):
     espn_api_base_url = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/"
 
     depth_charts_file = open("depth_charts.json", "r")
@@ -237,11 +254,11 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         if prediction['teams'][0]['SCORE'] > prediction['teams'][1]['SCORE']:
             prediction['winner'] = prediction['teams'][0]['name']
             prediction['winner_id'] = prediction['teams'][0]['id']
-            prediction['predicted_spread'] = math.floor((prediction['teams'][0]['SCORE'] - prediction['teams'][1]['SCORE'])*1.5)
         else:
             prediction['winner'] = prediction['teams'][1]['name']
             prediction['winner_id'] = prediction['teams'][1]['id']
-            prediction['predicted_spread'] = math.floor((prediction['teams'][1]['SCORE'] - prediction['teams'][0]['SCORE'])*1.5)
+
+        prediction['predicted_spread'] = math.floor((prediction['teams'][0]['SCORE'] - prediction['teams'][1]['SCORE'])*spread_coefficient)
 
         predictions[competition["id"]] = prediction
 
@@ -256,5 +273,6 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         "position_weights": position_weights,
         "injury_type_weights": injury_type_weights,
         "freshness_coefficient": freshness_coefficient,
+        "spread_coefficient": spread_coefficient,
         "predictions": predictions
     }
