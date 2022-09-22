@@ -21,7 +21,7 @@ def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advant
 
     # we are just gonna nudge each of these around by 0.0 - 0.1 up or down for each one. This is ~10% randomness in each one (which is a fair amount of genetic drift)
     mutated['pyth_constant'] = base_pyth_constant + ((random.random() - 0.5)/2.5)
-    # mutated['uh_oh_multiplier'] = base_uh_oh_multiplier + ((random.random() - 0.5)/2)
+    mutated['uh_oh_multiplier'] = base_uh_oh_multiplier + ((random.random() - 0.5)/2)
     mutated['freshness_coefficient'] = base_freshness_coefficient + ((random.random() - 0.5)/2)
     mutated['home_advantage_multiplier'] = base_home_advantage_multiplier + ((random.random() - 0.5)/2)
     mutated['spread_coefficient'] = base_spread_coefficient + ((random.random() - 0.5)*2)
