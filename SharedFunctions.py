@@ -51,6 +51,7 @@ def evaluate_picks(current_season, week, generation):
     for prediction_set in generation:
         prediction_set['accuracy_score'] = 0
         prediction_set['spread_score'] = 0
+        prediction_set['total_money_won'] = 0
         predictions = prediction_set['predictions']
 
         for event_link in matchups['items']:
@@ -69,14 +70,36 @@ def evaluate_picks(current_season, week, generation):
                     tempspread = tempspread - score['value']
                 if competitor["winner"]:
                     actual_winner_id = competitor['id']
-            print("predicted/actual: "+ str(predicted_winner_id) + "/" + str(actual_winner_id))
+            # print("predicted/actual: "+ str(predicted_winner_id) + "/" + str(actual_winner_id))
 
             if(predicted_winner_id == actual_winner_id):
                 prediction_set['accuracy_score'] = prediction_set['accuracy_score'] + 1
                 predicted_result['chicken_dinner'] = 1
-            predicted_result['actual_spread'] = tempspread
+            predicted_result['actual_spread'] = 0 - tempspread
             predicted_result['spread_diff'] = predicted_result['predicted_spread'] - predicted_result['actual_spread']
             prediction_set['spread_score'] = prediction_set['spread_score'] + abs(predicted_result['spread_diff'])
+            # if home team won
+            if predicted_result['predicted_spread'] > 0:
+                # if I predicted they'd win by at least that much, then I would have won a bet on this game
+                if predicted_result['vegas_spread'] < predicted_result['actual_spread']:
+                    prediction_set['total_money_won'] = prediction_set['total_money_won'] + 100
+                    predicted_result['money'] = 'YES'
+                # I bet, but they didn't cover
+                else:
+                    # gotta subtract the loss plus the vig
+                    prediction_set['total_money_won'] = prediction_set['total_money_won'] - 110
+                    predicted_result['money'] = 'NO'
+            # away team won
+            else:
+                # if I predicted they'd win by at least that much, then I would have won a bet on this game
+                if predicted_result['vegas_spread'] > predicted_result['actual_spread']:
+                    prediction_set['total_money_won'] = prediction_set['total_money_won'] + 100
+                    predicted_result['money'] = 'YES'
+                # I bet, but they didn't cover
+                else:
+                    # gotta subtract the loss plus the vig
+                    prediction_set['total_money_won'] = prediction_set['total_money_won'] - 110
+                    predicted_result['money'] = 'NO'
         if prediction_set['accuracy_score'] in evaluations:
             evaluations[prediction_set['accuracy_score']].append(prediction_set)
         else:
@@ -235,6 +258,7 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         event = get_or_fetch_from_cache(event_link['$ref'])
         competition = event['competitions'][0]
         competitors = competition['competitors']
+        odds = get_or_fetch_from_cache(competition['odds']['$ref'])
         prediction['name'] = event['name']
         prediction['date'] = event['date']
         for competitor in competitors:
@@ -256,11 +280,18 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         if prediction['teams'][0]['SCORE'] > prediction['teams'][1]['SCORE']:
             prediction['winner'] = prediction['teams'][0]['name']
             prediction['winner_id'] = prediction['teams'][0]['id']
+            prediction['predicted_favorite'] = prediction['teams'][0]['name'] + " -" + str(line_set((prediction['teams'][0]['SCORE'] - prediction['teams'][1]['SCORE'])*spread_coefficient))
         else:
             prediction['winner'] = prediction['teams'][1]['name']
             prediction['winner_id'] = prediction['teams'][1]['id']
+            prediction['predicted_favorite'] = prediction['teams'][1]['name'] + " -" + str(line_set((prediction['teams'][1]['SCORE'] - prediction['teams'][0]['SCORE'])*spread_coefficient))
 
-        prediction['predicted_spread'] = math.floor((prediction['teams'][0]['SCORE'] - prediction['teams'][1]['SCORE'])*spread_coefficient)
+        prediction['vegas_spread'] = odds['items'][0]['spread']
+        prediction['predicted_spread'] = line_set(0 - (prediction['teams'][0]['SCORE'] - prediction['teams'][1]['SCORE'])*spread_coefficient)
+        if prediction['vegas_spread'] >= prediction['predicted_spread']:
+            prediction['bet'] = "away"
+        else:
+            prediction['bet'] = "home"
 
         predictions[competition["id"]] = prediction
 
@@ -278,3 +309,6 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         "spread_coefficient": spread_coefficient,
         "predictions": predictions
     }
+
+def line_set(num):
+    return round(num * 2) / 2
