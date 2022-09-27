@@ -67,8 +67,10 @@ def evaluate_picks(current_season, week, generation):
                     tempspread = score['value']
                 else:
                     tempspread = tempspread - score['value']
-                if competitor['winner']:
+                if competitor["winner"]:
                     actual_winner_id = competitor['id']
+            print("predicted/actual: "+ str(predicted_winner_id) + "/" + str(actual_winner_id))
+
             if(predicted_winner_id == actual_winner_id):
                 prediction_set['accuracy_score'] = prediction_set['accuracy_score'] + 1
                 predicted_result['chicken_dinner'] = 1
