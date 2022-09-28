@@ -4,7 +4,7 @@ import json
 from SharedFunctions import generate_picks, mutate_constants, evaluate_picks
 
 current_season = 2022
-week = "2"
+week = 3
 
 base_position_weights = {
     'WR': 3,
@@ -69,6 +69,7 @@ desired_generations = 500
 generation_size = 20
 keep_each_gen = 10
 
+starting_week = 1
 generation_counter = 1
 generation = []
 visualization_set = []
@@ -155,24 +156,24 @@ while generation_counter <= desired_generations:
     print("Candidates with that score: " + str(len(generation)))
 
     # now lets use the predicted spread to figure out which of the predictions was the most accurate
-    sorted_array = sorted(generation, key=lambda pick: abs(pick["spread_score"]))
+    sorted_array = sorted(generation, key=lambda pick: pick["total_money_won"], reverse=True)
 
     if len(generation) > keep_each_gen:
         generation = sorted_array[:keep_each_gen:]
 
     if(len(generation) > 4):
-        print("Best spreads this generation: " + str(generation[0]["spread_score"]) + ", " + str(generation[1]["spread_score"]) + ", " + str(generation[2]["spread_score"]) + ", " + str(generation[3]["spread_score"]))
+        print("Best money this generation: " + str(generation[0]["total_money_won"]) + ", " + str(generation[1]["total_money_won"]) + ", " + str(generation[2]["total_money_won"]) + ", " + str(generation[3]["total_money_won"]))
     else:
-        print("Best spread this generation: " + str(generation[0]["spread_score"]))
+        print("Best money this generation: " + str(generation[0]["total_money_won"]))
 
     generation_counter = generation_counter + 1
 
 best_performer = generation[0]
 
-f = open("predictions/week" + week + "/" + "genetics.json", "w")
+f = open("predictions/week" + str(week) + "/" + "genetics.json", "w")
 f.write(json.dumps(best_performer, indent=4))
 f.close()
 
-f = open("predictions/week" + week + "/" + "visualization.json", "w")
+f = open("predictions/week" + str(week) + "/" + "visualization.json", "w")
 f.write(json.dumps(visualization_set, indent=4))
 f.close()

@@ -20,11 +20,11 @@ def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advant
     }
 
     # we are just gonna nudge each of these around by 0.0 - 0.1 up or down for each one. This is ~10% randomness in each one (which is a fair amount of genetic drift)
-    mutated['pyth_constant'] = base_pyth_constant + ((random.random() - 0.5)/2.5)
-    mutated['uh_oh_multiplier'] = base_uh_oh_multiplier + ((random.random() - 0.5)/2)
-    mutated['freshness_coefficient'] = base_freshness_coefficient + ((random.random() - 0.5)/2)
-    mutated['home_advantage_multiplier'] = base_home_advantage_multiplier + ((random.random() - 0.5)/2)
-    mutated['spread_coefficient'] = base_spread_coefficient + ((random.random() - 0.5)*2)
+    mutated['pyth_constant'] = base_pyth_constant + ((random.random() - 0.5))
+    mutated['uh_oh_multiplier'] = base_uh_oh_multiplier + ((random.random() - 0.5))
+    mutated['freshness_coefficient'] = base_freshness_coefficient + ((random.random() - 0.5))
+    mutated['home_advantage_multiplier'] = base_home_advantage_multiplier + ((random.random() - 0.5))
+    mutated['spread_coefficient'] = base_spread_coefficient + ((random.random() - 0.5)*1.25)
 
     # for position in base_position_weights.keys():
     #     mutated['position_weights'][position] = base_position_weights[position] + ((random.random() - 0.5)/5)
@@ -46,8 +46,7 @@ def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advant
 def evaluate_picks(current_season, week, generation):
     espn_api_base_url = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/"
     matchups = get_or_fetch_from_cache(espn_api_base_url + "seasons/" + str(current_season) + "/types/2/weeks/" + str(week) + "/events?lang=en&region=us")
-    evaluations = {}
-
+    evaluations = []
     for prediction_set in generation:
         prediction_set['accuracy_score'] = 0
         prediction_set['spread_score'] = 0
@@ -100,10 +99,8 @@ def evaluate_picks(current_season, week, generation):
                     # gotta subtract the loss plus the vig
                     prediction_set['total_money_won'] = prediction_set['total_money_won'] - 110
                     predicted_result['money'] = 'NO'
-        if prediction_set['accuracy_score'] in evaluations:
-            evaluations[prediction_set['accuracy_score']].append(prediction_set)
-        else:
-            evaluations[prediction_set['accuracy_score']] = [prediction_set]
+
+            evaluations.append(prediction_set)
 
     return evaluations
 
@@ -248,7 +245,7 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         teams.append(this_team)
 
     predictions = {}
-    matchups = get_or_fetch_from_cache(espn_api_base_url + "seasons/2022/types/2/weeks/" + week + "/events?lang=en&region=us")
+    matchups = get_or_fetch_from_cache(espn_api_base_url + "seasons/2022/types/2/weeks/" + str(week) + "/events?lang=en&region=us")
     for event_link in matchups['items']:
         prediction = {
             "winner": "",
@@ -299,16 +296,8 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
     #     print(prediction['name'], ",", "Winner:", prediction['winner'], ",", prediction['teams'][0]['name'], ",", round(prediction['teams'][0]['SCORE'], 2), ",", prediction['teams'][1]['name'], ",", round(prediction['teams'][1]['SCORE'],2))
     # print("Constants: pyth, uh_oh, home_advantage: " + str(pyth_constant) + ", " + str(uh_oh_multiplier) + ", " + str(home_advantage_multiplier))
     # f = open("predictions/week" + week + "/" + "test.json", "a")
-    return {
-        "pyth_constant": pyth_constant,
-        "uh_oh_multiplier": uh_oh_multiplier,
-        "home_advantage_multiplier": home_advantage_multiplier,
-        "position_weights": position_weights,
-        "injury_type_weights": injury_type_weights,
-        "freshness_coefficient": freshness_coefficient,
-        "spread_coefficient": spread_coefficient,
-        "predictions": predictions
-    }
+    return predictions
+
 
 def line_set(num):
     return round(num * 2) / 2

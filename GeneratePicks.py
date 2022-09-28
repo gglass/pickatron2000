@@ -4,7 +4,7 @@ from SharedFunctions import generate_picks
 from statistics import mean
 
 current_season = 2022
-week = "3"
+week = "2"
 
 base_position_weights = {
     'WR': 3,
@@ -67,20 +67,26 @@ weekly_coefficients = {
     "base_spread_coefficient": []
 }
 
-
 # set 1
-weekly_coefficients["base_pyth_constant"].append(2.86)
-weekly_coefficients["base_uh_oh_multiplier"].append(2.25)
-weekly_coefficients["base_home_advantage_multiplier"].append(1.47)
-weekly_coefficients["base_freshness_coefficient"].append(0.83)
-weekly_coefficients["base_spread_coefficient"].append(0.928)
+# weekly_coefficients["base_pyth_constant"].append(2.86)
+# weekly_coefficients["base_uh_oh_multiplier"].append(2.25)
+# weekly_coefficients["base_home_advantage_multiplier"].append(1.47)
+# weekly_coefficients["base_freshness_coefficient"].append(0.83)
+# weekly_coefficients["base_spread_coefficient"].append(0.928)
 
 # set 2
-weekly_coefficients["base_pyth_constant"].append(3.09)
-weekly_coefficients["base_uh_oh_multiplier"].append(2.08)
-weekly_coefficients["base_home_advantage_multiplier"].append(1.55)
-weekly_coefficients["base_freshness_coefficient"].append(0.44)
-weekly_coefficients["base_spread_coefficient"].append(0.84)
+# weekly_coefficients["base_pyth_constant"].append(3.09)
+# weekly_coefficients["base_uh_oh_multiplier"].append(2.08)
+# weekly_coefficients["base_home_advantage_multiplier"].append(1.55)
+# weekly_coefficients["base_freshness_coefficient"].append(0.44)
+# weekly_coefficients["base_spread_coefficient"].append(0.84)
+
+# set 3
+weekly_coefficients["base_pyth_constant"].append(3.092334579813377)
+weekly_coefficients["base_uh_oh_multiplier"].append(2.2176024265127103)
+weekly_coefficients["base_home_advantage_multiplier"].append(1.6483742334619178)
+weekly_coefficients["base_freshness_coefficient"].append(0.4732978844833246)
+weekly_coefficients["base_spread_coefficient"].append(-0.02689300599576583)
 
 base_pyth_constant = mean(weekly_coefficients["base_pyth_constant"])
 base_uh_oh_multiplier = mean(weekly_coefficients["base_uh_oh_multiplier"])
