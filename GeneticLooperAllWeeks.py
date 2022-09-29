@@ -61,11 +61,11 @@ base_injury_type_weights = {
     "Doubtful": 0.8
 }
 
-base_pyth_constant = 2.86
-base_uh_oh_multiplier = 2.25
-base_home_advantage_multiplier = 1.47
-base_freshness_coefficient = 0.83
-base_spread_coefficient = 0.928
+base_pyth_constant = 3.3392648822831035
+base_uh_oh_multiplier = 2.152386381835709
+base_home_advantage_multiplier = 1.678497632934194
+base_freshness_coefficient = 0.7194195106325565
+base_spread_coefficient = 1.054520951971812
 
 desired_generations = 200
 generation_size = 20
@@ -222,10 +222,8 @@ while generation_counter <= desired_generations:
         print("Best money this generation: " + str(generation[0]["total_money_won"]))
     generation_counter = generation_counter + 1
 
-best_performer = generation[0]
-
 f = open("predictions/genetics/genetics.json", "w")
-f.write(json.dumps(best_performer, indent=4))
+f.write(json.dumps(generation, indent=4))
 f.close()
 
 f = open("predictions/genetics/visualization.json", "w")

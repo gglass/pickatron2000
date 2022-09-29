@@ -77,30 +77,34 @@ def evaluate_picks(current_season, week, generation):
             predicted_result['actual_spread'] = 0 - tempspread
             predicted_result['spread_diff'] = predicted_result['predicted_spread'] - predicted_result['actual_spread']
             prediction_set['spread_score'] = prediction_set['spread_score'] + abs(predicted_result['spread_diff'])
-            # if home team won
-            if predicted_result['predicted_spread'] > 0:
-                # if I predicted they'd win by at least that much, then I would have won a bet on this game
-                if predicted_result['vegas_spread'] < predicted_result['actual_spread']:
-                    prediction_set['total_money_won'] = prediction_set['total_money_won'] + 100
-                    predicted_result['money'] = 'YES'
-                # I bet, but they didn't cover
-                else:
-                    # gotta subtract the loss plus the vig
-                    prediction_set['total_money_won'] = prediction_set['total_money_won'] - 110
-                    predicted_result['money'] = 'NO'
-            # away team won
-            else:
-                # if I predicted they'd win by at least that much, then I would have won a bet on this game
-                if predicted_result['vegas_spread'] > predicted_result['actual_spread']:
-                    prediction_set['total_money_won'] = prediction_set['total_money_won'] + 100
-                    predicted_result['money'] = 'YES'
-                # I bet, but they didn't cover
-                else:
-                    # gotta subtract the loss plus the vig
-                    prediction_set['total_money_won'] = prediction_set['total_money_won'] - 110
-                    predicted_result['money'] = 'NO'
 
-            evaluations.append(prediction_set)
+            # I bet on the home team
+            if predicted_result['vegas_spread'] != predicted_result['actual_spread']:
+                if predicted_result['predicted_spread'] - predicted_result['vegas_spread'] < 0:
+                    # if I predicted they'd win by at least that much, then I would have won a bet on this game
+                    if predicted_result['vegas_spread'] > predicted_result['actual_spread']:
+                        prediction_set['total_money_won'] = prediction_set['total_money_won'] + 100
+                        predicted_result['money'] = 'YES'
+                    # I bet, but they didn't cover
+                    else:
+                        # gotta subtract the loss plus the vig
+                        prediction_set['total_money_won'] = prediction_set['total_money_won'] - 110
+                        predicted_result['money'] = 'NO'
+                # I bet on the away team
+                else:
+                    # if I predicted they'd win by at least that much, then I would have won a bet on this game
+                    if predicted_result['vegas_spread'] < predicted_result['actual_spread']:
+                        prediction_set['total_money_won'] = prediction_set['total_money_won'] + 100
+                        predicted_result['money'] = 'YES'
+                    # I bet, but they didn't cover
+                    else:
+                        # gotta subtract the loss plus the vig
+                        prediction_set['total_money_won'] = prediction_set['total_money_won'] - 110
+                        predicted_result['money'] = 'NO'
+            else:
+                predicted_result['money'] = 'PUSH'
+
+        evaluations.append(prediction_set)
 
     return evaluations
 
@@ -285,10 +289,10 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
 
         prediction['vegas_spread'] = odds['items'][0]['spread']
         prediction['predicted_spread'] = line_set(0 - (prediction['teams'][0]['SCORE'] - prediction['teams'][1]['SCORE'])*spread_coefficient)
-        if prediction['vegas_spread'] >= prediction['predicted_spread']:
-            prediction['bet'] = "away"
-        else:
+        if prediction['predicted_spread'] - prediction['vegas_spread'] < 0:
             prediction['bet'] = "home"
+        else:
+            prediction['bet'] = "away"
 
         predictions[competition["id"]] = prediction
 
