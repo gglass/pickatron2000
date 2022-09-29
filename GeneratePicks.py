@@ -4,50 +4,50 @@ from SharedFunctions import generate_picks
 from statistics import mean
 
 current_season = 2022
-week = "2"
+week = "4"
 
 base_position_weights = {
-    'WR': 3,
-    'LT': 4,
-    'LG': 3,
-    'C': 2,
-    'RG': 1,
-    'RT': 2,
-    'TE': 3,
-    'QB': 5,
-    'RB': 5,
-    'FB': 3,
-    'NT': 3,
-    'RDE': 1,
-    'LOLB': 2,
-    'LILB': 2,
-    'RILB': 1,
-    'ROLB': 2,
-    'LCB': 3,
-    'RCB': 3,
-    'SS': 4,
-    'FS': 3,
-    'PK': 2,
-    'P': 1,
-    'LDT': 4,
-    'WLB': 5,
-    'MLB': 4,
-    'SLB': 5,
-    'CB': 4,
-    'LB': 3,
-    'DE': 3,
-    'DT': 4,
-    'UT': 2,
-    'NB': 1,
-    'DB': 2,
-    'S': 3,
-    'DL': 4,
-    'H': 2,
-    'PR': 2,
-    'KR': 2,
-    'LS': 2,
-    'OT': 3,
-    'G': 2,
+    "WR": 3,
+    "LT": 4,
+    "LG": 3,
+    "C": 2,
+    "RG": 1,
+    "RT": 2,
+    "TE": 3,
+    "QB": 5,
+    "RB": 5,
+    "FB": 3,
+    "NT": 3,
+    "RDE": 1,
+    "LOLB": 2,
+    "LILB": 2,
+    "RILB": 1,
+    "ROLB": 2,
+    "LCB": 3,
+    "RCB": 3,
+    "SS": 4,
+    "FS": 3,
+    "PK": 2,
+    "P": 1,
+    "LDT": 4,
+    "WLB": 5,
+    "MLB": 4,
+    "SLB": 5,
+    "CB": 4,
+    "LB": 3,
+    "DE": 3,
+    "DT": 4,
+    "UT": 2,
+    "NB": 1,
+    "DB": 2,
+    "S": 3,
+    "DL": 4,
+    "H": 2,
+    "PR": 2,
+    "KR": 2,
+    "LS": 2,
+    "OT": 3,
+    "G": 2
 }
 
 base_injury_type_weights = {
@@ -67,32 +67,11 @@ weekly_coefficients = {
     "base_spread_coefficient": []
 }
 
-# set 1
-# weekly_coefficients["base_pyth_constant"].append(2.86)
-# weekly_coefficients["base_uh_oh_multiplier"].append(2.25)
-# weekly_coefficients["base_home_advantage_multiplier"].append(1.47)
-# weekly_coefficients["base_freshness_coefficient"].append(0.83)
-# weekly_coefficients["base_spread_coefficient"].append(0.928)
-
-# set 2
-# weekly_coefficients["base_pyth_constant"].append(3.09)
-# weekly_coefficients["base_uh_oh_multiplier"].append(2.08)
-# weekly_coefficients["base_home_advantage_multiplier"].append(1.55)
-# weekly_coefficients["base_freshness_coefficient"].append(0.44)
-# weekly_coefficients["base_spread_coefficient"].append(0.84)
-
-# set 3
-weekly_coefficients["base_pyth_constant"].append(3.092334579813377)
-weekly_coefficients["base_uh_oh_multiplier"].append(2.2176024265127103)
-weekly_coefficients["base_home_advantage_multiplier"].append(1.6483742334619178)
-weekly_coefficients["base_freshness_coefficient"].append(0.4732978844833246)
-weekly_coefficients["base_spread_coefficient"].append(-0.02689300599576583)
-
-base_pyth_constant = mean(weekly_coefficients["base_pyth_constant"])
-base_uh_oh_multiplier = mean(weekly_coefficients["base_uh_oh_multiplier"])
-base_home_advantage_multiplier = mean(weekly_coefficients["base_home_advantage_multiplier"])
-base_freshness_coefficient = mean(weekly_coefficients["base_freshness_coefficient"])
-base_spread_coefficient = mean(weekly_coefficients["base_spread_coefficient"])
+base_pyth_constant = 3.3392648822831035
+base_uh_oh_multiplier = 2.152386381835709
+base_home_advantage_multiplier = 1.678497632934194
+base_freshness_coefficient = 0.7194195106325565
+base_spread_coefficient = 1.054520951971812
 
 picks = generate_picks(
     current_season,
