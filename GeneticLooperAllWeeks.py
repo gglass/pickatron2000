@@ -4,9 +4,8 @@ import json
 from SharedFunctions import generate_picks, mutate_constants, evaluate_picks
 
 current_season = 2022
-week = 3
 starting_week = 2
-ending_week = 3
+ending_week = 4
 
 base_position_weights = {
     'WR': 3,
@@ -61,11 +60,11 @@ base_injury_type_weights = {
     "Doubtful": 0.8
 }
 
-base_pyth_constant = 3.3392648822831035
-base_uh_oh_multiplier = 2.152386381835709
-base_home_advantage_multiplier = 1.678497632934194
-base_freshness_coefficient = 0.7194195106325565
-base_spread_coefficient = 1.054520951971812
+base_pyth_constant = 3.0887176944759176
+base_uh_oh_multiplier = 1.3755873118229176
+base_home_advantage_multiplier = 1.6990493451587603
+base_freshness_coefficient = -0.06782574596541502
+base_spread_coefficient = 0.07564801240328997
 
 desired_generations = 200
 generation_size = 20

@@ -111,19 +111,28 @@ def evaluate_picks(current_season, week, generation):
 
 def get_or_fetch_from_cache(url, directory = "caches"):
     file_key = hashlib.md5(url.encode('UTF-8')).hexdigest()
-    try:
-        f = open(directory+"/"+file_key, "r")
-        data = json.load(f)
-        f.close()
-        return data
-    except:
-        # couldn't find that file yet, lets fetch the thing and put it there in the file
+    overwrite = False
+    if overwrite:
         response = requests.get(url)
         data = response.json()
-        f = open(directory+"/"+file_key, "x")
+        f = open(directory + "/" + file_key, "w")
         f.write(json.dumps(data, indent=4))
         f.close()
         return data
+    else:
+        try:
+            f = open(directory+"/"+file_key, "r")
+            data = json.load(f)
+            f.close()
+            return data
+        except:
+            # couldn't find that file yet, lets fetch the thing and put it there in the file
+            response = requests.get(url)
+            data = response.json()
+            f = open(directory+"/"+file_key, "x")
+            f.write(json.dumps(data, indent=4))
+            f.close()
+            return data
 
 
 def rank_impact_weight(total_in_position, rank_in_position):
