@@ -67,11 +67,11 @@ weekly_coefficients = {
     "base_spread_coefficient": []
 }
 
-base_pyth_constant = 3.0663215849022505
-base_uh_oh_multiplier = 2.0469528081094746
-base_home_advantage_multiplier = 1.7915161657389933
-base_freshness_coefficient = 0.10299225167823
-base_spread_coefficient = 0.29949011166124073
+base_pyth_constant = 2.2744553305354853
+base_uh_oh_multiplier = 1.025043526851672
+base_home_advantage_multiplier = 1.345545807884906
+base_freshness_coefficient = 0.4151044318816487
+base_spread_coefficient = 0.7701856250209412
 
 picks = {
     "predictions": generate_picks(
