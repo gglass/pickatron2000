@@ -65,6 +65,7 @@ base_uh_oh_multiplier = 2.0469528081094746
 base_home_advantage_multiplier = 1.7915161657389933
 base_freshness_coefficient = 0.10299225167823
 base_spread_coefficient = 0.29949011166124073
+base_ls_weight = 0.8235294117647058
 
 desired_generations = 200
 generation_size = 20
@@ -87,6 +88,7 @@ while generation_counter <= desired_generations:
                     "home_advantage_multiplier": base_home_advantage_multiplier,
                     "freshness_coefficient": base_freshness_coefficient,
                     "spread_coefficient": base_spread_coefficient,
+                    "ls_weight": base_ls_weight,
                     "position_weights": base_position_weights.copy(),
                     "injury_type_weights": base_injury_type_weights.copy()
                 }
@@ -100,7 +102,8 @@ while generation_counter <= desired_generations:
             "uh_oh_multiplier",
             "home_advantage_multiplier",
             "freshness_coefficient",
-            "spread_coefficient"
+            "spread_coefficient",
+            "ls_weight"
         ]
         for parameter in parameters:
             vis = {
@@ -123,7 +126,8 @@ while generation_counter <= desired_generations:
             seed['parameters']["freshness_coefficient"],
             seed['parameters']["position_weights"].copy(),
             seed['parameters']["injury_type_weights"].copy(),
-            seed['parameters']["spread_coefficient"]
+            seed['parameters']["spread_coefficient"],
+            seed['parameters']["ls_weight"]
         )
 
         # parameters = mutated['position_weights'].keys()
@@ -142,7 +146,8 @@ while generation_counter <= desired_generations:
             "uh_oh_multiplier",
             "home_advantage_multiplier",
             "freshness_coefficient",
-            "spread_coefficient"
+            "spread_coefficient",
+            "ls_weight"
         ]
         for parameter in parameters:
             vis = {
@@ -162,7 +167,8 @@ while generation_counter <= desired_generations:
                 'freshness_coefficient': mutated['freshness_coefficient'],
                 'position_weights': mutated['position_weights'],
                 'injury_type_weights': mutated['injury_type_weights'],
-                'spread_coefficient': mutated['spread_coefficient']
+                'spread_coefficient': mutated['spread_coefficient'],
+                'ls_weight': mutated['ls_weight']
             }
         }
 
@@ -173,7 +179,7 @@ while generation_counter <= desired_generations:
                     current_season, pick_week, mutated['pyth_constant'], mutated['uh_oh_multiplier'],
                     mutated['home_advantage_multiplier'], mutated['freshness_coefficient'],
                     mutated['position_weights'], mutated['injury_type_weights'],
-                    mutated['spread_coefficient']
+                    mutated['spread_coefficient'], mutated['ls_weight']
                 )
             }
             pick_week += 1

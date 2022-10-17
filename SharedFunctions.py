@@ -8,7 +8,7 @@ import random
 
 def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advantage_multiplier,
                      base_freshness_coefficient, base_position_weights,
-                   base_injury_type_weights, base_spread_coefficient):
+                   base_injury_type_weights, base_spread_coefficient, base_ls_weight):
     mutated = {
         "pyth_constant": base_pyth_constant,
         "uh_oh_multiplier": base_uh_oh_multiplier,
@@ -16,7 +16,8 @@ def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advant
         "freshness_coefficient": base_freshness_coefficient,
         "position_weights": base_position_weights.copy(),
         "injury_type_weights": base_injury_type_weights.copy(),
-        "spread_coefficient": base_spread_coefficient
+        "spread_coefficient": base_spread_coefficient,
+        "ls_weight": base_ls_weight
     }
 
     # we are just gonna nudge each of these around by 0.0 - 0.1 up or down for each one. This is ~10% randomness in each one (which is a fair amount of genetic drift)
@@ -25,6 +26,7 @@ def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advant
     mutated['freshness_coefficient'] = base_freshness_coefficient + ((random.random() - 0.5))
     mutated['home_advantage_multiplier'] = base_home_advantage_multiplier + ((random.random() - 0.5))
     mutated['spread_coefficient'] = base_spread_coefficient + ((random.random() - 0.5)*1.25)
+    mutated['ls_weight'] = min(base_ls_weight + ((random.random() - 0.5)/2), 1.0)
 
     # for position in base_position_weights.keys():
     #     mutated['position_weights'][position] = base_position_weights[position] + ((random.random() - 0.5)/5)
@@ -179,7 +181,7 @@ def evaluate_freshness(week, team):
         return (delta.days - 7)/7
 
 
-def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, freshness_coefficient, position_weights, injury_type_weights, spread_coefficient):
+def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, freshness_coefficient, position_weights, injury_type_weights, spread_coefficient, ls_weight = False):
     espn_api_base_url = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/"
 
     depth_charts_file = open("depth_charts.json", "r")
@@ -247,9 +249,12 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
             'FRESHNESS': freshness_rating
         }
 
-        LSWEIGHT = (this_team['LSGP'] - this_team['GP'])/this_team['LSGP']
-        if LSWEIGHT < 0:
-            LSWEIGHT = 0
+        if ls_weight:
+            LSWEIGHT = ls_weight
+        else:
+            LSWEIGHT = (this_team['LSGP'] - this_team['GP'])/this_team['LSGP']
+            if LSWEIGHT < 0:
+                LSWEIGHT = 0
 
         # now using the numbers from above, lets calculate their
         pyth = ((17)*((this_team['PF']+(this_team['LSPF']*LSWEIGHT))**pyth_constant))/((this_team['PF']+(this_team['LSPF']*LSWEIGHT))**pyth_constant + (this_team['PA']+(this_team['LSPA']*LSWEIGHT))**pyth_constant)
@@ -279,12 +284,13 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
                         'name': team['name'],
                         'PYTH': team['PYTH'],
                         'UHOH': team['UHOH'],
-                        'INJADJ': team['SCORE'],
+                        'FRESHNESS': team['FRESHNESS'],
                         'SCORE': team['SCORE'],
-                        'FRESHNESS': team['FRESHNESS']
                     }
                     if(competitor['homeAway'] == 'home'):
+                        temp = this_team['SCORE']
                         this_team['SCORE'] = this_team['SCORE'] * home_advantage_multiplier
+                        this_team['HFA'] = this_team['SCORE'] - temp
                     prediction['teams'].append(this_team)
 
         if prediction['teams'][0]['SCORE'] > prediction['teams'][1]['SCORE']:
