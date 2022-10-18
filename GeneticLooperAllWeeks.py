@@ -5,7 +5,7 @@ from SharedFunctions import generate_picks, mutate_constants, evaluate_picks
 
 current_season = 2022
 starting_week = 2
-ending_week = 5
+ending_week = 6
 
 base_position_weights = {
     'WR': 3,
@@ -60,12 +60,12 @@ base_injury_type_weights = {
     "Doubtful": 0.8
 }
 
-base_pyth_constant = 3.0663215849022505
-base_uh_oh_multiplier = 2.0469528081094746
-base_home_advantage_multiplier = 1.7915161657389933
-base_freshness_coefficient = 0.10299225167823
-base_spread_coefficient = 0.29949011166124073
-base_ls_weight = 0.8235294117647058
+base_pyth_constant = 2.5656502432012456
+base_uh_oh_multiplier = 0.853944323943219
+base_home_advantage_multiplier = 1.3925730326047177
+base_freshness_coefficient = -0.2230141573845985
+base_spread_coefficient = 0.5398233131532059
+base_ls_weight = 1.0
 
 desired_generations = 200
 generation_size = 20

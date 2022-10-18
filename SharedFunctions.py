@@ -113,7 +113,7 @@ def evaluate_picks(current_season, week, generation):
 
 def get_or_fetch_from_cache(url, directory = "caches"):
     file_key = hashlib.md5(url.encode('UTF-8')).hexdigest()
-    overwrite = True
+    overwrite = False
     if overwrite:
         response = requests.get(url)
         data = response.json()
