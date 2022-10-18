@@ -2,7 +2,7 @@ import json
 from SharedFunctions import evaluate_picks
 
 current_season = 2022
-week = "5"
+week = "6"
 
 f = open("predictions/week" + str(week) + "/picks.json", "r")
 generation = json.load(f)
