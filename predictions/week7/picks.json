@@ -1,0 +1,410 @@
+{
+    "predictions": {
+        "401437791": {
+            "winner": "New Orleans Saints",
+            "winner_id": "18",
+            "teams": [
+                {
+                    "id": "22",
+                    "name": "Arizona Cardinals",
+                    "PYTH": 9.25346136054847,
+                    "UHOH": 2.2666666666666666,
+                    "FRESHNESS": -0.42857142857142855,
+                    "SCORE": 5.22814287084795,
+                    "HFA": -0.3745849461458812
+                },
+                {
+                    "id": "18",
+                    "name": "New Orleans Saints",
+                    "PYTH": 8.321489568845447,
+                    "UHOH": 1.3959183673469389,
+                    "FRESHNESS": -0.42857142857142855,
+                    "SCORE": 6.3020707922762895
+                }
+            ],
+            "name": "New Orleans Saints at Arizona Cardinals",
+            "date": "2022-10-21T00:15Z",
+            "predicted_favorite": "New Orleans Saints -0.5",
+            "vegas_spread": -2.0,
+            "predicted_spread": 0.5,
+            "bet": "away"
+        },
+        "401437794": {
+            "winner": "Cincinnati Bengals",
+            "winner_id": "4",
+            "teams": [
+                {
+                    "id": "4",
+                    "name": "Cincinnati Bengals",
+                    "PYTH": 11.008236882935416,
+                    "UHOH": 0.8333333333333334,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 8.815412725321298,
+                    "HFA": -0.6316049470225416
+                },
+                {
+                    "id": "1",
+                    "name": "Atlanta Falcons",
+                    "PYTH": 5.048262380906597,
+                    "UHOH": 0.09183673469387756,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 4.876209651576097
+                }
+            ],
+            "name": "Atlanta Falcons at Cincinnati Bengals",
+            "date": "2022-10-23T17:00Z",
+            "predicted_favorite": "Cincinnati Bengals -2.0",
+            "vegas_spread": -6.0,
+            "predicted_spread": -2.0,
+            "bet": "away"
+        },
+        "401437795": {
+            "winner": "Dallas Cowboys",
+            "winner_id": "6",
+            "teams": [
+                {
+                    "id": "6",
+                    "name": "Dallas Cowboys",
+                    "PYTH": 12.232281863698725,
+                    "UHOH": 0.225,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 11.206430777815942,
+                    "HFA": -0.8029161354412064
+                },
+                {
+                    "id": "8",
+                    "name": "Detroit Lions",
+                    "PYTH": 5.454986190048025,
+                    "UHOH": 1.5833333333333333,
+                    "FRESHNESS": 1.0,
+                    "SCORE": 1.0985100349969956
+                }
+            ],
+            "name": "Detroit Lions at Dallas Cowboys",
+            "date": "2022-10-23T17:00Z",
+            "predicted_favorite": "Dallas Cowboys -5.0",
+            "vegas_spread": -7.0,
+            "predicted_spread": -5.0,
+            "bet": "away"
+        },
+        "401437797": {
+            "winner": "Indianapolis Colts",
+            "winner_id": "11",
+            "teams": [
+                {
+                    "id": "10",
+                    "name": "Tennessee Titans",
+                    "PYTH": 8.41351965437719,
+                    "UHOH": 1.5666666666666667,
+                    "FRESHNESS": 1.0,
+                    "SCORE": 3.8149360967715413,
+                    "HFA": -0.27333178676645
+                },
+                {
+                    "id": "11",
+                    "name": "Indianapolis Colts",
+                    "PYTH": 9.621025841905503,
+                    "UHOH": 1.6701388888888888,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 6.4920823406782215
+                }
+            ],
+            "name": "Indianapolis Colts at Tennessee Titans",
+            "date": "2022-10-23T17:00Z",
+            "predicted_favorite": "Indianapolis Colts -1.5",
+            "vegas_spread": -2.5,
+            "predicted_spread": 1.5,
+            "bet": "away"
+        },
+        "401437798": {
+            "winner": "Green Bay Packers",
+            "winner_id": "9",
+            "teams": [
+                {
+                    "id": "28",
+                    "name": "Washington Commanders",
+                    "PYTH": 5.154267384267766,
+                    "UHOH": 1.0208333333333333,
+                    "FRESHNESS": 0.2857142857142857,
+                    "SCORE": 2.6544032215501714,
+                    "HFA": -0.19018215690661888
+                },
+                {
+                    "id": "9",
+                    "name": "Green Bay Packers",
+                    "PYTH": 10.736605394692763,
+                    "UHOH": 1.8574074074074074,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 7.2568212430853185
+                }
+            ],
+            "name": "Green Bay Packers at Washington Commanders",
+            "date": "2022-10-23T17:00Z",
+            "predicted_favorite": "Green Bay Packers -2.0",
+            "vegas_spread": 5.0,
+            "predicted_spread": 2.0,
+            "bet": "home"
+        },
+        "401437793": {
+            "winner": "Tampa Bay Buccaneers",
+            "winner_id": "27",
+            "teams": [
+                {
+                    "id": "29",
+                    "name": "Carolina Panthers",
+                    "PYTH": 5.91647058381336,
+                    "UHOH": 0.061224489795918366,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 5.5991931197053555,
+                    "HFA": -0.4011698809724855
+                },
+                {
+                    "id": "27",
+                    "name": "Tampa Bay Buccaneers",
+                    "PYTH": 13.397590709208918,
+                    "UHOH": 0.528061224489796,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 12.408287515558543
+                }
+            ],
+            "name": "Tampa Bay Buccaneers at Carolina Panthers",
+            "date": "2022-10-23T17:00Z",
+            "predicted_favorite": "Tampa Bay Buccaneers -3.0",
+            "vegas_spread": 11.0,
+            "predicted_spread": 3.0,
+            "bet": "home"
+        },
+        "401437796": {
+            "winner": "Jacksonville Jaguars",
+            "winner_id": "30",
+            "teams": [
+                {
+                    "id": "30",
+                    "name": "Jacksonville Jaguars",
+                    "PYTH": 5.545456361023865,
+                    "UHOH": 0.30612244897959184,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 4.63953479228063,
+                    "HFA": -0.33241247097490145
+                },
+                {
+                    "id": "19",
+                    "name": "New York Giants",
+                    "PYTH": 4.04492438274358,
+                    "UHOH": 0.9296875,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 2.3031892009273536
+                }
+            ],
+            "name": "New York Giants at Jacksonville Jaguars",
+            "date": "2022-10-23T17:00Z",
+            "predicted_favorite": "Jacksonville Jaguars -1.0",
+            "vegas_spread": -3.0,
+            "predicted_spread": -1.0,
+            "bet": "away"
+        },
+        "401437792": {
+            "winner": "Cleveland Browns",
+            "winner_id": "5",
+            "teams": [
+                {
+                    "id": "33",
+                    "name": "Baltimore Ravens",
+                    "PYTH": 9.460519947217579,
+                    "UHOH": 4.0,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 1.8351810477183363,
+                    "HFA": -0.13148668865968105
+                },
+                {
+                    "id": "5",
+                    "name": "Cleveland Browns",
+                    "PYTH": 8.628082707683694,
+                    "UHOH": 0.0,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 8.628082707683694
+                }
+            ],
+            "name": "Cleveland Browns at Baltimore Ravens",
+            "date": "2022-10-23T17:00Z",
+            "predicted_favorite": "Cleveland Browns -3.0",
+            "vegas_spread": -6.5,
+            "predicted_spread": 3.0,
+            "bet": "away"
+        },
+        "401437799": {
+            "winner": "Denver Broncos",
+            "winner_id": "7",
+            "teams": [
+                {
+                    "id": "7",
+                    "name": "Denver Broncos",
+                    "PYTH": 9.407679243068399,
+                    "UHOH": 1.3418367346938775,
+                    "FRESHNESS": -0.2857142857142857,
+                    "SCORE": 6.8035283195641485,
+                    "HFA": -0.48745785112268347
+                },
+                {
+                    "id": "20",
+                    "name": "New York Jets",
+                    "PYTH": 3.0523483136180944,
+                    "UHOH": 0.12244897959183673,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 2.822944674510761
+                }
+            ],
+            "name": "New York Jets at Denver Broncos",
+            "date": "2022-10-23T20:05Z",
+            "predicted_favorite": "Denver Broncos -2.0",
+            "vegas_spread": -1.0,
+            "predicted_spread": -2.0,
+            "bet": "home"
+        },
+        "401437800": {
+            "winner": "Las Vegas Raiders",
+            "winner_id": "13",
+            "teams": [
+                {
+                    "id": "13",
+                    "name": "Las Vegas Raiders",
+                    "PYTH": 6.285854309588165,
+                    "UHOH": 1.0133333333333334,
+                    "FRESHNESS": 0.7142857142857143,
+                    "SCORE": 3.167496411165281,
+                    "HFA": -0.22694415625278852
+                },
+                {
+                    "id": "34",
+                    "name": "Houston Texans",
+                    "PYTH": 3.619209915220216,
+                    "UHOH": 0.80625,
+                    "FRESHNESS": 1.0,
+                    "SCORE": 0.71857067404583
+                }
+            ],
+            "name": "Houston Texans at Las Vegas Raiders",
+            "date": "2022-10-23T20:05Z",
+            "predicted_favorite": "Las Vegas Raiders -1.0",
+            "vegas_spread": -7.0,
+            "predicted_spread": -1.0,
+            "bet": "away"
+        },
+        "401437801": {
+            "winner": "Seattle Seahawks",
+            "winner_id": "26",
+            "teams": [
+                {
+                    "id": "24",
+                    "name": "Los Angeles Chargers",
+                    "PYTH": 7.642077255759709,
+                    "UHOH": 3.8272222222222223,
+                    "FRESHNESS": -0.2857142857142857,
+                    "SCORE": 0.810999937656414,
+                    "HFA": -0.05810636309601647
+                },
+                {
+                    "id": "26",
+                    "name": "Seattle Seahawks",
+                    "PYTH": 7.995634358516556,
+                    "UHOH": 1.2755102040816328,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 5.606013117815165
+                }
+            ],
+            "name": "Seattle Seahawks at Los Angeles Chargers",
+            "date": "2022-10-23T20:25Z",
+            "predicted_favorite": "Seattle Seahawks -2.5",
+            "vegas_spread": -6.0,
+            "predicted_spread": 2.5,
+            "bet": "away"
+        },
+        "401437802": {
+            "winner": "Kansas City Chiefs",
+            "winner_id": "12",
+            "teams": [
+                {
+                    "id": "25",
+                    "name": "San Francisco 49ers",
+                    "PYTH": 10.776212082038809,
+                    "UHOH": 0.0,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 10.055740384276955,
+                    "HFA": -0.7204716977618535
+                },
+                {
+                    "id": "12",
+                    "name": "Kansas City Chiefs",
+                    "PYTH": 12.112472167503,
+                    "UHOH": 0.15000000000000002,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 11.831452709596517
+                }
+            ],
+            "name": "Kansas City Chiefs at San Francisco 49ers",
+            "date": "2022-10-23T20:25Z",
+            "predicted_favorite": "Kansas City Chiefs -1.0",
+            "vegas_spread": 2.5,
+            "predicted_spread": 1.0,
+            "bet": "home"
+        },
+        "401437803": {
+            "winner": "Miami Dolphins",
+            "winner_id": "15",
+            "teams": [
+                {
+                    "id": "15",
+                    "name": "Miami Dolphins",
+                    "PYTH": 8.696195119677741,
+                    "UHOH": 0.95875,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 6.438694134301331,
+                    "HFA": -0.46131828359080274
+                },
+                {
+                    "id": "23",
+                    "name": "Pittsburgh Steelers",
+                    "PYTH": 6.3494874113150725,
+                    "UHOH": 0.8333333333333333,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 4.788268200723497
+                }
+            ],
+            "name": "Pittsburgh Steelers at Miami Dolphins",
+            "date": "2022-10-24T00:20Z",
+            "predicted_favorite": "Miami Dolphins -1.0",
+            "vegas_spread": -7.0,
+            "predicted_spread": -1.0,
+            "bet": "away"
+        },
+        "401437804": {
+            "winner": "New England Patriots",
+            "winner_id": "17",
+            "teams": [
+                {
+                    "id": "17",
+                    "name": "New England Patriots",
+                    "PYTH": 11.473639822330362,
+                    "UHOH": 1.4583333333333333,
+                    "FRESHNESS": 0.14285714285714285,
+                    "SCORE": 7.971753359685409,
+                    "HFA": -0.5711586076915482
+                },
+                {
+                    "id": "3",
+                    "name": "Chicago Bears",
+                    "PYTH": 5.551410787694583,
+                    "UHOH": 1.25,
+                    "FRESHNESS": 0.5714285714285714,
+                    "SCORE": 2.4152050261346276
+                }
+            ],
+            "name": "Chicago Bears at New England Patriots",
+            "date": "2022-10-25T00:15Z",
+            "predicted_favorite": "New England Patriots -2.5",
+            "vegas_spread": -7.5,
+            "predicted_spread": -2.5,
+            "bet": "away"
+        }
+    }
+}
