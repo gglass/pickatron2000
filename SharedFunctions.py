@@ -4,7 +4,7 @@ import requests
 import json
 import hashlib
 import random
-
+import asyncio
 
 def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advantage_multiplier,
                      base_freshness_coefficient, base_position_weights,
@@ -181,6 +181,94 @@ def evaluate_freshness(week, team):
         delta = this_datetime - previous_datetime
         return (delta.days - 7)/7
 
+async def generate_picks_from_seed(seed, count, seeders, generation_counter, visualization_set, starting_week, ending_week, current_season):
+    mutated = mutate_constants(
+        seed['parameters']["pyth_constant"],
+        seed['parameters']["uh_oh_multiplier"],
+        seed['parameters']["home_advantage_multiplier"],
+        seed['parameters']["freshness_coefficient"],
+        seed['parameters']["position_weights"].copy(),
+        seed['parameters']["injury_type_weights"].copy(),
+        seed['parameters']["spread_coefficient"],
+        seed['parameters']["ls_weight"]
+    )
+
+    # parameters = mutated['position_weights'].keys()
+    #
+    # for parameter in parameters:
+    #     vis = {
+    #         "candidate": count,
+    #         "parameter": parameter,
+    #         "value": mutated['position_weights'][parameter],
+    #         "generation": generation_counter
+    #     }
+    #     visualization_set.append(vis)
+
+    parameters = [
+        "pyth_constant",
+        "uh_oh_multiplier",
+        "home_advantage_multiplier",
+        "freshness_coefficient",
+        "spread_coefficient",
+        "ls_weight"
+    ]
+    for parameter in parameters:
+        vis = {
+            "candidate": count + len(seeders),
+            "parameter": parameter,
+            "value": mutated[parameter],
+            "generation": generation_counter
+        }
+        visualization_set.append(vis)
+
+    # foreach of those mutators, generate picks for each week of play
+    newpick = {
+        "parameters": {
+            'pyth_constant': mutated['pyth_constant'],
+            'uh_oh_multiplier': mutated['uh_oh_multiplier'],
+            'home_advantage_multiplier': mutated['home_advantage_multiplier'],
+            'freshness_coefficient': mutated['freshness_coefficient'],
+            'position_weights': mutated['position_weights'],
+            'injury_type_weights': mutated['injury_type_weights'],
+            'spread_coefficient': mutated['spread_coefficient'],
+            'ls_weight': mutated['ls_weight']
+        }
+    }
+
+    # pick_week = starting_week
+    # tasks = []
+    # while pick_week <= ending_week:
+    #     tasks.append(asyncio.create_task(
+    #         generate_picks(
+    #             current_season, pick_week, mutated['pyth_constant'], mutated['uh_oh_multiplier'],
+    #             mutated['home_advantage_multiplier'], mutated['freshness_coefficient'],
+    #             mutated['position_weights'], mutated['injury_type_weights'],
+    #             mutated['spread_coefficient'], mutated['ls_weight']
+    #         )
+    #     ))
+    #     pick_week += 1
+    #
+    # pick_week = starting_week
+    # for task in tasks:
+    #     thispick = await task
+    #     newpick["week"+str(pick_week)] = {
+    #         "predictions": thispick
+    #     }
+    #     pick_week += 1
+    # generation.append(newpick)
+
+    pick_week = starting_week
+    while pick_week <= ending_week:
+        newpick["week" + str(pick_week)] = {
+            "predictions": generate_picks(
+                current_season, pick_week, mutated['pyth_constant'], mutated['uh_oh_multiplier'],
+                mutated['home_advantage_multiplier'], mutated['freshness_coefficient'],
+                mutated['position_weights'], mutated['injury_type_weights'],
+                mutated['spread_coefficient'], mutated['ls_weight']
+            )
+        }
+        pick_week += 1
+    return newpick
 
 def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, freshness_coefficient, position_weights, injury_type_weights, spread_coefficient, ls_weight = False):
     espn_api_base_url = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/"

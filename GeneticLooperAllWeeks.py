@@ -1,240 +1,188 @@
 import os
 import random
 import json
-from SharedFunctions import generate_picks, mutate_constants, evaluate_picks
+import asyncio
+import time
+from SharedFunctions import generate_picks, mutate_constants, evaluate_picks, generate_picks_from_seed
 
-current_season = 2022
-starting_week = 2
-ending_week = 7
+async def main():
+    current_season = 2022
+    starting_week = 2
+    ending_week = 7
 
-base_position_weights = {
-    'WR': 3,
-    'LT': 4,
-    'LG': 3,
-    'C': 2,
-    'RG': 1,
-    'RT': 2,
-    'TE': 3,
-    'QB': 5,
-    'RB': 5,
-    'FB': 3,
-    'NT': 3,
-    'RDE': 1,
-    'LOLB': 2,
-    'LILB': 2,
-    'RILB': 1,
-    'ROLB': 2,
-    'LCB': 3,
-    'RCB': 3,
-    'SS': 4,
-    'FS': 3,
-    'PK': 2,
-    'P': 1,
-    'LDT': 4,
-    'WLB': 5,
-    'MLB': 4,
-    'SLB': 5,
-    'CB': 4,
-    'LB': 3,
-    'DE': 3,
-    'DT': 4,
-    'UT': 2,
-    'NB': 1,
-    'DB': 2,
-    'S': 3,
-    'DL': 4,
-    'H': 2,
-    'PR': 2,
-    'KR': 2,
-    'LS': 2,
-    'OT': 3,
-    'G': 2,
-}
+    base_position_weights = {
+        'WR': 3,
+        'LT': 4,
+        'LG': 3,
+        'C': 2,
+        'RG': 1,
+        'RT': 2,
+        'TE': 3,
+        'QB': 5,
+        'RB': 5,
+        'FB': 3,
+        'NT': 3,
+        'RDE': 1,
+        'LOLB': 2,
+        'LILB': 2,
+        'RILB': 1,
+        'ROLB': 2,
+        'LCB': 3,
+        'RCB': 3,
+        'SS': 4,
+        'FS': 3,
+        'PK': 2,
+        'P': 1,
+        'LDT': 4,
+        'WLB': 5,
+        'MLB': 4,
+        'SLB': 5,
+        'CB': 4,
+        'LB': 3,
+        'DE': 3,
+        'DT': 4,
+        'UT': 2,
+        'NB': 1,
+        'DB': 2,
+        'S': 3,
+        'DL': 4,
+        'H': 2,
+        'PR': 2,
+        'KR': 2,
+        'LS': 2,
+        'OT': 3,
+        'G': 2,
+    }
 
-base_injury_type_weights = {
-    "Active": 0,
-    "Questionable": 0.5,
-    "Out": 1,
-    "Suspension": 1,
-    "Injured Reserve": 0.8,
-    "Doubtful": 0.8
-}
+    base_injury_type_weights = {
+        "Active": 0,
+        "Questionable": 0.5,
+        "Out": 1,
+        "Suspension": 1,
+        "Injured Reserve": 0.8,
+        "Doubtful": 0.8
+    }
 
-base_pyth_constant = 3.1977760618545563
-base_uh_oh_multiplier = 1.8734630527098903
-base_home_advantage_multiplier = 0.9331423980637227
-base_freshness_coefficient = -1.390159654927037
-base_spread_coefficient = 0.4746088554806932
-base_ls_weight = 0.4828152451083486
+    base_pyth_constant = 3.1977760618545563
+    base_uh_oh_multiplier = 1.8734630527098903
+    base_home_advantage_multiplier = 0.9331423980637227
+    base_freshness_coefficient = -1.390159654927037
+    base_spread_coefficient = 0.4746088554806932
+    base_ls_weight = 0.4828152451083486
 
-desired_generations = 200
-generation_size = 20
-keep_each_gen = 10
+    desired_generations = 200
+    generation_size = 20
+    keep_each_gen = 10
 
-generation_counter = 1
-generation = []
-visualization_set = []
+    generation_counter = 1
+    generation = []
+    visualization_set = []
 
-while generation_counter <= desired_generations:
-    print("Generating picks for generation " + str(generation_counter))
-    if generation:
-        seeders = generation.copy()
-    else:
-        seeders = [
-            {
-                "parameters" : {
-                    "pyth_constant": base_pyth_constant,
-                    "uh_oh_multiplier": base_uh_oh_multiplier,
-                    "home_advantage_multiplier": base_home_advantage_multiplier,
-                    "freshness_coefficient": base_freshness_coefficient,
-                    "spread_coefficient": base_spread_coefficient,
-                    "ls_weight": base_ls_weight,
-                    "position_weights": base_position_weights.copy(),
-                    "injury_type_weights": base_injury_type_weights.copy()
+    while generation_counter <= desired_generations:
+        print("Generating picks for generation " + str(generation_counter))
+        if generation:
+            seeders = generation.copy()
+        else:
+            seeders = [
+                {
+                    "parameters" : {
+                        "pyth_constant": base_pyth_constant,
+                        "uh_oh_multiplier": base_uh_oh_multiplier,
+                        "home_advantage_multiplier": base_home_advantage_multiplier,
+                        "freshness_coefficient": base_freshness_coefficient,
+                        "spread_coefficient": base_spread_coefficient,
+                        "ls_weight": base_ls_weight,
+                        "position_weights": base_position_weights.copy(),
+                        "injury_type_weights": base_injury_type_weights.copy()
+                    }
                 }
-            }
-        ]
+            ]
 
-    count = 1
-    for seeder in seeders:
-        parameters = [
-            "pyth_constant",
-            "uh_oh_multiplier",
-            "home_advantage_multiplier",
-            "freshness_coefficient",
-            "spread_coefficient",
-            "ls_weight"
-        ]
-        for parameter in parameters:
-            vis = {
-                "candidate": count,
-                "parameter": parameter,
-                "value": seeder['parameters'][parameter],
-                "generation": generation_counter
-            }
-            visualization_set.append(vis)
-        count += 1
+        count = 1
+        for seeder in seeders:
+            parameters = [
+                "pyth_constant",
+                "uh_oh_multiplier",
+                "home_advantage_multiplier",
+                "freshness_coefficient",
+                "spread_coefficient",
+                "ls_weight"
+            ]
+            for parameter in parameters:
+                vis = {
+                    "candidate": count,
+                    "parameter": parameter,
+                    "value": seeder['parameters'][parameter],
+                    "generation": generation_counter
+                }
+                visualization_set.append(vis)
+            count += 1
 
-    print("Generating mutations on seeders for this round")
-    # generate mutators for the rest of this generation
-    for count in range(generation_size - len(generation)):
-        seed = random.choice(seeders)
-        mutated = mutate_constants(
-            seed['parameters']["pyth_constant"],
-            seed['parameters']["uh_oh_multiplier"],
-            seed['parameters']["home_advantage_multiplier"],
-            seed['parameters']["freshness_coefficient"],
-            seed['parameters']["position_weights"].copy(),
-            seed['parameters']["injury_type_weights"].copy(),
-            seed['parameters']["spread_coefficient"],
-            seed['parameters']["ls_weight"]
-        )
+        print("Generating mutations on seeders for this round")
+        # generate mutators for the rest of this generation
+        starttime = time.perf_counter()
+        tasks = []
+        for count in range(generation_size - len(generation)):
+            seed = random.choice(seeders)
+            tasks.append(asyncio.create_task(generate_picks_from_seed(seed, count, seeders, generation_counter, visualization_set, starting_week, ending_week, current_season)))
 
-        # parameters = mutated['position_weights'].keys()
-        #
-        # for parameter in parameters:
-        #     vis = {
-        #         "candidate": count,
-        #         "parameter": parameter,
-        #         "value": mutated['position_weights'][parameter],
-        #         "generation": generation_counter
-        #     }
-        #     visualization_set.append(vis)
+        for task in tasks:
+            generation.append(await task)
 
-        parameters = [
-            "pyth_constant",
-            "uh_oh_multiplier",
-            "home_advantage_multiplier",
-            "freshness_coefficient",
-            "spread_coefficient",
-            "ls_weight"
-        ]
-        for parameter in parameters:
-            vis = {
-                "candidate": count + len(seeders),
-                "parameter": parameter,
-                "value": mutated[parameter],
-                "generation": generation_counter
-            }
-            visualization_set.append(vis)
+        print("Finished generating picks in", time.perf_counter()-starttime, " seconds")
 
-        # foreach of those mutators, generate picks for each week of play
-        newpick = {
-            "parameters": {
-                'pyth_constant': mutated['pyth_constant'],
-                'uh_oh_multiplier': mutated['uh_oh_multiplier'],
-                'home_advantage_multiplier': mutated['home_advantage_multiplier'],
-                'freshness_coefficient': mutated['freshness_coefficient'],
-                'position_weights': mutated['position_weights'],
-                'injury_type_weights': mutated['injury_type_weights'],
-                'spread_coefficient': mutated['spread_coefficient'],
-                'ls_weight': mutated['ls_weight']
-            }
-        }
+        # foreach of the mutators, evaluate week 2 ... X and come up with a total score for that mutator
+        print("Evaluating generation " + str(generation_counter))
+        for prediction_set in generation:
+            pick_week = starting_week
+            prediction_set['accuracy_score'] = 0
+            prediction_set['spread_score'] = 0
+            prediction_set['total_money_won'] = 0
+            prediction_set['total_games_played'] = 0
+            while pick_week <= ending_week:
+                prediction_set['week'+str(pick_week)] = evaluate_picks(current_season, pick_week, [prediction_set['week'+str(pick_week)]])[0]
+                prediction_set['accuracy_score'] += prediction_set['week'+str(pick_week)]['accuracy_score']
+                prediction_set['spread_score'] += abs(prediction_set['week'+str(pick_week)]['spread_score'])
+                prediction_set['total_money_won'] += prediction_set['week'+str(pick_week)]['total_money_won']
+                prediction_set['total_games_played'] += prediction_set['week'+str(pick_week)]['games_played']
+                pick_week += 1
+            prediction_set['accuracy_pct'] = round(float(prediction_set['accuracy_score'])/float(prediction_set['total_games_played']), 2)*100
+            prediction_set['avg_spread'] = round(float(prediction_set['spread_score'])/float(prediction_set['total_games_played']), 2)
 
-        pick_week = starting_week
-        while pick_week <= ending_week:
-            newpick["week"+str(pick_week)] = {
-                "predictions": generate_picks(
-                    current_season, pick_week, mutated['pyth_constant'], mutated['uh_oh_multiplier'],
-                    mutated['home_advantage_multiplier'], mutated['freshness_coefficient'],
-                    mutated['position_weights'], mutated['injury_type_weights'],
-                    mutated['spread_coefficient'], mutated['ls_weight']
-                )
-            }
-            pick_week += 1
-        generation.append(newpick)
+        # keep the best mutators as seeds for the next round
+        leader = 0
+        for prediction_set in generation:
+            if int(prediction_set['accuracy_score']) > leader:
+                leader = int(prediction_set['accuracy_score'])
 
-    # foreach of the mutators, evaluate week 2 ... X and come up with a total score for that mutator
-    print("Evaluating generation " + str(generation_counter))
-    for prediction_set in generation:
-        pick_week = starting_week
-        prediction_set['accuracy_score'] = 0
-        prediction_set['spread_score'] = 0
-        prediction_set['total_money_won'] = 0
-        prediction_set['total_games_played'] = 0
-        while pick_week <= ending_week:
-            prediction_set['week'+str(pick_week)] = evaluate_picks(current_season, pick_week, [prediction_set['week'+str(pick_week)]])[0]
-            prediction_set['accuracy_score'] += prediction_set['week'+str(pick_week)]['accuracy_score']
-            prediction_set['spread_score'] += abs(prediction_set['week'+str(pick_week)]['spread_score'])
-            prediction_set['total_money_won'] += prediction_set['week'+str(pick_week)]['total_money_won']
-            prediction_set['total_games_played'] += prediction_set['week'+str(pick_week)]['games_played']
-            pick_week += 1
-        prediction_set['accuracy_pct'] = round(float(prediction_set['accuracy_score'])/float(prediction_set['total_games_played']), 2)*100
-        prediction_set['avg_spread'] = round(float(prediction_set['spread_score'])/float(prediction_set['total_games_played']), 2)
+        print("Leading score for this generation: " + str(leader))
 
-    # keep the best mutators as seeds for the next round
-    leader = 0
-    for prediction_set in generation:
-        if int(prediction_set['accuracy_score']) > leader:
-            leader = int(prediction_set['accuracy_score'])
+        keep = []
+        for prediction_set in generation:
+            if prediction_set['accuracy_score'] == leader:
+                keep.append(prediction_set)
 
-    print("Leading score for this generation: " + str(leader))
+        print("Candidates with that score: " + str(len(keep)))
 
-    keep = []
-    for prediction_set in generation:
-        if prediction_set['accuracy_score'] == leader:
-            keep.append(prediction_set)
+        # now lets use the predicted spread to figure out which of the predictions was the most accurate
+        sorted_array = sorted(keep, key=lambda pick: pick["total_money_won"], reverse=True)
+        if len(keep) > keep_each_gen:
+            generation = sorted_array[:keep_each_gen:]
+        else:
+            generation = keep
 
-    print("Candidates with that score: " + str(len(keep)))
+        if(len(generation) > 4):
+            print("Best money this generation: " + str(generation[0]["total_money_won"]) + ", " + str(generation[1]["total_money_won"]) + ", " + str(generation[2]["total_money_won"]) + ", " + str(generation[3]["total_money_won"]))
+        else:
+            print("Best money this generation: " + str(generation[0]["total_money_won"]))
+        generation_counter = generation_counter + 1
 
-    # now lets use the predicted spread to figure out which of the predictions was the most accurate
-    sorted_array = sorted(keep, key=lambda pick: pick["total_money_won"], reverse=True)
-    if len(keep) > keep_each_gen:
-        generation = sorted_array[:keep_each_gen:]
-    else:
-        generation = keep
+    f = open("predictions/genetics/genetics.json", "w")
+    f.write(json.dumps(generation, indent=4))
+    f.close()
 
-    if(len(generation) > 4):
-        print("Best money this generation: " + str(generation[0]["total_money_won"]) + ", " + str(generation[1]["total_money_won"]) + ", " + str(generation[2]["total_money_won"]) + ", " + str(generation[3]["total_money_won"]))
-    else:
-        print("Best money this generation: " + str(generation[0]["total_money_won"]))
-    generation_counter = generation_counter + 1
+    f = open("predictions/genetics/visualization.json", "w")
+    f.write(json.dumps(visualization_set, indent=4))
+    f.close()
 
-f = open("predictions/genetics/genetics.json", "w")
-f.write(json.dumps(generation, indent=4))
-f.close()
-
-f = open("predictions/genetics/visualization.json", "w")
-f.write(json.dumps(visualization_set, indent=4))
-f.close()
+asyncio.run(main())
