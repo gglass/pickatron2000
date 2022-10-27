@@ -53,6 +53,7 @@ def evaluate_picks(current_season, week, generation):
         prediction_set['accuracy_score'] = 0
         prediction_set['spread_score'] = 0
         prediction_set['total_money_won'] = 0
+        prediction_set['games_played'] = len(matchups['items'])
         predictions = prediction_set['predictions']
 
         for event_link in matchups['items']:

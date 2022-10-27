@@ -5,7 +5,7 @@ from SharedFunctions import generate_picks, mutate_constants, evaluate_picks
 
 current_season = 2022
 starting_week = 2
-ending_week = 6
+ending_week = 7
 
 base_position_weights = {
     'WR': 3,
@@ -60,12 +60,12 @@ base_injury_type_weights = {
     "Doubtful": 0.8
 }
 
-base_pyth_constant = 2.5656502432012456
-base_uh_oh_multiplier = 0.853944323943219
-base_home_advantage_multiplier = 1.3925730326047177
-base_freshness_coefficient = -0.2230141573845985
-base_spread_coefficient = 0.5398233131532059
-base_ls_weight = 1.0
+base_pyth_constant = 3.1977760618545563
+base_uh_oh_multiplier = 1.8734630527098903
+base_home_advantage_multiplier = 0.9331423980637227
+base_freshness_coefficient = -1.390159654927037
+base_spread_coefficient = 0.4746088554806932
+base_ls_weight = 0.4828152451083486
 
 desired_generations = 200
 generation_size = 20
@@ -192,12 +192,16 @@ while generation_counter <= desired_generations:
         prediction_set['accuracy_score'] = 0
         prediction_set['spread_score'] = 0
         prediction_set['total_money_won'] = 0
+        prediction_set['total_games_played'] = 0
         while pick_week <= ending_week:
             prediction_set['week'+str(pick_week)] = evaluate_picks(current_season, pick_week, [prediction_set['week'+str(pick_week)]])[0]
             prediction_set['accuracy_score'] += prediction_set['week'+str(pick_week)]['accuracy_score']
             prediction_set['spread_score'] += abs(prediction_set['week'+str(pick_week)]['spread_score'])
             prediction_set['total_money_won'] += prediction_set['week'+str(pick_week)]['total_money_won']
+            prediction_set['total_games_played'] += prediction_set['week'+str(pick_week)]['games_played']
             pick_week += 1
+        prediction_set['accuracy_pct'] = round(float(prediction_set['accuracy_score'])/float(prediction_set['total_games_played']), 2)*100
+        prediction_set['avg_spread'] = round(float(prediction_set['spread_score'])/float(prediction_set['total_games_played']), 2)
 
     # keep the best mutators as seeds for the next round
     leader = 0
