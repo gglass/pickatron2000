@@ -362,7 +362,8 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         event = get_or_fetch_from_cache(event_link['$ref'])
         competition = event['competitions'][0]
         competitors = competition['competitors']
-        odds = get_or_fetch_from_cache(competition['odds']['$ref'])
+        if("odds" in competition):
+            odds = get_or_fetch_from_cache(competition['odds']['$ref'])
         prediction['name'] = event['name']
         prediction['date'] = event['date']
         for competitor in competitors:
@@ -391,7 +392,10 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
             prediction['winner_id'] = prediction['teams'][1]['id']
             prediction['predicted_favorite'] = prediction['teams'][1]['name'] + " -" + str(line_set((prediction['teams'][1]['SCORE'] - prediction['teams'][0]['SCORE'])*spread_coefficient))
 
-        prediction['vegas_spread'] = odds['items'][0]['spread']
+        if odds:
+            prediction['vegas_spread'] = odds['items'][0]['spread']
+        else:
+            prediction['vegas_spread'] = 0
         prediction['predicted_spread'] = line_set(0 - (prediction['teams'][0]['SCORE'] - prediction['teams'][1]['SCORE'])*spread_coefficient)
         if prediction['predicted_spread'] - prediction['vegas_spread'] < 0:
             prediction['bet'] = "home"
