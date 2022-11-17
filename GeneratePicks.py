@@ -4,7 +4,7 @@ from SharedFunctions import generate_picks
 from statistics import mean
 
 current_season = 2022
-week = "9"
+week = "10"
 
 base_position_weights = {
     "WR": 3,

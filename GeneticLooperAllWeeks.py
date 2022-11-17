@@ -8,7 +8,7 @@ from SharedFunctions import generate_picks, mutate_constants, evaluate_picks, ge
 async def main():
     current_season = 2022
     starting_week = 2
-    ending_week = 8
+    ending_week = 10
 
     base_position_weights = {
         'WR': 3,
