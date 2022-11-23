@@ -351,27 +351,41 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
                         'UHOH': team['UHOH'],
                         'FRESHNESS': team['FRESHNESS'],
                         'SCORE': team['SCORE'],
+                        'GP': team['GP'],
+                        'PF': team['PF'],
+                        'PA': team['PA'],
+                        'PD': team['PF'] - team['PA']
                     }
                     if(competitor['homeAway'] == 'home'):
                         temp = this_team['SCORE']
                         this_team['SCORE'] = this_team['SCORE'] * home_advantage_multiplier
                         this_team['HFA'] = this_team['SCORE'] - temp
+                        this_team['HOME'] = True
+                    else:
+                        this_team['HOME'] = False
                     prediction['teams'].append(this_team)
 
         if prediction['teams'][0]['SCORE'] > prediction['teams'][1]['SCORE']:
             prediction['winner'] = prediction['teams'][0]['name']
             prediction['winner_id'] = prediction['teams'][0]['id']
-            prediction['predicted_favorite'] = prediction['teams'][0]['name'] + " -" + str(line_set((prediction['teams'][0]['SCORE'] - prediction['teams'][1]['SCORE'])*spread_coefficient))
+            prediction['predicted_favorite'] = prediction['teams'][0]['name'] + " " + str(line_set(0 - ((prediction['teams'][0]['PD']/prediction['teams'][0]['GP']) - (prediction['teams'][1]['PD']/prediction['teams'][1]['GP']))*spread_coefficient))
         else:
             prediction['winner'] = prediction['teams'][1]['name']
             prediction['winner_id'] = prediction['teams'][1]['id']
-            prediction['predicted_favorite'] = prediction['teams'][1]['name'] + " -" + str(line_set((prediction['teams'][1]['SCORE'] - prediction['teams'][0]['SCORE'])*spread_coefficient))
+            prediction['predicted_favorite'] = prediction['teams'][1]['name'] + " " + str(line_set(0 - ((prediction['teams'][1]['PD']/prediction['teams'][1]['GP']) - (prediction['teams'][0]['PD']/prediction['teams'][0]['GP']))*spread_coefficient))
 
         if odds:
             prediction['vegas_spread'] = odds['items'][0]['spread']
         else:
             prediction['vegas_spread'] = 0
-        prediction['predicted_spread'] = line_set(0 - (prediction['teams'][0]['SCORE'] - prediction['teams'][1]['SCORE'])*spread_coefficient)
+
+        # gonna try a different method to set the line vs just using the calculated pickatron score
+        # if team 0 is the home team. a spread of -3 denotes that the home team is a 3 point favorite\
+        if prediction['teams'][0]['HOME']:
+            prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][0]['PD']/prediction['teams'][0]['GP']) - (prediction['teams'][1]['PD']/prediction['teams'][1]['GP']))*spread_coefficient)
+        else:
+            prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][1]['PD']/prediction['teams'][1]['GP']) - (prediction['teams'][0]['PD']/prediction['teams'][0]['GP']))*spread_coefficient)
+
         if prediction['predicted_spread'] - prediction['vegas_spread'] < 0:
             prediction['bet'] = "home"
         else:
@@ -379,10 +393,6 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
 
         predictions[competition["id"]] = prediction
 
-    # for prediction in predictions:
-    #     print(prediction['name'], ",", "Winner:", prediction['winner'], ",", prediction['teams'][0]['name'], ",", round(prediction['teams'][0]['SCORE'], 2), ",", prediction['teams'][1]['name'], ",", round(prediction['teams'][1]['SCORE'],2))
-    # print("Constants: pyth, uh_oh, home_advantage: " + str(pyth_constant) + ", " + str(uh_oh_multiplier) + ", " + str(home_advantage_multiplier))
-    # f = open("predictions/week" + week + "/" + "test.json", "a")
     return predictions
 
 

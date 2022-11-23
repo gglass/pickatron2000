@@ -62,12 +62,12 @@ if __name__ == "__main__":
         "Doubtful": 0.8
     }
 
-    base_pyth_constant = 4.1638841959569906
-    base_uh_oh_multiplier = 2.0255279214477406
-    base_home_advantage_multiplier = 0.9373203481989708
-    base_freshness_coefficient = -0.5248019886515991
-    base_spread_coefficient = 0.2974764387660377
-    base_ls_weight = 0.27551917210855653
+    base_pyth_constant = 2.553357457234551
+    base_uh_oh_multiplier = 1.7035475448196342
+    base_home_advantage_multiplier = 0.948126445772053
+    base_freshness_coefficient = -0.5190055297417002
+    base_spread_coefficient = 0.18442730706336186
+    base_ls_weight = 0.3419123662445479
 
     desired_generations = 200
     generation_size = 20
@@ -173,8 +173,10 @@ if __name__ == "__main__":
 
         if(len(generation) > 4):
             print("Best money this generation: " + str(generation[0]["total_money_won"]) + ", " + str(generation[1]["total_money_won"]) + ", " + str(generation[2]["total_money_won"]) + ", " + str(generation[3]["total_money_won"]))
+            print("Spreads this generation: " + str(generation[0]["spread_score"]) + ", " + str(generation[1]["spread_score"]) + ", " + str(generation[2]["spread_score"]) + ", " + str(generation[3]["spread_score"]))
         else:
             print("Best money this generation: " + str(generation[0]["total_money_won"]))
+            print("Spread this generation: " + str(generation[0]["spread_score"]))
         generation_counter = generation_counter + 1
 
     f = open("predictions/genetics/genetics.json", "w")
