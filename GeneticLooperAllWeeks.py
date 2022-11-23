@@ -63,12 +63,12 @@ async def main():
         "Doubtful": 0.8
     }
 
-    base_pyth_constant = 3.1977760618545563
-    base_uh_oh_multiplier = 1.8734630527098903
-    base_home_advantage_multiplier = 0.9331423980637227
-    base_freshness_coefficient = -1.390159654927037
-    base_spread_coefficient = 0.4746088554806932
-    base_ls_weight = 0.4828152451083486
+    base_pyth_constant = 4.1638841959569906
+    base_uh_oh_multiplier = 2.0255279214477406
+    base_home_advantage_multiplier = 0.9373203481989708
+    base_freshness_coefficient = -0.5248019886515991
+    base_spread_coefficient = 0.2974764387660377
+    base_ls_weight = 0.27551917210855653
 
     desired_generations = 200
     generation_size = 20

@@ -29,11 +29,11 @@ def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advant
     mutated['ls_weight'] = min(base_ls_weight + ((random.random() - 0.5)/2), 1.0)
 
     # for position in base_position_weights.keys():
-    #     mutated['position_weights'][position] = base_position_weights[position] + ((random.random() - 0.5)/5)
-    #     if mutated['position_weights'][position] < 0:
-    #         mutated['position_weights'][position] = 0
-    #     elif mutated['position_weights'][position] > 5:
-    #         mutated['position_weights'][position] = 5
+        # mutated['position_weights'][position] = base_position_weights[position] + ((random.random() - 0.5)/5)
+        # if mutated['position_weights'][position] < 0:
+        #     mutated['position_weights'][position] = 0
+        # elif mutated['position_weights'][position] > 5:
+        #     mutated['position_weights'][position] = 5
         # chaos = random.random()
         # if chaos < 0.05:
         #     if base_position_weights[position] > 1:
@@ -45,9 +45,9 @@ def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advant
     return mutated
 
 
-def evaluate_picks(current_season, week, generation):
+def evaluate_picks(current_season, week, generation, overwrite = False):
     espn_api_base_url = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/"
-    matchups = get_or_fetch_from_cache(espn_api_base_url + "seasons/" + str(current_season) + "/types/2/weeks/" + str(week) + "/events?lang=en&region=us")
+    matchups = get_or_fetch_from_cache(espn_api_base_url + "seasons/" + str(current_season) + "/types/2/weeks/" + str(week) + "/events?lang=en&region=us", "caches", overwrite)
     evaluations = []
     for prediction_set in generation:
         prediction_set['accuracy_score'] = 0
@@ -112,9 +112,8 @@ def evaluate_picks(current_season, week, generation):
     return evaluations
 
 
-def get_or_fetch_from_cache(url, directory = "caches"):
+def get_or_fetch_from_cache(url, directory = "caches", overwrite = False):
     file_key = hashlib.md5(url.encode('UTF-8')).hexdigest()
-    overwrite = False
     if overwrite:
         response = requests.get(url)
         data = response.json()
