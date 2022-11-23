@@ -1,10 +1,8 @@
-import math
 import datetime
 import requests
 import json
 import hashlib
 import random
-import asyncio
 
 def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advantage_multiplier,
                      base_freshness_coefficient, base_position_weights,
@@ -180,7 +178,7 @@ def evaluate_freshness(week, team):
         delta = this_datetime - previous_datetime
         return (delta.days - 7)/7
 
-async def generate_picks_from_seed(seed, count, seeders, generation_counter, visualization_set, starting_week, ending_week, current_season):
+def generate_picks_from_seed(seed, count, seeders, generation_counter, visualization_set, starting_week, ending_week, current_season):
     mutated = mutate_constants(
         seed['parameters']["pyth_constant"],
         seed['parameters']["uh_oh_multiplier"],
@@ -233,28 +231,6 @@ async def generate_picks_from_seed(seed, count, seeders, generation_counter, vis
             'ls_weight': mutated['ls_weight']
         }
     }
-
-    # pick_week = starting_week
-    # tasks = []
-    # while pick_week <= ending_week:
-    #     tasks.append(asyncio.create_task(
-    #         generate_picks(
-    #             current_season, pick_week, mutated['pyth_constant'], mutated['uh_oh_multiplier'],
-    #             mutated['home_advantage_multiplier'], mutated['freshness_coefficient'],
-    #             mutated['position_weights'], mutated['injury_type_weights'],
-    #             mutated['spread_coefficient'], mutated['ls_weight']
-    #         )
-    #     ))
-    #     pick_week += 1
-    #
-    # pick_week = starting_week
-    # for task in tasks:
-    #     thispick = await task
-    #     newpick["week"+str(pick_week)] = {
-    #         "predictions": thispick
-    #     }
-    #     pick_week += 1
-    # generation.append(newpick)
 
     pick_week = starting_week
     while pick_week <= ending_week:

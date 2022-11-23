@@ -1,14 +1,13 @@
-import os
 import random
 import json
-import asyncio
 import time
 from SharedFunctions import generate_picks, mutate_constants, evaluate_picks, generate_picks_from_seed
+from multiprocessing import Pool
 
-async def main():
+if __name__ == "__main__":
     current_season = 2022
     starting_week = 2
-    ending_week = 10
+    ending_week = 11
 
     base_position_weights = {
         'WR': 3,
@@ -121,13 +120,14 @@ async def main():
         print("Generating mutations on seeders for this round")
         # generate mutators for the rest of this generation
         starttime = time.perf_counter()
+
         tasks = []
         for count in range(generation_size - len(generation)):
             seed = random.choice(seeders)
-            tasks.append(asyncio.create_task(generate_picks_from_seed(seed, count, seeders, generation_counter, visualization_set, starting_week, ending_week, current_season)))
+            tasks.append([seed, count, seeders, generation_counter, visualization_set, starting_week, ending_week, current_season])
 
-        for task in tasks:
-            generation.append(await task)
+        with Pool() as p:
+            generation.extend(p.starmap(generate_picks_from_seed, tasks))
 
         print("Finished generating picks in", time.perf_counter()-starttime, " seconds")
 
@@ -184,5 +184,3 @@ async def main():
     f = open("predictions/genetics/visualization.json", "w")
     f.write(json.dumps(visualization_set, indent=4))
     f.close()
-
-asyncio.run(main())
