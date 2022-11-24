@@ -19,12 +19,12 @@ def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advant
     }
 
     # we are just gonna nudge each of these around by 0.0 - 0.1 up or down for each one. This is ~10% randomness in each one (which is a fair amount of genetic drift)
-    mutated['pyth_constant'] = base_pyth_constant + ((random.random() - 0.5))
-    mutated['uh_oh_multiplier'] = base_uh_oh_multiplier + ((random.random() - 0.5))
-    mutated['freshness_coefficient'] = base_freshness_coefficient + ((random.random() - 0.5))
-    mutated['home_advantage_multiplier'] = base_home_advantage_multiplier + ((random.random() - 0.5))
-    mutated['spread_coefficient'] = base_spread_coefficient + ((random.random() - 0.5)*1.25)
-    mutated['ls_weight'] = min(base_ls_weight + ((random.random() - 0.5)/2), 1.0)
+    mutated['pyth_constant'] = max(1, base_pyth_constant + ((random.random() - 0.5)))
+    mutated['uh_oh_multiplier'] = max(0, base_uh_oh_multiplier + ((random.random() - 0.5)))
+    mutated['freshness_coefficient'] = max(0, base_freshness_coefficient + ((random.random() - 0.5)))
+    mutated['home_advantage_multiplier'] = max(0, base_home_advantage_multiplier + ((random.random() - 0.5)))
+    mutated['spread_coefficient'] = max(0, base_spread_coefficient + ((random.random() - 0.5)*1.25))
+    mutated['ls_weight'] = max(0, min(base_ls_weight + ((random.random() - 0.5)/2), 1.0))
 
     # for position in base_position_weights.keys():
         # mutated['position_weights'][position] = base_position_weights[position] + ((random.random() - 0.5)/5)
@@ -260,7 +260,7 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         last_season_record = get_or_fetch_from_cache(espn_api_base_url+"seasons/"+str(current_season-1)+"/types/2/teams/"+team_info['id']+"/records/0/?lang=en&region=us")
 
         # now their record for this season
-        this_season_record = get_or_fetch_from_cache(espn_api_base_url+"seasons/"+str(current_season)+"/types/2/teams/"+team_info['id']+"/records/0/?lang=en&region=us")
+        this_season_record = get_or_fetch_from_cache(espn_api_base_url+"seasons/"+str(current_season)+"/types/2/teams/"+team_info['id']+"/records/0/?lang=en&region=us", "caches/week"+str(week))
 
         # now injuries so we can calculate the uh oh factor
         injuries = get_or_fetch_from_cache(espn_api_base_url + "teams/" + team_info['id'] + "/injuries", "caches/week"+str(week))
