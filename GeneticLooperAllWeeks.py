@@ -62,12 +62,12 @@ if __name__ == "__main__":
         "Doubtful": 0.8
     }
 
-    base_pyth_constant = 2.553357457234551
-    base_uh_oh_multiplier = 1.7035475448196342
-    base_home_advantage_multiplier = 0.948126445772053
-    base_freshness_coefficient = -0.5190055297417002
-    base_spread_coefficient = 0.18442730706336186
-    base_ls_weight = 0.3419123662445479
+    base_pyth_constant = 3.2982048106322153
+    base_uh_oh_multiplier = 0.6004344001605705
+    base_home_advantage_multiplier = 0.9566963180685255
+    base_freshness_coefficient = 0
+    base_spread_coefficient = 0.6087418814758747
+    base_ls_weight = 0.007103471587790067
 
     desired_generations = 200
     generation_size = 20
@@ -165,7 +165,7 @@ if __name__ == "__main__":
         print("Candidates with that score: " + str(len(keep)))
 
         # now lets use the predicted spread to figure out which of the predictions was the most accurate
-        sorted_array = sorted(keep, key=lambda pick: pick["total_money_won"], reverse=True)
+        sorted_array = sorted(keep, key=lambda pick: pick["spread_score"], reverse=False)
         if len(keep) > keep_each_gen:
             generation = sorted_array[:keep_each_gen:]
         else:
