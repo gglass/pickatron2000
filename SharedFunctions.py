@@ -24,7 +24,7 @@ def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advant
     mutated['freshness_coefficient'] = max(0, base_freshness_coefficient + ((random.random() - 0.5)))
     mutated['home_advantage_multiplier'] = max(0, base_home_advantage_multiplier + ((random.random() - 0.5)))
     mutated['spread_coefficient'] = max(0, base_spread_coefficient + ((random.random() - 0.5)*1.25))
-    mutated['ls_weight'] = max(0, min(base_ls_weight + ((random.random() - 0.5)/2), 1.0))
+    mutated['ls_weight'] = base_ls_weight + ((random.random() - 0.5)/5)
 
     # for position in base_position_weights.keys():
         # mutated['position_weights'][position] = base_position_weights[position] + ((random.random() - 0.5)/5)
@@ -43,10 +43,11 @@ def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advant
     return mutated
 
 
-def evaluate_picks(current_season, week, generation, overwrite = False):
+def evaluate_picks(current_season, week, generation, overwrite=False):
     espn_api_base_url = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/"
     matchups = get_or_fetch_from_cache(espn_api_base_url + "seasons/" + str(current_season) + "/types/2/weeks/" + str(week) + "/events?lang=en&region=us", "caches", overwrite)
     evaluations = []
+
     for prediction_set in generation:
         prediction_set['accuracy_score'] = 0
         prediction_set['spread_score'] = 0
@@ -56,14 +57,14 @@ def evaluate_picks(current_season, week, generation, overwrite = False):
 
         for event_link in matchups['items']:
             actual_winner_id = "0"
-            event = get_or_fetch_from_cache(event_link['$ref'])
+            event = get_or_fetch_from_cache(event_link['$ref'], directory="caches", overwrite=overwrite)
             competition = event['competitions'][0]
             predicted_result = predictions[competition["id"]]
             predicted_winner_id = predicted_result['winner_id']
             competitors = competition['competitors']
             tempspread = 0
             for competitor in competitors:
-                score = get_or_fetch_from_cache(competitor['score']['$ref'])
+                score = get_or_fetch_from_cache(competitor['score']['$ref'], directory="caches", overwrite=overwrite)
                 if tempspread == 0:
                     tempspread = score['value']
                 else:
@@ -110,7 +111,7 @@ def evaluate_picks(current_season, week, generation, overwrite = False):
     return evaluations
 
 
-def get_or_fetch_from_cache(url, directory = "caches", overwrite = False):
+def get_or_fetch_from_cache(url, directory="caches", overwrite=False):
     file_key = hashlib.md5(url.encode('UTF-8')).hexdigest()
     if overwrite:
         response = requests.get(url)
@@ -313,12 +314,7 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
             'FRESHNESS': freshness_rating
         }
 
-        if ls_weight:
-            LSWEIGHT = ls_weight
-        else:
-            LSWEIGHT = (this_team['LSGP'] - this_team['GP'])/this_team['LSGP']
-            if LSWEIGHT < 0:
-                LSWEIGHT = 0
+        LSWEIGHT = calc_ls_weight(week, ls_weight)
 
         # now using the numbers from above, lets calculate their
         pyth = ((17)*((this_team['PF']+(this_team['LSPF']*LSWEIGHT))**pyth_constant))/((this_team['PF']+(this_team['LSPF']*LSWEIGHT))**pyth_constant + (this_team['PA']+(this_team['LSPA']*LSWEIGHT))**pyth_constant)
@@ -368,23 +364,26 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         if prediction['teams'][0]['SCORE'] > prediction['teams'][1]['SCORE']:
             prediction['winner'] = prediction['teams'][0]['name']
             prediction['winner_id'] = prediction['teams'][0]['id']
-            prediction['predicted_favorite'] = prediction['teams'][0]['name'] + " " + str(line_set(0 - ((prediction['teams'][0]['PD']/prediction['teams'][0]['GP']) - (prediction['teams'][1]['PD']/prediction['teams'][1]['GP']))*spread_coefficient))
+            # prediction['predicted_favorite'] = prediction['teams'][0]['name'] + " " + str(line_set(0 - ((prediction['teams'][0]['PD']/prediction['teams'][0]['GP']) - (prediction['teams'][1]['PD']/prediction['teams'][1]['GP']))*spread_coefficient))
+            prediction['predicted_favorite'] = prediction['teams'][0]['name'] + " " + str(line_set(0 - ((prediction['teams'][0]['SCORE'] - (prediction['teams'][1]['SCORE']))*spread_coefficient)))
         else:
             prediction['winner'] = prediction['teams'][1]['name']
             prediction['winner_id'] = prediction['teams'][1]['id']
-            prediction['predicted_favorite'] = prediction['teams'][1]['name'] + " " + str(line_set(0 - ((prediction['teams'][1]['PD']/prediction['teams'][1]['GP']) - (prediction['teams'][0]['PD']/prediction['teams'][0]['GP']))*spread_coefficient))
+            # prediction['predicted_favorite'] = prediction['teams'][1]['name'] + " " + str(line_set(0 - ((prediction['teams'][1]['PD']/prediction['teams'][1]['GP']) - (prediction['teams'][0]['PD']/prediction['teams'][0]['GP']))*spread_coefficient))
+            prediction['predicted_favorite'] = prediction['teams'][1]['name'] + " " + str(line_set(0 - ((prediction['teams'][1]['SCORE'] - (prediction['teams'][0]['SCORE']))*spread_coefficient)))
 
         if odds:
             prediction['vegas_spread'] = odds['items'][0]['spread']
         else:
             prediction['vegas_spread'] = 0
 
-        # gonna try a different method to set the line vs just using the calculated pickatron score
-        # if team 0 is the home team. a spread of -3 denotes that the home team is a 3 point favorite\
+        # if team 0 is the home team. a spread of -3 denotes that the home team is a 3 point favorite
         if prediction['teams'][0]['HOME']:
-            prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][0]['PD']/prediction['teams'][0]['GP']) - (prediction['teams'][1]['PD']/prediction['teams'][1]['GP']))*spread_coefficient)
+            # prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][0]['PD']/prediction['teams'][0]['GP']) - (prediction['teams'][1]['PD']/prediction['teams'][1]['GP']))*spread_coefficient)
+            prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][0]['SCORE'] - (prediction['teams'][1]['SCORE']))*spread_coefficient))
         else:
-            prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][1]['PD']/prediction['teams'][1]['GP']) - (prediction['teams'][0]['PD']/prediction['teams'][0]['GP']))*spread_coefficient)
+            # prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][1]['PD']/prediction['teams'][1]['GP']) - (prediction['teams'][0]['PD']/prediction['teams'][0]['GP']))*spread_coefficient)
+            prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][1]['SCORE'] - (prediction['teams'][0]['SCORE']))*spread_coefficient))
 
         if prediction['predicted_spread'] - prediction['vegas_spread'] < 0:
             prediction['bet'] = "home"
@@ -398,3 +397,8 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
 
 def line_set(num):
     return round(num * 2) / 2
+
+def calc_ls_weight(week, ls_weight):
+    fweek = float(week)
+    fls_weight = float(ls_weight)
+    return 1/fweek**fls_weight

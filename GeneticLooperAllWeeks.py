@@ -7,7 +7,7 @@ from multiprocessing import Pool
 if __name__ == "__main__":
     current_season = 2022
     starting_week = 2
-    ending_week = 11
+    ending_week = 12
 
     base_position_weights = {
         'WR': 3,
@@ -62,12 +62,12 @@ if __name__ == "__main__":
         "Doubtful": 0.8
     }
 
-    base_pyth_constant = 3.2982048106322153
-    base_uh_oh_multiplier = 0.6004344001605705
-    base_home_advantage_multiplier = 0.9566963180685255
-    base_freshness_coefficient = 0
-    base_spread_coefficient = 0.6087418814758747
-    base_ls_weight = 0.007103471587790067
+    base_pyth_constant = 3.672499673677184
+    base_uh_oh_multiplier = 0.175444309311114
+    base_home_advantage_multiplier = 1.2812746370468124
+    base_freshness_coefficient = 0.7236656582212438
+    base_spread_coefficient = 0.07768432925737492
+    base_ls_weight = 1.5
 
     desired_generations = 200
     generation_size = 20
@@ -117,7 +117,6 @@ if __name__ == "__main__":
                 visualization_set.append(vis)
             count += 1
 
-        print("Generating mutations on seeders for this round")
         # generate mutators for the rest of this generation
         starttime = time.perf_counter()
 
@@ -132,7 +131,6 @@ if __name__ == "__main__":
         print("Finished generating picks in", time.perf_counter()-starttime, " seconds")
 
         # foreach of the mutators, evaluate week 2 ... X and come up with a total score for that mutator
-        print("Evaluating generation " + str(generation_counter))
         for prediction_set in generation:
             pick_week = starting_week
             prediction_set['accuracy_score'] = 0
@@ -165,7 +163,7 @@ if __name__ == "__main__":
         print("Candidates with that score: " + str(len(keep)))
 
         # now lets use the predicted spread to figure out which of the predictions was the most accurate
-        sorted_array = sorted(keep, key=lambda pick: pick["spread_score"], reverse=False)
+        sorted_array = sorted(keep, key=lambda pick: pick["total_money_won"], reverse=True)
         if len(keep) > keep_each_gen:
             generation = sorted_array[:keep_each_gen:]
         else:
