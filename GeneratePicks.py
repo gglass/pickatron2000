@@ -4,7 +4,7 @@ from SharedFunctions import generate_picks
 from statistics import mean
 
 current_season = 2022
-week = "12"
+week = "13"
 
 base_position_weights = {
     "WR": 3,
@@ -67,12 +67,12 @@ weekly_coefficients = {
     "base_spread_coefficient": []
 }
 
-base_pyth_constant = 2.399433413146303
-base_uh_oh_multiplier = 0.5967634412402094
-base_home_advantage_multiplier = 0.9677074787141662
-base_freshness_coefficient = 1.0157570944058092
-base_spread_coefficient = 0.24895353730639308
-ls_weight = 0.015135054808715964
+base_pyth_constant = 2.556385709793518
+base_uh_oh_multiplier = 0.3603309443501661
+base_home_advantage_multiplier = 0.9023510014588563
+base_freshness_coefficient = 3.227483066064526
+base_spread_coefficient = 0.26644377711705125
+ls_weight = 1.938222897320965
 
 picks = {
     "predictions": generate_picks(
