@@ -67,12 +67,12 @@ weekly_coefficients = {
     "base_spread_coefficient": []
 }
 
-base_pyth_constant = 2.76361873356479
-base_uh_oh_multiplier = 0.5108596603133885
-base_home_advantage_multiplier = 0.899669258686503
-base_freshness_coefficient = 3.7849957208608043
-base_spread_coefficient = 0.2400812853559446
-ls_weight = 1.8557512095300968
+base_pyth_constant = 3.1754089582025458
+base_uh_oh_multiplier = 0
+base_home_advantage_multiplier = 1.3349449218729996
+base_freshness_coefficient = 2.5340784702589154
+base_spread_coefficient = 3.836043395962551
+base_ls_weight = 1.8131129097167324
 
 picks = {
     "predictions": generate_picks(
@@ -85,7 +85,7 @@ picks = {
         base_position_weights,
         base_injury_type_weights,
         base_spread_coefficient,
-        ls_weight
+        base_ls_weight
     )
 }
 

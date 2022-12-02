@@ -1,7 +1,7 @@
 import random
 import json
 import time
-from SharedFunctions import generate_picks, mutate_constants, evaluate_picks, generate_picks_from_seed
+from SharedFunctions import evaluate_picks, generate_picks_from_seed
 from multiprocessing import Pool
 
 if __name__ == "__main__":
@@ -62,14 +62,14 @@ if __name__ == "__main__":
         "Doubtful": 0.8
     }
 
-    base_pyth_constant = 3.287528234151032
-    base_uh_oh_multiplier = 0.49658246917459514
-    base_home_advantage_multiplier = 0.8884948796187981
-    base_freshness_coefficient = 2.9160996996798962
-    base_spread_coefficient = 0.5354183209013639
-    base_ls_weight = 1.9277648528507476
+    base_pyth_constant = 3.1754089582025458
+    base_uh_oh_multiplier = 0
+    base_home_advantage_multiplier = 1.3349449218729996
+    base_freshness_coefficient = 2.5340784702589154
+    base_spread_coefficient = 3.836043395962551
+    base_ls_weight = 1.8131129097167324
 
-    desired_generations = 200
+    desired_generations = 500
     generation_size = 20
     keep_each_gen = 10
 
@@ -163,7 +163,7 @@ if __name__ == "__main__":
         print("Candidates with that score: " + str(len(keep)))
 
         # now lets use the predicted spread to figure out which of the predictions was the most accurate
-        sorted_array = sorted(keep, key=lambda pick: pick["spread_score"], reverse=False)
+        sorted_array = sorted(keep, key=lambda pick: pick["total_money_won"], reverse=True)
         if len(keep) > keep_each_gen:
             generation = sorted_array[:keep_each_gen:]
         else:

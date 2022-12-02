@@ -20,9 +20,9 @@ def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advant
 
     # we are just gonna nudge each of these around by 0.0 - 0.1 up or down for each one. This is ~10% randomness in each one (which is a fair amount of genetic drift)
     mutated['pyth_constant'] = max(1, base_pyth_constant + ((random.random() - 0.5)))
-    mutated['uh_oh_multiplier'] = max(0, base_uh_oh_multiplier + ((random.random() - 0.5)))
+    mutated['uh_oh_multiplier'] = max(0, base_uh_oh_multiplier + ((random.random() - 0.5)*2))
     mutated['freshness_coefficient'] = max(0, base_freshness_coefficient + ((random.random() - 0.5)))
-    mutated['home_advantage_multiplier'] = max(0, base_home_advantage_multiplier + ((random.random() - 0.5)))
+    mutated['home_advantage_multiplier'] = max(0, base_home_advantage_multiplier + ((random.random() - 0.5)*2))
     mutated['spread_coefficient'] = max(0, base_spread_coefficient + ((random.random() - 0.5)*1.25))
     mutated['ls_weight'] = base_ls_weight + ((random.random() - 0.5)/5)
 
@@ -300,11 +300,6 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         this_team = {
             'id': team_info['id'],
             'name': team_info['displayName'],
-            'W': this_season_record['stats'][1]['value'],
-            'L': this_season_record['stats'][2]['value'],
-            'PF': this_season_record['stats'][9]['value'],
-            'PA': this_season_record['stats'][10]['value'],
-            'GP': this_season_record['stats'][8]['value'],
             'LSW': last_season_record['stats'][1]['value'],
             'LSL': last_season_record['stats'][2]['value'],
             'LSPF': last_season_record['stats'][9]['value'],
@@ -313,6 +308,18 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
             'UHOH': total_uh_oh_factor,
             'FRESHNESS': freshness_rating
         }
+
+        for stat in this_season_record['stats']:
+            if stat['shortDisplayName'] == 'PA':
+                this_team['PA'] = stat['value']
+            elif stat['shortDisplayName'] == 'PF':
+                this_team['PF'] = stat['value']
+            elif stat['shortDisplayName'] == 'GP':
+                this_team['GP'] = stat['value']
+            elif stat['shortDisplayName'] == 'W':
+                this_team['W'] = stat['value']
+            elif stat['shortDisplayName'] == 'L':
+                this_team['L'] = stat['value']
 
         LSWEIGHT = calc_ls_weight(week, ls_weight)
 
