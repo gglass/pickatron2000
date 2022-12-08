@@ -7,50 +7,50 @@ from multiprocessing import Pool
 if __name__ == "__main__":
     current_season = 2022
     starting_week = 2
-    ending_week = 12
+    ending_week = 13
 
     base_position_weights = {
-        'WR': 3,
-        'LT': 4,
-        'LG': 3,
-        'C': 2,
-        'RG': 1,
-        'RT': 2,
-        'TE': 3,
-        'QB': 5,
-        'RB': 5,
-        'FB': 3,
-        'NT': 3,
-        'RDE': 1,
-        'LOLB': 2,
-        'LILB': 2,
-        'RILB': 1,
-        'ROLB': 2,
-        'LCB': 3,
-        'RCB': 3,
-        'SS': 4,
-        'FS': 3,
-        'PK': 2,
-        'P': 1,
-        'LDT': 4,
-        'WLB': 5,
-        'MLB': 4,
-        'SLB': 5,
-        'CB': 4,
-        'LB': 3,
-        'DE': 3,
-        'DT': 4,
-        'UT': 2,
-        'NB': 1,
-        'DB': 2,
-        'S': 3,
-        'DL': 4,
-        'H': 2,
-        'PR': 2,
-        'KR': 2,
-        'LS': 2,
-        'OT': 3,
-        'G': 2,
+        "WR": 3,
+        "LT": 4,
+        "LG": 3,
+        "C": 2,
+        "RG": 1,
+        "RT": 2,
+        "TE": 3,
+        "QB": 5,
+        "RB": 5,
+        "FB": 3,
+        "NT": 3,
+        "RDE": 1,
+        "LOLB": 1,
+        "LILB": 2,
+        "RILB": 1,
+        "ROLB": 2,
+        "LCB": 3,
+        "RCB": 3,
+        "SS": 5,
+        "FS": 3,
+        "PK": 2,
+        "P": 1,
+        "LDT": 3,
+        "WLB": 5,
+        "MLB": 4,
+        "SLB": 5,
+        "CB": 4,
+        "LB": 4,
+        "DE": 3,
+        "DT": 3,
+        "UT": 2,
+        "NB": 1,
+        "DB": 2,
+        "S": 3,
+        "DL": 4,
+        "H": 2,
+        "PR": 2,
+        "KR": 2,
+        "LS": 2,
+        "OT": 3,
+        "G": 2
     }
 
     base_injury_type_weights = {
@@ -62,14 +62,14 @@ if __name__ == "__main__":
         "Doubtful": 0.8
     }
 
-    base_pyth_constant = 3.1754089582025458
-    base_uh_oh_multiplier = 0
-    base_home_advantage_multiplier = 1.3349449218729996
-    base_freshness_coefficient = 2.5340784702589154
-    base_spread_coefficient = 3.836043395962551
-    base_ls_weight = 1.8131129097167324
+    base_pyth_constant = 2.60222521983188
+    base_uh_oh_multiplier = 0.005121042701929146
+    base_home_advantage_multiplier = 1.265794415447816
+    base_freshness_coefficient = 2.050558312782524
+    base_spread_coefficient = 3.2758783012003185
+    base_ls_weight = 1.8855139151930271
 
-    desired_generations = 500
+    desired_generations = 200
     generation_size = 20
     keep_each_gen = 10
 
@@ -169,12 +169,16 @@ if __name__ == "__main__":
         else:
             generation = keep
 
-        if(len(generation) > 4):
-            print("Best money this generation: " + str(generation[0]["total_money_won"]) + ", " + str(generation[1]["total_money_won"]) + ", " + str(generation[2]["total_money_won"]) + ", " + str(generation[3]["total_money_won"]))
-            print("Spreads this generation: " + str(generation[0]["spread_score"]) + ", " + str(generation[1]["spread_score"]) + ", " + str(generation[2]["spread_score"]) + ", " + str(generation[3]["spread_score"]))
-        else:
-            print("Best money this generation: " + str(generation[0]["total_money_won"]))
-            print("Spread this generation: " + str(generation[0]["spread_score"]))
+        count = 0
+        money_report = "Best money this generation: "
+        spread_report = "Best spreads this generation: "
+        while(count < len(generation) and count < 4):
+            money_report += str(generation[count]["total_money_won"])+" "
+            spread_report += str(generation[count]["spread_score"])+" "
+            count += 1
+        print(money_report)
+        print(spread_report)
+
         generation_counter = generation_counter + 1
 
     f = open("predictions/genetics/genetics.json", "w")

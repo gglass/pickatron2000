@@ -20,28 +20,27 @@ def mutate_constants(base_pyth_constant, base_uh_oh_multiplier, base_home_advant
 
     # we are just gonna nudge each of these around by 0.0 - 0.1 up or down for each one. This is ~10% randomness in each one (which is a fair amount of genetic drift)
     mutated['pyth_constant'] = max(1, base_pyth_constant + ((random.random() - 0.5)))
-    mutated['uh_oh_multiplier'] = max(0, base_uh_oh_multiplier + ((random.random() - 0.5)*2))
+    mutated['uh_oh_multiplier'] = max(0, base_uh_oh_multiplier + ((random.random() - 0.5)/3))
     mutated['freshness_coefficient'] = max(0, base_freshness_coefficient + ((random.random() - 0.5)))
     mutated['home_advantage_multiplier'] = max(0, base_home_advantage_multiplier + ((random.random() - 0.5)*2))
     mutated['spread_coefficient'] = max(0, base_spread_coefficient + ((random.random() - 0.5)*1.25))
     mutated['ls_weight'] = base_ls_weight + ((random.random() - 0.5)/5)
 
     # for position in base_position_weights.keys():
-        # mutated['position_weights'][position] = base_position_weights[position] + ((random.random() - 0.5)/5)
-        # if mutated['position_weights'][position] < 0:
-        #     mutated['position_weights'][position] = 0
-        # elif mutated['position_weights'][position] > 5:
-        #     mutated['position_weights'][position] = 5
-        # chaos = random.random()
-        # if chaos < 0.05:
-        #     if base_position_weights[position] > 1:
-        #         mutated['position_weights'][position] = base_position_weights[position] - 1
-        # elif chaos > 0.95:
-        #     if base_position_weights[position] < 5:
-        #         mutated['position_weights'][position] = base_position_weights[position] + 1
+    #     # mutated['position_weights'][position] = base_position_weights[position] + ((random.random() - 0.5)/5)
+    #     if mutated['position_weights'][position] < 0:
+    #         mutated['position_weights'][position] = 0
+    #     elif mutated['position_weights'][position] > 5:
+    #         mutated['position_weights'][position] = 5
+    #     chaos = random.random()
+    #     if chaos < 0.05:
+    #         if base_position_weights[position] > 1:
+    #             mutated['position_weights'][position] = base_position_weights[position] - 1
+    #     elif chaos > 0.95:
+    #         if base_position_weights[position] < 5:
+    #             mutated['position_weights'][position] = base_position_weights[position] + 1
 
     return mutated
-
 
 def evaluate_picks(current_season, week, generation, overwrite=False):
     espn_api_base_url = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/"
@@ -269,33 +268,29 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
         # lets evaluate the teams freshness
         freshness_rating = evaluate_freshness(week, team_info)
 
-        # lets place a limit on this so we don't make a million api calls
-        injurycounter = 1
         total_uh_oh_factor = 0
         for item in injuries['items']:
-            if(injurycounter < 10):
-                # statuses: active, questionable, out
-                injury_report = get_or_fetch_from_cache(item['$ref'])
-                # get info about the athlete so we know what position he plays/how bad it is
-                injured_athlete = get_or_fetch_from_cache(injury_report['athlete']['$ref'])
-                rank_impact = 0
-                injury_status = injury_report['status']
-                # now we crawl over the depth charts to find the team, this player, their rank in their position, etc
-                for depth_team in depth_charts:
-                    if team_info['id'] == depth_team['id']:
-                        for formation in depth_team['depth']['items']:
-                            if injured_athlete['position']['abbreviation'].lower() in formation['positions']:
-                                position = formation['positions'][injured_athlete['position']['abbreviation'].lower()]
-                                position_athletes = position['athletes']
-                                for player in position_athletes:
-                                    if player['athlete']['$ref'] == injured_athlete['$ref']:
-                                        rank_in_position = player['rank']
-                                        total_in_position = len(position_athletes)
-                                        rank_impact = rank_impact_weight(total_in_position, rank_in_position)
-                # print(position_weights[injured_athlete['position']['abbreviation']], rank_impact, injury_status)
-                impact = position_weights[injured_athlete['position']['abbreviation']] * rank_impact * injury_type_weights[injury_status]
-                total_uh_oh_factor = total_uh_oh_factor + impact
-            injurycounter = injurycounter + 1
+            # statuses: active, questionable, out
+            injury_report = get_or_fetch_from_cache(item['$ref'], "caches/week"+str(week))
+            # get info about the athlete so we know what position he plays/how bad it is
+            injured_athlete = get_or_fetch_from_cache(injury_report['athlete']['$ref'], "caches/week"+str(week))
+            rank_impact = 0
+            injury_status = injury_report['status']
+            # now we crawl over the depth charts to find the team, this player, their rank in their position, etc
+            for depth_team in depth_charts:
+                if team_info['id'] == depth_team['id']:
+                    for formation in depth_team['depth']['items']:
+                        if injured_athlete['position']['abbreviation'].lower() in formation['positions']:
+                            position = formation['positions'][injured_athlete['position']['abbreviation'].lower()]
+                            position_athletes = position['athletes']
+                            for player in position_athletes:
+                                if player['athlete']['$ref'] == injured_athlete['$ref']:
+                                    rank_in_position = player['rank']
+                                    total_in_position = len(position_athletes)
+                                    rank_impact = rank_impact_weight(total_in_position, rank_in_position)
+            # print(position_weights[injured_athlete['position']['abbreviation']], rank_impact, injury_status)
+            impact = position_weights[injured_athlete['position']['abbreviation']] * rank_impact * injury_type_weights[injury_status]
+            total_uh_oh_factor = total_uh_oh_factor + impact
 
         this_team = {
             'id': team_info['id'],

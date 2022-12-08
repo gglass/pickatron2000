@@ -1,0 +1,511 @@
+{
+    "predictions": {
+        "401437888": {
+            "winner": "Las Vegas Raiders",
+            "winner_id": "13",
+            "teams": [
+                {
+                    "id": "14",
+                    "name": "Los Angeles Rams",
+                    "PYTH": 3.0065298025247054,
+                    "UHOH": 2.006076388888889,
+                    "FRESHNESS": -0.42857142857142855,
+                    "SCORE": 3.69637583342488,
+                    "GP": 12.0,
+                    "PF": 201.0,
+                    "PA": 280.0,
+                    "PD": -79.0,
+                    "HFA": 0.8036028630292646,
+                    "HOME": true
+                },
+                {
+                    "id": "13",
+                    "name": "Las Vegas Raiders",
+                    "PYTH": 8.172935101020407,
+                    "UHOH": 1.55,
+                    "FRESHNESS": -0.42857142857142855,
+                    "SCORE": 8.059178268891317,
+                    "GP": 12.0,
+                    "PF": 292.0,
+                    "PA": 296.0,
+                    "PD": -4.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Las Vegas Raiders at Los Angeles Rams",
+            "date": "2022-12-09T01:15Z",
+            "predicted_favorite": "Las Vegas Raiders -4.0",
+            "vegas_spread": 6.5,
+            "predicted_spread": 4.0,
+            "bet": "home"
+        },
+        "401437889": {
+            "winner": "Buffalo Bills",
+            "winner_id": "2",
+            "teams": [
+                {
+                    "id": "2",
+                    "name": "Buffalo Bills",
+                    "PYTH": 15.367226941113273,
+                    "UHOH": 2.695918367346939,
+                    "FRESHNESS": 0.2857142857142857,
+                    "SCORE": 19.733097693062106,
+                    "GP": 12.0,
+                    "PF": 333.0,
+                    "PA": 209.0,
+                    "PD": 124.0,
+                    "HFA": 4.290032863862773,
+                    "HOME": true
+                },
+                {
+                    "id": "20",
+                    "name": "New York Jets",
+                    "PYTH": 10.695207108366503,
+                    "UHOH": 0.1836734693877551,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 10.695207108366503,
+                    "GP": 12.0,
+                    "PF": 252.0,
+                    "PA": 223.0,
+                    "PD": 29.0,
+                    "HOME": false
+                }
+            ],
+            "name": "New York Jets at Buffalo Bills",
+            "date": "2022-12-11T18:00Z",
+            "predicted_favorite": "Buffalo Bills -8.0",
+            "vegas_spread": -9.5,
+            "predicted_spread": -8.0,
+            "bet": "away"
+        },
+        "401437890": {
+            "winner": "Cincinnati Bengals",
+            "winner_id": "4",
+            "teams": [
+                {
+                    "id": "4",
+                    "name": "Cincinnati Bengals",
+                    "PYTH": 12.324626724425386,
+                    "UHOH": 1.1,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 15.699914986950276,
+                    "GP": 12.0,
+                    "PF": 312.0,
+                    "PA": 255.0,
+                    "PD": 57.0,
+                    "HFA": 3.41320720656792,
+                    "HOME": true
+                },
+                {
+                    "id": "5",
+                    "name": "Cleveland Browns",
+                    "PYTH": 7.801183770543826,
+                    "UHOH": 0.828125,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 7.801183770543826,
+                    "GP": 12.0,
+                    "PF": 290.0,
+                    "PA": 300.0,
+                    "PD": -10.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Cleveland Browns at Cincinnati Bengals",
+            "date": "2022-12-11T18:00Z",
+            "predicted_favorite": "Cincinnati Bengals -7.0",
+            "vegas_spread": -6.0,
+            "predicted_spread": -7.0,
+            "bet": "home"
+        },
+        "401437891": {
+            "winner": "Dallas Cowboys",
+            "winner_id": "6",
+            "teams": [
+                {
+                    "id": "6",
+                    "name": "Dallas Cowboys",
+                    "PYTH": 15.44972744962384,
+                    "UHOH": 0.0,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 19.693158465045393,
+                    "GP": 12.0,
+                    "PF": 333.0,
+                    "PA": 206.0,
+                    "PD": 127.0,
+                    "HFA": 4.281349959464583,
+                    "HOME": true
+                },
+                {
+                    "id": "34",
+                    "name": "Houston Texans",
+                    "PYTH": 1.960483990863342,
+                    "UHOH": 1.4583333333333333,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 1.960483990863342,
+                    "GP": 12.0,
+                    "PF": 188.0,
+                    "PA": 287.0,
+                    "PD": -99.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Houston Texans at Dallas Cowboys",
+            "date": "2022-12-11T18:00Z",
+            "predicted_favorite": "Dallas Cowboys -15.5",
+            "vegas_spread": -16.5,
+            "predicted_spread": -15.5,
+            "bet": "away"
+        },
+        "401437892": {
+            "winner": "Detroit Lions",
+            "winner_id": "8",
+            "teams": [
+                {
+                    "id": "8",
+                    "name": "Detroit Lions",
+                    "PYTH": 7.825965691591897,
+                    "UHOH": 2.2583333333333333,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 9.999993346057973,
+                    "GP": 12.0,
+                    "PF": 315.0,
+                    "PA": 324.0,
+                    "PD": -9.0,
+                    "HFA": 2.1740276544660766,
+                    "HOME": true
+                },
+                {
+                    "id": "16",
+                    "name": "Minnesota Vikings",
+                    "PYTH": 9.203745370924443,
+                    "UHOH": 2.591666666666667,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 9.203745370924443,
+                    "GP": 12.0,
+                    "PF": 289.0,
+                    "PA": 279.0,
+                    "PD": 10.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Minnesota Vikings at Detroit Lions",
+            "date": "2022-12-11T18:00Z",
+            "predicted_favorite": "Detroit Lions -0.5",
+            "vegas_spread": -2.5,
+            "predicted_spread": -0.5,
+            "bet": "away"
+        },
+        "401437895": {
+            "winner": "Tennessee Titans",
+            "winner_id": "10",
+            "teams": [
+                {
+                    "id": "10",
+                    "name": "Tennessee Titans",
+                    "PYTH": 6.761682900560938,
+                    "UHOH": 1.875,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 8.64005627911324,
+                    "GP": 12.0,
+                    "PF": 219.0,
+                    "PA": 240.0,
+                    "PD": -21.0,
+                    "HFA": 1.8783733785523022,
+                    "HOME": true
+                },
+                {
+                    "id": "30",
+                    "name": "Jacksonville Jaguars",
+                    "PYTH": 7.258956352919201,
+                    "UHOH": 1.403061224489796,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 7.258956352919201,
+                    "GP": 12.0,
+                    "PF": 258.0,
+                    "PA": 272.0,
+                    "PD": -14.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Jacksonville Jaguars at Tennessee Titans",
+            "date": "2022-12-11T18:00Z",
+            "predicted_favorite": "Tennessee Titans -1.0",
+            "vegas_spread": -4.0,
+            "predicted_spread": -1.0,
+            "bet": "away"
+        },
+        "401437893": {
+            "winner": "Philadelphia Eagles",
+            "winner_id": "21",
+            "teams": [
+                {
+                    "id": "19",
+                    "name": "New York Giants",
+                    "PYTH": 7.780455241474477,
+                    "UHOH": 0.140625,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 9.941840241855223,
+                    "GP": 12.0,
+                    "PF": 245.0,
+                    "PA": 252.0,
+                    "PD": -7.0,
+                    "HFA": 2.161385000380746,
+                    "HOME": true
+                },
+                {
+                    "id": "21",
+                    "name": "Philadelphia Eagles",
+                    "PYTH": 14.810329573136139,
+                    "UHOH": 0.1875,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 14.810329573136139,
+                    "GP": 12.0,
+                    "PF": 338.0,
+                    "PA": 226.0,
+                    "PD": 112.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Philadelphia Eagles at New York Giants",
+            "date": "2022-12-11T18:00Z",
+            "predicted_favorite": "Philadelphia Eagles -4.5",
+            "vegas_spread": 7.0,
+            "predicted_spread": 4.5,
+            "bet": "home"
+        },
+        "401437894": {
+            "winner": "Baltimore Ravens",
+            "winner_id": "33",
+            "teams": [
+                {
+                    "id": "23",
+                    "name": "Pittsburgh Steelers",
+                    "PYTH": 3.7789487008241203,
+                    "UHOH": 0.8125,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 4.828728281282408,
+                    "GP": 12.0,
+                    "PF": 213.0,
+                    "PA": 277.0,
+                    "PD": -64.0,
+                    "HFA": 1.0497795804582877,
+                    "HOME": true
+                },
+                {
+                    "id": "33",
+                    "name": "Baltimore Ravens",
+                    "PYTH": 12.047805837095197,
+                    "UHOH": 1.3833333333333333,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 12.047805837095197,
+                    "GP": 12.0,
+                    "PF": 285.0,
+                    "PA": 236.0,
+                    "PD": 49.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Baltimore Ravens at Pittsburgh Steelers",
+            "date": "2022-12-11T18:00Z",
+            "predicted_favorite": "Baltimore Ravens -6.5",
+            "vegas_spread": -2.5,
+            "predicted_spread": 6.5,
+            "bet": "away"
+        },
+        "401437899": {
+            "winner": "Kansas City Chiefs",
+            "winner_id": "12",
+            "teams": [
+                {
+                    "id": "7",
+                    "name": "Denver Broncos",
+                    "PYTH": 4.6890217603796644,
+                    "UHOH": 2.7714285714285714,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 5.991616658081676,
+                    "GP": 12.0,
+                    "PF": 166.0,
+                    "PA": 204.0,
+                    "PD": -38.0,
+                    "HFA": 1.3025948977020114,
+                    "HOME": true
+                },
+                {
+                    "id": "12",
+                    "name": "Kansas City Chiefs",
+                    "PYTH": 13.208834190881655,
+                    "UHOH": 0.2666666666666667,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 13.208834190881655,
+                    "GP": 12.0,
+                    "PF": 350.0,
+                    "PA": 270.0,
+                    "PD": 80.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Kansas City Chiefs at Denver Broncos",
+            "date": "2022-12-12T01:20Z",
+            "predicted_favorite": "Kansas City Chiefs -6.5",
+            "vegas_spread": 9.5,
+            "predicted_spread": 6.5,
+            "bet": "home"
+        },
+        "401437897": {
+            "winner": "San Francisco 49ers",
+            "winner_id": "25",
+            "teams": [
+                {
+                    "id": "25",
+                    "name": "San Francisco 49ers",
+                    "PYTH": 14.737667751352953,
+                    "UHOH": 1.6611111111111112,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 18.831743615779196,
+                    "GP": 12.0,
+                    "PF": 282.0,
+                    "PA": 190.0,
+                    "PD": 92.0,
+                    "HFA": 4.094075864426243,
+                    "HOME": true
+                },
+                {
+                    "id": "27",
+                    "name": "Tampa Bay Buccaneers",
+                    "PYTH": 8.49280064155814,
+                    "UHOH": 0.0,
+                    "FRESHNESS": -0.2857142857142857,
+                    "SCORE": 8.416962753472081,
+                    "GP": 12.0,
+                    "PF": 217.0,
+                    "PA": 219.0,
+                    "PD": -2.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Tampa Bay Buccaneers at San Francisco 49ers",
+            "date": "2022-12-11T21:25Z",
+            "predicted_favorite": "San Francisco 49ers -9.0",
+            "vegas_spread": -3.5,
+            "predicted_spread": -9.0,
+            "bet": "home"
+        },
+        "401437898": {
+            "winner": "Seattle Seahawks",
+            "winner_id": "26",
+            "teams": [
+                {
+                    "id": "26",
+                    "name": "Seattle Seahawks",
+                    "PYTH": 9.425048999187903,
+                    "UHOH": 2.4238945578231292,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 12.043296762648817,
+                    "GP": 12.0,
+                    "PF": 318.0,
+                    "PA": 304.0,
+                    "PD": 14.0,
+                    "HFA": 2.6182477634609143,
+                    "HOME": true
+                },
+                {
+                    "id": "29",
+                    "name": "Carolina Panthers",
+                    "PYTH": 5.6031680833510125,
+                    "UHOH": 2.9930555555555554,
+                    "FRESHNESS": 1.0,
+                    "SCORE": 5.868600691652222,
+                    "GP": 12.0,
+                    "PF": 230.0,
+                    "PA": 266.0,
+                    "PD": -36.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Carolina Panthers at Seattle Seahawks",
+            "date": "2022-12-11T21:25Z",
+            "predicted_favorite": "Seattle Seahawks -5.5",
+            "vegas_spread": -3.5,
+            "predicted_spread": -5.5,
+            "bet": "home"
+        },
+        "401437896": {
+            "winner": "Miami Dolphins",
+            "winner_id": "15",
+            "teams": [
+                {
+                    "id": "24",
+                    "name": "Los Angeles Chargers",
+                    "PYTH": 6.031430413888751,
+                    "UHOH": 1.0233333333333332,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 7.658489339197172,
+                    "GP": 12.0,
+                    "PF": 272.0,
+                    "PA": 309.0,
+                    "PD": -37.0,
+                    "HFA": 1.6649778693514508,
+                    "HOME": true
+                },
+                {
+                    "id": "15",
+                    "name": "Miami Dolphins",
+                    "PYTH": 9.156563904026028,
+                    "UHOH": 1.8788888888888888,
+                    "FRESHNESS": 0.0,
+                    "SCORE": 9.156563904026028,
+                    "GP": 12.0,
+                    "PF": 299.0,
+                    "PA": 289.0,
+                    "PD": 10.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Miami Dolphins at Los Angeles Chargers",
+            "date": "2022-12-11T21:05Z",
+            "predicted_favorite": "Miami Dolphins -1.5",
+            "vegas_spread": 3.0,
+            "predicted_spread": 1.5,
+            "bet": "home"
+        },
+        "401437900": {
+            "winner": "New England Patriots",
+            "winner_id": "17",
+            "teams": [
+                {
+                    "id": "22",
+                    "name": "Arizona Cardinals",
+                    "PYTH": 4.88914224252629,
+                    "UHOH": 1.4133680555555557,
+                    "FRESHNESS": 1.1428571428571428,
+                    "SCORE": 6.634951575872608,
+                    "GP": 12.0,
+                    "PF": 264.0,
+                    "PA": 321.0,
+                    "PD": -57.0,
+                    "HFA": 1.4424577810020782,
+                    "HOME": true
+                },
+                {
+                    "id": "17",
+                    "name": "New England Patriots",
+                    "PYTH": 10.562464918387523,
+                    "UHOH": 0.8392857142857143,
+                    "FRESHNESS": 0.5714285714285714,
+                    "SCORE": 10.714140694559642,
+                    "GP": 12.0,
+                    "PF": 249.0,
+                    "PA": 226.0,
+                    "PD": 23.0,
+                    "HOME": false
+                }
+            ],
+            "name": "New England Patriots at Arizona Cardinals",
+            "date": "2022-12-13T01:15Z",
+            "predicted_favorite": "New England Patriots -3.5",
+            "vegas_spread": 1.5,
+            "predicted_spread": 3.5,
+            "bet": "away"
+        }
+    }
+}
