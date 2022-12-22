@@ -7,7 +7,7 @@ from multiprocessing import Pool
 if __name__ == "__main__":
     current_season = 2022
     starting_week = 2
-    ending_week = 13
+    ending_week = 15
 
     base_position_weights = {
         "WR": 3,
@@ -62,12 +62,12 @@ if __name__ == "__main__":
         "Doubtful": 0.8
     }
 
-    base_pyth_constant = 2.60222521983188
-    base_uh_oh_multiplier = 0.005121042701929146
-    base_home_advantage_multiplier = 1.265794415447816
-    base_freshness_coefficient = 2.050558312782524
-    base_spread_coefficient = 3.2758783012003185
-    base_ls_weight = 1.8855139151930271
+    base_pyth_constant = 4.804703097309936
+    base_uh_oh_multiplier = 0
+    base_home_advantage_multiplier = 1.2777967269651873
+    base_freshness_coefficient = 0.26543260830120985
+    base_spread_coefficient = 0.8821592400856302
+    base_ls_weight = 1.6708991964028814
 
     desired_generations = 200
     generation_size = 20
