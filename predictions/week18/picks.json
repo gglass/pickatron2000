@@ -1,0 +1,628 @@
+{
+    "predictions": {
+        "401437961": {
+            "winner": "Las Vegas Raiders",
+            "winner_id": "13",
+            "teams": [
+                {
+                    "id": "13",
+                    "name": "Las Vegas Raiders",
+                    "PYTH": 8.179488873224106,
+                    "UHOH": 0.41666666666666663,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 14.341415025197216,
+                    "GP": 16.0,
+                    "PF": 382.0,
+                    "PA": 387.0,
+                    "PD": -5.0,
+                    "HFA": 6.446925911993889,
+                    "HOME": true
+                },
+                {
+                    "id": "12",
+                    "name": "Kansas City Chiefs",
+                    "PYTH": 13.816701700985174,
+                    "UHOH": 1.4166666666666667,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 13.416541539423948,
+                    "GP": 16.0,
+                    "PF": 465.0,
+                    "PA": 356.0,
+                    "PD": 109.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Kansas City Chiefs at Las Vegas Raiders",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Las Vegas Raiders -1.5",
+            "vegas_spread": 9.5,
+            "predicted_spread": -1.5,
+            "bet": "home"
+        },
+        "401437954": {
+            "winner": "Jacksonville Jaguars",
+            "winner_id": "30",
+            "teams": [
+                {
+                    "id": "30",
+                    "name": "Jacksonville Jaguars",
+                    "PYTH": 11.53969439802046,
+                    "UHOH": 2.25,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 20.062144466503206,
+                    "GP": 16.0,
+                    "PF": 384.0,
+                    "PA": 334.0,
+                    "PD": 50.0,
+                    "HFA": 9.018577231327681,
+                    "HOME": true
+                },
+                {
+                    "id": "10",
+                    "name": "Tennessee Titans",
+                    "PYTH": 4.571285211616442,
+                    "UHOH": 0.125,
+                    "FRESHNESS": 0.2857142857142857,
+                    "SCORE": 5.030922680181733,
+                    "GP": 16.0,
+                    "PF": 282.0,
+                    "PA": 339.0,
+                    "PD": -57.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Tennessee Titans at Jacksonville Jaguars",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Jacksonville Jaguars -23.5",
+            "vegas_spread": -6.5,
+            "predicted_spread": -23.5,
+            "bet": "home"
+        },
+        "401437948": {
+            "winner": "Atlanta Falcons",
+            "winner_id": "1",
+            "teams": [
+                {
+                    "id": "1",
+                    "name": "Atlanta Falcons",
+                    "PYTH": 6.262644259718461,
+                    "UHOH": 0.2969387755102041,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 10.884253253091448,
+                    "GP": 16.0,
+                    "PF": 335.0,
+                    "PA": 369.0,
+                    "PD": -34.0,
+                    "HFA": 4.892820841372595,
+                    "HOME": true
+                },
+                {
+                    "id": "27",
+                    "name": "Tampa Bay Buccaneers",
+                    "PYTH": 6.230060872659063,
+                    "UHOH": 0.15306122448979592,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 5.975418021207622,
+                    "GP": 16.0,
+                    "PF": 296.0,
+                    "PA": 328.0,
+                    "PD": -32.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Tampa Bay Buccaneers at Atlanta Falcons",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Atlanta Falcons -7.5",
+            "vegas_spread": -4.0,
+            "predicted_spread": -7.5,
+            "bet": "home"
+        },
+        "401437949": {
+            "winner": "Buffalo Bills",
+            "winner_id": "2",
+            "teams": [
+                {
+                    "id": "2",
+                    "name": "Buffalo Bills",
+                    "PYTH": 15.795268229968157,
+                    "UHOH": 0.0,
+                    "FRESHNESS": -0.2857142857142857,
+                    "SCORE": 27.833112045952408,
+                    "GP": 15.0,
+                    "PF": 420.0,
+                    "PA": 263.0,
+                    "PD": 157.0,
+                    "HFA": 12.511876334742098,
+                    "HOME": true
+                },
+                {
+                    "id": "17",
+                    "name": "New England Patriots",
+                    "PYTH": 10.574781978569149,
+                    "UHOH": 1.5892857142857142,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 10.154742938170582,
+                    "GP": 16.0,
+                    "PF": 341.0,
+                    "PA": 312.0,
+                    "PD": 29.0,
+                    "HOME": false
+                }
+            ],
+            "name": "New England Patriots at Buffalo Bills",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Buffalo Bills -27.5",
+            "vegas_spread": -7.5,
+            "predicted_spread": -27.5,
+            "bet": "home"
+        },
+        "401437950": {
+            "winner": "Minnesota Vikings",
+            "winner_id": "16",
+            "teams": [
+                {
+                    "id": "3",
+                    "name": "Chicago Bears",
+                    "PYTH": 2.422862795849676,
+                    "UHOH": 2.5,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 3.4478766375133265,
+                    "GP": 16.0,
+                    "PF": 313.0,
+                    "PA": 434.0,
+                    "PD": -121.0,
+                    "HFA": 1.5499311048936995,
+                    "HOME": true
+                },
+                {
+                    "id": "16",
+                    "name": "Minnesota Vikings",
+                    "PYTH": 7.413970132236641,
+                    "UHOH": 1.875,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 6.961028119969374,
+                    "GP": 16.0,
+                    "PF": 395.0,
+                    "PA": 414.0,
+                    "PD": -19.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Minnesota Vikings at Chicago Bears",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Minnesota Vikings -5.5",
+            "vegas_spread": 6.0,
+            "predicted_spread": 5.5,
+            "bet": "home"
+        },
+        "401437951": {
+            "winner": "Cincinnati Bengals",
+            "winner_id": "4",
+            "teams": [
+                {
+                    "id": "4",
+                    "name": "Cincinnati Bengals",
+                    "PYTH": 13.487860778270042,
+                    "UHOH": 0.0,
+                    "FRESHNESS": -0.2857142857142857,
+                    "SCORE": 23.641392047036874,
+                    "GP": 15.0,
+                    "PF": 391.0,
+                    "PA": 306.0,
+                    "PD": 85.0,
+                    "HFA": 10.627563787524679,
+                    "HOME": true
+                },
+                {
+                    "id": "33",
+                    "name": "Baltimore Ravens",
+                    "PYTH": 11.76233408691246,
+                    "UHOH": 3.125,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 11.165441572719631,
+                    "GP": 16.0,
+                    "PF": 334.0,
+                    "PA": 288.0,
+                    "PD": 46.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Baltimore Ravens at Cincinnati Bengals",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Cincinnati Bengals -19.5",
+            "vegas_spread": -9.0,
+            "predicted_spread": -19.5,
+            "bet": "home"
+        },
+        "401437953": {
+            "winner": "Indianapolis Colts",
+            "winner_id": "11",
+            "teams": [
+                {
+                    "id": "11",
+                    "name": "Indianapolis Colts",
+                    "PYTH": 1.522228963433359,
+                    "UHOH": 1.6736111111111112,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 1.9846369009168408,
+                    "GP": 16.0,
+                    "PF": 258.0,
+                    "PA": 395.0,
+                    "PD": -137.0,
+                    "HFA": 0.8921579244405193,
+                    "HOME": true
+                },
+                {
+                    "id": "34",
+                    "name": "Houston Texans",
+                    "PYTH": 1.5782068164125151,
+                    "UHOH": 0.4375,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 1.290807881359645,
+                    "GP": 16.0,
+                    "PF": 257.0,
+                    "PA": 389.0,
+                    "PD": -132.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Houston Texans at Indianapolis Colts",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Indianapolis Colts -1.0",
+            "vegas_spread": -2.5,
+            "predicted_spread": -1.0,
+            "bet": "away"
+        },
+        "401437955": {
+            "winner": "Miami Dolphins",
+            "winner_id": "15",
+            "teams": [
+                {
+                    "id": "15",
+                    "name": "Miami Dolphins",
+                    "PYTH": 8.073465814972696,
+                    "UHOH": 3.260222222222222,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 13.55392490941068,
+                    "GP": 16.0,
+                    "PF": 386.0,
+                    "PA": 393.0,
+                    "PD": -7.0,
+                    "HFA": 6.0929238540391175,
+                    "HOME": true
+                },
+                {
+                    "id": "20",
+                    "name": "New York Jets",
+                    "PYTH": 7.267341700632402,
+                    "UHOH": 0.5590277777777778,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 6.965947577892324,
+                    "GP": 16.0,
+                    "PF": 290.0,
+                    "PA": 305.0,
+                    "PD": -15.0,
+                    "HOME": false
+                }
+            ],
+            "name": "New York Jets at Miami Dolphins",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Miami Dolphins -10.5",
+            "vegas_spread": -3.0,
+            "predicted_spread": -10.5,
+            "bet": "home"
+        },
+        "401437956": {
+            "winner": "New Orleans Saints",
+            "winner_id": "18",
+            "teams": [
+                {
+                    "id": "18",
+                    "name": "New Orleans Saints",
+                    "PYTH": 7.664701956772074,
+                    "UHOH": 1.045,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 13.274784258644692,
+                    "GP": 16.0,
+                    "PF": 323.0,
+                    "PA": 335.0,
+                    "PD": -12.0,
+                    "HFA": 5.967441180861312,
+                    "HOME": true
+                },
+                {
+                    "id": "29",
+                    "name": "Carolina Panthers",
+                    "PYTH": 6.523565763511845,
+                    "UHOH": 0.5555555555555556,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 6.222571503277116,
+                    "GP": 16.0,
+                    "PF": 337.0,
+                    "PA": 367.0,
+                    "PD": -30.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Carolina Panthers at New Orleans Saints",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "New Orleans Saints -11.0",
+            "vegas_spread": -3.5,
+            "predicted_spread": -11.0,
+            "bet": "home"
+        },
+        "401437958": {
+            "winner": "Pittsburgh Steelers",
+            "winner_id": "23",
+            "teams": [
+                {
+                    "id": "23",
+                    "name": "Pittsburgh Steelers",
+                    "PYTH": 4.791299990287602,
+                    "UHOH": 0.0,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 8.273476876195513,
+                    "GP": 16.0,
+                    "PF": 280.0,
+                    "PA": 332.0,
+                    "PD": -52.0,
+                    "HFA": 3.7191931452868348,
+                    "HOME": true
+                },
+                {
+                    "id": "5",
+                    "name": "Cleveland Browns",
+                    "PYTH": 8.095013904834817,
+                    "UHOH": 0.0,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 7.857997645455893,
+                    "GP": 16.0,
+                    "PF": 347.0,
+                    "PA": 353.0,
+                    "PD": -6.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Cleveland Browns at Pittsburgh Steelers",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Pittsburgh Steelers -0.5",
+            "vegas_spread": -2.5,
+            "predicted_spread": -0.5,
+            "bet": "away"
+        },
+        "401437960": {
+            "winner": "Los Angeles Chargers",
+            "winner_id": "24",
+            "teams": [
+                {
+                    "id": "7",
+                    "name": "Denver Broncos",
+                    "PYTH": 3.3542069618190595,
+                    "UHOH": 0.46875,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 5.564736962358591,
+                    "GP": 16.0,
+                    "PF": 256.0,
+                    "PA": 331.0,
+                    "PD": -75.0,
+                    "HFA": 2.5015276981405408,
+                    "HOME": true
+                },
+                {
+                    "id": "24",
+                    "name": "Los Angeles Chargers",
+                    "PYTH": 9.151682196023414,
+                    "UHOH": 1.5,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 8.741925334333816,
+                    "GP": 16.0,
+                    "PF": 363.0,
+                    "PA": 353.0,
+                    "PD": 10.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Los Angeles Chargers at Denver Broncos",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Los Angeles Chargers -5.0",
+            "vegas_spread": -3.0,
+            "predicted_spread": 5.0,
+            "bet": "away"
+        },
+        "401437957": {
+            "winner": "Philadelphia Eagles",
+            "winner_id": "21",
+            "teams": [
+                {
+                    "id": "21",
+                    "name": "Philadelphia Eagles",
+                    "PYTH": 14.574594053278044,
+                    "UHOH": 0.8333333333333333,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 25.871826292423574,
+                    "GP": 16.0,
+                    "PF": 455.0,
+                    "PA": 328.0,
+                    "PD": 127.0,
+                    "HFA": 11.63021549980816,
+                    "HOME": true
+                },
+                {
+                    "id": "19",
+                    "name": "New York Giants",
+                    "PYTH": 8.45048950358145,
+                    "UHOH": 0.0,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 8.213473244202527,
+                    "GP": 16.0,
+                    "PF": 349.0,
+                    "PA": 349.0,
+                    "PD": 0.0,
+                    "HOME": false
+                }
+            ],
+            "name": "New York Giants at Philadelphia Eagles",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Philadelphia Eagles -27.5",
+            "vegas_spread": -14.5,
+            "predicted_spread": -27.5,
+            "bet": "home"
+        },
+        "401437962": {
+            "winner": "San Francisco 49ers",
+            "winner_id": "25",
+            "teams": [
+                {
+                    "id": "25",
+                    "name": "San Francisco 49ers",
+                    "PYTH": 15.632935634088879,
+                    "UHOH": 1.3611111111111112,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 27.6840344459932,
+                    "GP": 16.0,
+                    "PF": 412.0,
+                    "PA": 264.0,
+                    "PD": 148.0,
+                    "HFA": 12.444861173379966,
+                    "HOME": true
+                },
+                {
+                    "id": "22",
+                    "name": "Arizona Cardinals",
+                    "PYTH": 3.8039020058358277,
+                    "UHOH": 2.9826388888888884,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 3.223403854362298,
+                    "GP": 16.0,
+                    "PF": 327.0,
+                    "PA": 411.0,
+                    "PD": -84.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Arizona Cardinals at San Francisco 49ers",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "San Francisco 49ers -38.0",
+            "vegas_spread": -14.5,
+            "predicted_spread": -38.0,
+            "bet": "home"
+        },
+        "401437963": {
+            "winner": "Seattle Seahawks",
+            "winner_id": "26",
+            "teams": [
+                {
+                    "id": "26",
+                    "name": "Seattle Seahawks",
+                    "PYTH": 8.68860523334404,
+                    "UHOH": 0.7142857142857143,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 15.20403099415795,
+                    "GP": 16.0,
+                    "PF": 388.0,
+                    "PA": 385.0,
+                    "PD": 3.0,
+                    "HFA": 6.834699449864583,
+                    "HOME": true
+                },
+                {
+                    "id": "14",
+                    "name": "Los Angeles Rams",
+                    "PYTH": 3.8434176260475965,
+                    "UHOH": 1.234375,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 3.4642502460171802,
+                    "GP": 16.0,
+                    "PF": 291.0,
+                    "PA": 365.0,
+                    "PD": -74.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Los Angeles Rams at Seattle Seahawks",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Seattle Seahawks -18.5",
+            "vegas_spread": -6.0,
+            "predicted_spread": -18.5,
+            "bet": "home"
+        },
+        "401437959": {
+            "winner": "Dallas Cowboys",
+            "winner_id": "6",
+            "teams": [
+                {
+                    "id": "28",
+                    "name": "Washington Commanders",
+                    "PYTH": 5.508490317314352,
+                    "UHOH": 1.3125,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 9.301769832178023,
+                    "GP": 16.0,
+                    "PF": 295.0,
+                    "PA": 337.0,
+                    "PD": -42.0,
+                    "HFA": 4.181443801264435,
+                    "HOME": true
+                },
+                {
+                    "id": "6",
+                    "name": "Dallas Cowboys",
+                    "PYTH": 15.104633745823998,
+                    "UHOH": 1.046875,
+                    "FRESHNESS": 0.2857142857142857,
+                    "SCORE": 15.458107719219186,
+                    "GP": 16.0,
+                    "PF": 461.0,
+                    "PA": 316.0,
+                    "PD": 145.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Dallas Cowboys at Washington Commanders",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Dallas Cowboys -9.5",
+            "vegas_spread": 7.0,
+            "predicted_spread": 9.5,
+            "bet": "away"
+        },
+        "401437952": {
+            "winner": "Green Bay Packers",
+            "winner_id": "9",
+            "teams": [
+                {
+                    "id": "9",
+                    "name": "Green Bay Packers",
+                    "PYTH": 8.722104671821182,
+                    "UHOH": 0.28125,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 15.355480333751146,
+                    "GP": 16.0,
+                    "PF": 354.0,
+                    "PA": 351.0,
+                    "PD": 3.0,
+                    "HFA": 6.902780784242138,
+                    "HOME": true
+                },
+                {
+                    "id": "8",
+                    "name": "Detroit Lions",
+                    "PYTH": 9.668113498595101,
+                    "UHOH": 2.0,
+                    "FRESHNESS": -0.14285714285714285,
+                    "SCORE": 9.200776436135278,
+                    "GP": 16.0,
+                    "PF": 433.0,
+                    "PA": 411.0,
+                    "PD": 22.0,
+                    "HOME": false
+                }
+            ],
+            "name": "Detroit Lions at Green Bay Packers",
+            "date": "2023-01-08T05:00Z",
+            "predicted_favorite": "Green Bay Packers -9.5",
+            "vegas_spread": -4.5,
+            "predicted_spread": -9.5,
+            "bet": "home"
+        }
+    }
+}

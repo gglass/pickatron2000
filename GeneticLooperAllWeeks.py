@@ -7,7 +7,7 @@ from multiprocessing import Pool
 if __name__ == "__main__":
     current_season = 2022
     starting_week = 2
-    ending_week = 16
+    ending_week = 17
 
     base_position_weights = {
         "WR": 3,
@@ -62,12 +62,12 @@ if __name__ == "__main__":
         "Doubtful": 0.8
     }
 
-    base_pyth_constant = 5.667187677895935
-    base_uh_oh_multiplier = 0.0658691306162773
-    base_home_advantage_multiplier = 1.7728861107969522
-    base_freshness_coefficient = 0.6734867416483096
-    base_spread_coefficient = 0.7064363939281348
-    base_ls_weight = 1.9011759443427783
+    base_pyth_constant = 5.5608848173063565
+    base_uh_oh_multiplier = 0
+    base_home_advantage_multiplier = 1.7519847951386103
+    base_freshness_coefficient = 0.8098579700801223
+    base_spread_coefficient = 1.8242399368480398
+    base_ls_weight = 1.9347080182770942
 
     desired_generations = 200
     generation_size = 20
@@ -128,7 +128,8 @@ if __name__ == "__main__":
         with Pool() as p:
             generation.extend(p.starmap(generate_picks_from_seed, tasks))
 
-        print("Finished generating picks in", time.perf_counter()-starttime, " seconds")
+        picktime = time.perf_counter()-starttime
+        print("Finished generating picks in", picktime, " seconds")
 
         # foreach of the mutators, evaluate week 2 ... X and come up with a total score for that mutator
         for prediction_set in generation:
@@ -179,10 +180,23 @@ if __name__ == "__main__":
         print(money_report)
         print(spread_report)
 
+        print("Estimated time left: ", (picktime*desired_generations - picktime*generation_counter)/60, " minutes")
         generation_counter = generation_counter + 1
 
+    dumpout = []
+    for prediction_set in generation:
+        output = {}
+        output["parameters"] = prediction_set["parameters"]
+        output["accuracy_score"] = prediction_set["accuracy_score"]
+        output["spread_score"] = prediction_set["spread_score"]
+        output["total_money_won"] = prediction_set["total_money_won"]
+        output["total_games_played"] = prediction_set["total_games_played"]
+        output["accuracy_pct"] = prediction_set["accuracy_pct"]
+        output["avg_spread"] = prediction_set["avg_spread"]
+        dumpout.append(output)
+
     f = open("predictions/genetics/genetics.json", "w")
-    f.write(json.dumps(generation, indent=4))
+    f.write(json.dumps(dumpout, indent=4))
     f.close()
 
     f = open("predictions/genetics/visualization.json", "w")

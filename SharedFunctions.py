@@ -68,7 +68,7 @@ def evaluate_picks(current_season, week, generation, overwrite=False):
                     tempspread = score['value']
                 else:
                     tempspread = tempspread - score['value']
-                if competitor["winner"]:
+                if "winner" in competitor and competitor["winner"]:
                     actual_winner_id = competitor['id']
             # print("predicted/actual: "+ str(predicted_winner_id) + "/" + str(actual_winner_id))
 
