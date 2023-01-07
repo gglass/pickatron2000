@@ -185,14 +185,10 @@ if __name__ == "__main__":
 
     dumpout = []
     for prediction_set in generation:
-        output = {}
-        output["parameters"] = prediction_set["parameters"]
-        output["accuracy_score"] = prediction_set["accuracy_score"]
-        output["spread_score"] = prediction_set["spread_score"]
-        output["total_money_won"] = prediction_set["total_money_won"]
-        output["total_games_played"] = prediction_set["total_games_played"]
-        output["accuracy_pct"] = prediction_set["accuracy_pct"]
-        output["avg_spread"] = prediction_set["avg_spread"]
+        output = {"parameters": prediction_set["parameters"], "accuracy_score": prediction_set["accuracy_score"],
+                  "spread_score": prediction_set["spread_score"], "total_money_won": prediction_set["total_money_won"],
+                  "total_games_played": prediction_set["total_games_played"],
+                  "accuracy_pct": prediction_set["accuracy_pct"], "avg_spread": prediction_set["avg_spread"]}
         dumpout.append(output)
 
     f = open("predictions/genetics/genetics.json", "w")
