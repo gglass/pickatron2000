@@ -1,7 +1,9 @@
 import random
 import json
-from SharedFunctions import generate_picks
+from SharedFunctions import predict_team_score, get_or_fetch_from_cache, make_prediction
 from statistics import mean
+
+superbowl_endpoint_2022 = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401438030?lang=en&region=us"
 
 current_season = 2022
 week = "18"
@@ -49,7 +51,6 @@ base_position_weights = {
     "OT": 3,
     "G": 2
 }
-
 base_injury_type_weights = {
     "Active": 0,
     "Questionable": 0.5,
@@ -58,7 +59,6 @@ base_injury_type_weights = {
     "Injured Reserve": 0.8,
     "Doubtful": 0.8
 }
-
 weekly_coefficients = {
     "base_pyth_constant": [],
     "base_uh_oh_multiplier": [],
@@ -69,13 +69,18 @@ weekly_coefficients = {
 
 base_pyth_constant = 5.978344369925306
 base_uh_oh_multiplier = 0.08403149355610853
-base_home_advantage_multiplier = 1.8356454386313077
+base_home_advantage_multiplier = 1
 base_freshness_coefficient = 0.5756660819542517
 base_spread_coefficient = 1.585275382166684
 base_ls_weight = 1.8697886179144976
 
-picks = {
-    "predictions": generate_picks(
+event = get_or_fetch_from_cache(superbowl_endpoint_2022)
+competitors = event["competitions"][0]["competitors"]
+
+teams = []
+for competitor in competitors:
+    score = predict_team_score(
+        competitor['team'],
         current_season,
         week,
         base_pyth_constant,
@@ -85,10 +90,16 @@ picks = {
         base_position_weights,
         base_injury_type_weights,
         base_spread_coefficient,
-        base_ls_weight
+        base_ls_weight,
+        True
     )
-}
+    teams.append(score)
 
-f = open("predictions/week" + week + "/" + "picks.json", "w")
-f.write(json.dumps(picks, indent=4))
+predictions = {}
+competition = event['competitions'][0]
+prediction = make_prediction(event, teams, base_home_advantage_multiplier, base_spread_coefficient)
+predictions[competition["id"]] = prediction
+
+f = open("predictions/superbowl/" + "picks.json", "w")
+f.write(json.dumps(predictions, indent=4))
 f.close()

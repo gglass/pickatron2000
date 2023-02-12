@@ -1,0 +1,41 @@
+{
+    "401438030": {
+        "winner": "Philadelphia Eagles",
+        "winner_id": "21",
+        "teams": [
+            {
+                "id": "21",
+                "name": "Philadelphia Eagles",
+                "PYTH": 14.885036985508123,
+                "UHOH": 0,
+                "FRESHNESS": 0.0,
+                "SCORE": 14.885036985508123,
+                "GP": 16.0,
+                "PF": 455.0,
+                "PA": 328.0,
+                "PD": 127.0,
+                "HFA": 0.0,
+                "HOME": true
+            },
+            {
+                "id": "12",
+                "name": "Kansas City Chiefs",
+                "PYTH": 14.137457363192024,
+                "UHOH": 0,
+                "FRESHNESS": -0.14285714285714285,
+                "SCORE": 14.055219351484274,
+                "GP": 16.0,
+                "PF": 465.0,
+                "PA": 356.0,
+                "PD": 109.0,
+                "HOME": false
+            }
+        ],
+        "name": "Kansas City Chiefs at Philadelphia Eagles",
+        "date": "2023-02-12T23:30Z",
+        "predicted_favorite": "Philadelphia Eagles -1.5",
+        "vegas_spread": -1.5,
+        "predicted_spread": -1.5,
+        "bet": "away"
+    }
+}

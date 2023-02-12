@@ -245,35 +245,39 @@ def generate_picks_from_seed(seed, count, seeders, generation_counter, visualiza
         pick_week += 1
     return newpick
 
-def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, freshness_coefficient, position_weights, injury_type_weights, spread_coefficient, ls_weight = False):
+def predict_team_score(link, current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, freshness_coefficient, position_weights, injury_type_weights, spread_coefficient, ls_weight, ignore_injuries = False):
     espn_api_base_url = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/"
 
+    team_info = get_or_fetch_from_cache(link['$ref'])
+    # now lets go get their record for last season
+    last_season_record = get_or_fetch_from_cache(
+        espn_api_base_url + "seasons/" + str(current_season - 1) + "/types/2/teams/" + team_info[
+            'id'] + "/records/0/?lang=en&region=us")
+
+    # now their record for this season
+    this_season_record = get_or_fetch_from_cache(
+        espn_api_base_url + "seasons/" + str(current_season) + "/types/2/teams/" + team_info[
+            'id'] + "/records/0/?lang=en&region=us", "caches/week" + str(week))
+
+    if not ignore_injuries:
+        # now injuries so we can calculate the uh oh factor
+        injuries = get_or_fetch_from_cache(espn_api_base_url + "teams/" + team_info['id'] + "/injuries",
+                                           "caches/week" + str(week))
+
+    # lets evaluate the teams freshness
+    freshness_rating = evaluate_freshness(week, team_info)
+
+    # lets make the depth charts available to us
     depth_charts_file = open("depth_charts.json", "r")
     depth_charts = json.load(depth_charts_file)
 
-    teams = []
-    # first lets go get all the teams records from last year so we can start off with something to calculate their pyth with
-    team_links = get_or_fetch_from_cache(espn_api_base_url+"teams?limit=32")
-    for link in team_links['items']:
-        team_info = get_or_fetch_from_cache(link['$ref'])
-        # now lets go get their record for last season
-        last_season_record = get_or_fetch_from_cache(espn_api_base_url+"seasons/"+str(current_season-1)+"/types/2/teams/"+team_info['id']+"/records/0/?lang=en&region=us")
-
-        # now their record for this season
-        this_season_record = get_or_fetch_from_cache(espn_api_base_url+"seasons/"+str(current_season)+"/types/2/teams/"+team_info['id']+"/records/0/?lang=en&region=us", "caches/week"+str(week))
-
-        # now injuries so we can calculate the uh oh factor
-        injuries = get_or_fetch_from_cache(espn_api_base_url + "teams/" + team_info['id'] + "/injuries", "caches/week"+str(week))
-
-        # lets evaluate the teams freshness
-        freshness_rating = evaluate_freshness(week, team_info)
-
+    if not ignore_injuries:
         total_uh_oh_factor = 0
         for item in injuries['items']:
             # statuses: active, questionable, out
-            injury_report = get_or_fetch_from_cache(item['$ref'], "caches/week"+str(week))
+            injury_report = get_or_fetch_from_cache(item['$ref'], "caches/week" + str(week))
             # get info about the athlete so we know what position he plays/how bad it is
-            injured_athlete = get_or_fetch_from_cache(injury_report['athlete']['$ref'], "caches/week"+str(week))
+            injured_athlete = get_or_fetch_from_cache(injury_report['athlete']['$ref'], "caches/week" + str(week))
             rank_impact = 0
             injury_status = injury_report['status']
             # now we crawl over the depth charts to find the team, this player, their rank in their position, etc
@@ -289,113 +293,135 @@ def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_a
                                     total_in_position = len(position_athletes)
                                     rank_impact = rank_impact_weight(total_in_position, rank_in_position)
             # print(position_weights[injured_athlete['position']['abbreviation']], rank_impact, injury_status)
-            impact = position_weights[injured_athlete['position']['abbreviation']] * rank_impact * injury_type_weights[injury_status]
+            impact = position_weights[injured_athlete['position']['abbreviation']] * rank_impact * injury_type_weights[
+                injury_status]
             total_uh_oh_factor = total_uh_oh_factor + impact
+    else:
+        total_uh_oh_factor = 0
 
-        this_team = {
-            'id': team_info['id'],
-            'name': team_info['displayName'],
-            'LSW': last_season_record['stats'][1]['value'],
-            'LSL': last_season_record['stats'][2]['value'],
-            'LSPF': last_season_record['stats'][9]['value'],
-            'LSPA': last_season_record['stats'][10]['value'],
-            'LSGP': last_season_record['stats'][8]['value'],
-            'UHOH': total_uh_oh_factor,
-            'FRESHNESS': freshness_rating
-        }
+    this_team = {
+        'id': team_info['id'],
+        'name': team_info['displayName'],
+        'LSW': last_season_record['stats'][1]['value'],
+        'LSL': last_season_record['stats'][2]['value'],
+        'LSPF': last_season_record['stats'][9]['value'],
+        'LSPA': last_season_record['stats'][10]['value'],
+        'LSGP': last_season_record['stats'][8]['value'],
+        'UHOH': total_uh_oh_factor,
+        'FRESHNESS': freshness_rating
+    }
 
-        for stat in this_season_record['stats']:
-            if stat['shortDisplayName'] == 'PA':
-                this_team['PA'] = stat['value']
-            elif stat['shortDisplayName'] == 'PF':
-                this_team['PF'] = stat['value']
-            elif stat['shortDisplayName'] == 'GP':
-                this_team['GP'] = stat['value']
-            elif stat['shortDisplayName'] == 'W':
-                this_team['W'] = stat['value']
-            elif stat['shortDisplayName'] == 'L':
-                this_team['L'] = stat['value']
+    for stat in this_season_record['stats']:
+        if stat['shortDisplayName'] == 'PA':
+            this_team['PA'] = stat['value']
+        elif stat['shortDisplayName'] == 'PF':
+            this_team['PF'] = stat['value']
+        elif stat['shortDisplayName'] == 'GP':
+            this_team['GP'] = stat['value']
+        elif stat['shortDisplayName'] == 'W':
+            this_team['W'] = stat['value']
+        elif stat['shortDisplayName'] == 'L':
+            this_team['L'] = stat['value']
 
-        LSWEIGHT = calc_ls_weight(week, ls_weight)
+    LSWEIGHT = calc_ls_weight(week, ls_weight)
 
-        # now using the numbers from above, lets calculate their
-        pyth = ((17)*((this_team['PF']+(this_team['LSPF']*LSWEIGHT))**pyth_constant))/((this_team['PF']+(this_team['LSPF']*LSWEIGHT))**pyth_constant + (this_team['PA']+(this_team['LSPA']*LSWEIGHT))**pyth_constant)
-        this_team['PYTH'] = pyth
-        this_team['SCORE'] = pyth + (freshness_coefficient*freshness_rating) - (total_uh_oh_factor * uh_oh_multiplier)
-        teams.append(this_team)
+    # now using the numbers from above, lets calculate their
+    pyth = ((17) * ((this_team['PF'] + (this_team['LSPF'] * LSWEIGHT)) ** pyth_constant)) / (
+                (this_team['PF'] + (this_team['LSPF'] * LSWEIGHT)) ** pyth_constant + (
+                    this_team['PA'] + (this_team['LSPA'] * LSWEIGHT)) ** pyth_constant)
+    this_team['PYTH'] = pyth
+    this_team['SCORE'] = pyth + (freshness_coefficient * freshness_rating) - (total_uh_oh_factor * uh_oh_multiplier)
+    return this_team
 
+def generate_picks(current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, freshness_coefficient, position_weights, injury_type_weights, spread_coefficient, ls_weight = False):
+    espn_api_base_url = "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/"
+
+    teams = []
+    # first lets go generate all the teams' pickatron scores
+    team_links = get_or_fetch_from_cache(espn_api_base_url+"teams?limit=32")
+    for link in team_links['items']:
+        teams.append(predict_team_score(link, current_season, week, pyth_constant, uh_oh_multiplier, home_advantage_multiplier, freshness_coefficient, position_weights, injury_type_weights, spread_coefficient, ls_weight))
+
+    # now lets go over all the matchups and put them head to head
     predictions = {}
     matchups = get_or_fetch_from_cache(espn_api_base_url + "seasons/2022/types/2/weeks/" + str(week) + "/events?lang=en&region=us")
     for event_link in matchups['items']:
-        prediction = {
-            "winner": "",
-            "winner_id": "",
-            "teams": []
-        }
         event = get_or_fetch_from_cache(event_link['$ref'])
         competition = event['competitions'][0]
-        competitors = competition['competitors']
-        if("odds" in competition):
-            odds = get_or_fetch_from_cache(competition['odds']['$ref'])
-        prediction['name'] = event['name']
-        prediction['date'] = event['date']
-        for competitor in competitors:
-            for team in teams:
-                if competitor['id'] == team['id']:
-                    this_team = {
-                        'id': team['id'],
-                        'name': team['name'],
-                        'PYTH': team['PYTH'],
-                        'UHOH': team['UHOH'],
-                        'FRESHNESS': team['FRESHNESS'],
-                        'SCORE': team['SCORE'],
-                        'GP': team['GP'],
-                        'PF': team['PF'],
-                        'PA': team['PA'],
-                        'PD': team['PF'] - team['PA']
-                    }
-                    if(competitor['homeAway'] == 'home'):
-                        temp = this_team['SCORE']
-                        this_team['SCORE'] = this_team['SCORE'] * home_advantage_multiplier
-                        this_team['HFA'] = this_team['SCORE'] - temp
-                        this_team['HOME'] = True
-                    else:
-                        this_team['HOME'] = False
-                    prediction['teams'].append(this_team)
-
-        if prediction['teams'][0]['SCORE'] > prediction['teams'][1]['SCORE']:
-            prediction['winner'] = prediction['teams'][0]['name']
-            prediction['winner_id'] = prediction['teams'][0]['id']
-            # prediction['predicted_favorite'] = prediction['teams'][0]['name'] + " " + str(line_set(0 - ((prediction['teams'][0]['PD']/prediction['teams'][0]['GP']) - (prediction['teams'][1]['PD']/prediction['teams'][1]['GP']))*spread_coefficient))
-            prediction['predicted_favorite'] = prediction['teams'][0]['name'] + " " + str(line_set(0 - ((prediction['teams'][0]['SCORE'] - (prediction['teams'][1]['SCORE']))*spread_coefficient)))
-        else:
-            prediction['winner'] = prediction['teams'][1]['name']
-            prediction['winner_id'] = prediction['teams'][1]['id']
-            # prediction['predicted_favorite'] = prediction['teams'][1]['name'] + " " + str(line_set(0 - ((prediction['teams'][1]['PD']/prediction['teams'][1]['GP']) - (prediction['teams'][0]['PD']/prediction['teams'][0]['GP']))*spread_coefficient))
-            prediction['predicted_favorite'] = prediction['teams'][1]['name'] + " " + str(line_set(0 - ((prediction['teams'][1]['SCORE'] - (prediction['teams'][0]['SCORE']))*spread_coefficient)))
-
-        if odds:
-            prediction['vegas_spread'] = odds['items'][0]['spread']
-        else:
-            prediction['vegas_spread'] = 0
-
-        # if team 0 is the home team. a spread of -3 denotes that the home team is a 3 point favorite
-        if prediction['teams'][0]['HOME']:
-            # prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][0]['PD']/prediction['teams'][0]['GP']) - (prediction['teams'][1]['PD']/prediction['teams'][1]['GP']))*spread_coefficient)
-            prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][0]['SCORE'] - (prediction['teams'][1]['SCORE']))*spread_coefficient))
-        else:
-            # prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][1]['PD']/prediction['teams'][1]['GP']) - (prediction['teams'][0]['PD']/prediction['teams'][0]['GP']))*spread_coefficient)
-            prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][1]['SCORE'] - (prediction['teams'][0]['SCORE']))*spread_coefficient))
-
-        if prediction['predicted_spread'] - prediction['vegas_spread'] < 0:
-            prediction['bet'] = "home"
-        else:
-            prediction['bet'] = "away"
-
+        prediction = make_prediction(event, teams, home_advantage_multiplier, spread_coefficient)
         predictions[competition["id"]] = prediction
 
     return predictions
 
+def make_prediction(event, teams, home_advantage_multiplier, spread_coefficient):
+    prediction = {
+        "winner": "",
+        "winner_id": "",
+        "teams": []
+    }
+    competition = event['competitions'][0]
+    competitors = competition['competitors']
+    if ("odds" in competition):
+        odds = get_or_fetch_from_cache(competition['odds']['$ref'])
+    prediction['name'] = event['name']
+    prediction['date'] = event['date']
+    for competitor in competitors:
+        for team in teams:
+            if competitor['id'] == team['id']:
+                this_team = {
+                    'id': team['id'],
+                    'name': team['name'],
+                    'PYTH': team['PYTH'],
+                    'UHOH': team['UHOH'],
+                    'FRESHNESS': team['FRESHNESS'],
+                    'SCORE': team['SCORE'],
+                    'GP': team['GP'],
+                    'PF': team['PF'],
+                    'PA': team['PA'],
+                    'PD': team['PF'] - team['PA']
+                }
+                if (competitor['homeAway'] == 'home'):
+                    temp = this_team['SCORE']
+                    this_team['SCORE'] = this_team['SCORE'] * home_advantage_multiplier
+                    this_team['HFA'] = this_team['SCORE'] - temp
+                    this_team['HOME'] = True
+                else:
+                    this_team['HOME'] = False
+                prediction['teams'].append(this_team)
+
+    if prediction['teams'][0]['SCORE'] > prediction['teams'][1]['SCORE']:
+        prediction['winner'] = prediction['teams'][0]['name']
+        prediction['winner_id'] = prediction['teams'][0]['id']
+        # prediction['predicted_favorite'] = prediction['teams'][0]['name'] + " " + str(line_set(0 - ((prediction['teams'][0]['PD']/prediction['teams'][0]['GP']) - (prediction['teams'][1]['PD']/prediction['teams'][1]['GP']))*spread_coefficient))
+        prediction['predicted_favorite'] = prediction['teams'][0]['name'] + " " + str(
+            line_set(0 - ((prediction['teams'][0]['SCORE'] - (prediction['teams'][1]['SCORE'])) * spread_coefficient)))
+    else:
+        prediction['winner'] = prediction['teams'][1]['name']
+        prediction['winner_id'] = prediction['teams'][1]['id']
+        # prediction['predicted_favorite'] = prediction['teams'][1]['name'] + " " + str(line_set(0 - ((prediction['teams'][1]['PD']/prediction['teams'][1]['GP']) - (prediction['teams'][0]['PD']/prediction['teams'][0]['GP']))*spread_coefficient))
+        prediction['predicted_favorite'] = prediction['teams'][1]['name'] + " " + str(
+            line_set(0 - ((prediction['teams'][1]['SCORE'] - (prediction['teams'][0]['SCORE'])) * spread_coefficient)))
+
+    if odds:
+        prediction['vegas_spread'] = odds['items'][0]['spread']
+    else:
+        prediction['vegas_spread'] = 0
+
+    # if team 0 is the home team. a spread of -3 denotes that the home team is a 3 point favorite
+    if prediction['teams'][0]['HOME']:
+        # prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][0]['PD']/prediction['teams'][0]['GP']) - (prediction['teams'][1]['PD']/prediction['teams'][1]['GP']))*spread_coefficient)
+        prediction['predicted_spread'] = line_set(
+            0 - ((prediction['teams'][0]['SCORE'] - (prediction['teams'][1]['SCORE'])) * spread_coefficient))
+    else:
+        # prediction['predicted_spread'] = line_set(0 - ((prediction['teams'][1]['PD']/prediction['teams'][1]['GP']) - (prediction['teams'][0]['PD']/prediction['teams'][0]['GP']))*spread_coefficient)
+        prediction['predicted_spread'] = line_set(
+            0 - ((prediction['teams'][1]['SCORE'] - (prediction['teams'][0]['SCORE'])) * spread_coefficient))
+
+    if prediction['predicted_spread'] - prediction['vegas_spread'] < 0:
+        prediction['bet'] = "home"
+    else:
+        prediction['bet'] = "away"
+    return prediction
 
 def line_set(num):
     return round(num * 2) / 2
