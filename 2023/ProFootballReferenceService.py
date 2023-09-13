@@ -88,6 +88,7 @@ class ProFootballReferenceService:
                 response = requests.get(url)
                 data = response.text
                 if data.find("429 error") >= 0:
+                    print("429 detected... refetching")
                     sleep(2)
                     return self.get_or_fetch_from_cache(endpoint)
                 f = open(directory+"/"+file_key, "x")
@@ -153,7 +154,7 @@ class ProFootballReferenceService:
                     rows.append(row)
         return rows
 
-    def get_upcoming_inputs(self, season, week):
+    def get_upcoming_inputs(self, season, week, overwrite=True):
         yearlygames = self.get_or_fetch_from_cache(endpoint="years/" + str(season) + "/games.htm")
         soup = BeautifulSoup(yearlygames, features="html.parser")
         table = soup.find(id="games")
@@ -184,8 +185,8 @@ class ProFootballReferenceService:
         for game in yearWeekStats:
             row = {}
             if game["HomeTm"] != "" and game["VisTm"] != "":
-                HomeAvgs = self.get_team_recent_stats_future(season=season, teamName=game["HomeTm"], week=week)
-                AwayAvgs = self.get_team_recent_stats_future(season=season, teamName=game["VisTm"], week=week)
+                HomeAvgs = self.get_team_recent_stats_future(season=season, teamName=game["HomeTm"], week=week, overwrite=overwrite)
+                AwayAvgs = self.get_team_recent_stats_future(season=season, teamName=game["VisTm"], week=week, overwrite=overwrite)
 
                 if HomeAvgs != False and AwayAvgs != False:
                     for key in AwayAvgs.keys():
@@ -196,7 +197,7 @@ class ProFootballReferenceService:
                     rows.append(row)
         return rows
 
-    def get_team_recent_stats_future(self, season, week, teamName):
+    def get_team_recent_stats_future(self, season, week, teamName, overwrite=True):
 
         if teamName == "":
             print("Empty team name for recent stats!!!")
@@ -251,28 +252,30 @@ class ProFootballReferenceService:
                     except Exception as error:
                         continue
 
-        # teamSeasonStats = self.get_or_fetch_from_cache(endpoint="teams/" + str(self.teamMap[teamName]) + "/" + str(season) + ".htm")
-        # soup = BeautifulSoup(teamSeasonStats, features="html.parser")
-        # gamesTable = soup.find(id="games")
-        # values = []
-        # if gamesTable is not None and gamesTable.findAll("tbody")[0] is not None:
-        #     tablerows = gamesTable.findAll("tbody")[0].findAll("tr")
-        #     for idx, row in enumerate(tablerows):
-        #         # get the week
-        #         rowWeek = row.findAll("th")[0].getText()
-        #         values.append([season, rowWeek] + [td.getText() for td in row.findAll("td")])
-        #     for game in values:
-        #         try:
-        #             if len(game) == 26 and int(game[1]):
-        #                 formatted = {headers[i]: game[i] for i in range(len(headers))}
-        #                 if formatted['Opponent'] == 'Bye Week' or formatted['Opponent'] == "":
-        #                     continue
-        #                 for key in headers:
-        #                     if formatted[key] == "":
-        #                         formatted[key] = 0
-        #                 teamGameStats.append(formatted)
-        #         except Exception as error:
-        #             continue
+        teamSeasonStats = self.get_or_fetch_from_cache(endpoint="teams/" + str(self.teamMap[teamName]) + "/" + str(season) + ".htm", overwrite=overwrite)
+        soup = BeautifulSoup(teamSeasonStats, features="html.parser")
+        gamesTable = soup.find(id="games")
+        values = []
+        print(teamName, season)
+        if gamesTable is not None and gamesTable.findAll("tbody")[0] is not None:
+            tablerows = gamesTable.findAll("tbody")[0].findAll("tr")
+            print(tablerows)
+            for idx, row in enumerate(tablerows):
+                # get the week
+                rowWeek = row.findAll("th")[0].getText()
+                values.append([season, rowWeek] + [td.getText() for td in row.findAll("td")])
+            for game in values:
+                try:
+                    if len(game) == 26 and int(game[1]):
+                        formatted = {headers[i]: game[i] for i in range(len(headers))}
+                        if formatted['Opponent'] == 'Bye Week' or formatted['Opponent'] == "":
+                            continue
+                        for key in headers:
+                            if formatted[key] == "":
+                                formatted[key] = 0
+                        teamGameStats.append(formatted)
+                except Exception as error:
+                    continue
 
         recentGames = teamGameStats[-recency:]
 
@@ -441,12 +444,30 @@ class ProFootballReferenceService:
         else:
             return False
 
+    def get_historical_data(self, seasons):
+        tasks = []
+        rows = []
+        weeks = []
+        for season in seasons:
+            for week in range(1, season["weeks"] + 1):
+                tasks.append([season["season"], week])
+
+        with Pool() as p:
+            weeks = weeks + p.starmap(self.get_weekly_inputs, tasks)
+
+        for weekbatch in weeks:
+            for game in weekbatch:
+                rows.append(game)
+
+        return rows
+
+
     def generate_training_data(self):
-        seasons = [
-            {
-                "season": 2022,
-                "weeks": 18
-            },
+        training_seasons = [
+            # {
+            #     "season": 2022,
+            #     "weeks": 18
+            # },
             {
                 "season": 2021,
                 "weeks": 18
@@ -504,25 +525,30 @@ class ProFootballReferenceService:
                 "weeks": 17
             }
         ]
-        tasks = []
-        rows = []
-        weeks = []
-        for season in seasons:
-            for week in range(1,season["weeks"]+1):
-                tasks.append([season["season"], week])
+        test_seasons = [
+            {
+                "season": 2022,
+                "weeks": 18
+            }
+        ]
 
-        with Pool() as p:
-            weeks = weeks + p.starmap(self.get_weekly_inputs, tasks)
-
-        for weekbatch in weeks:
-            for game in weekbatch:
-                rows.append(game)
-
+        rows = self.get_historical_data(training_seasons)
         try:
-            f = open("inputs/historicalmatchups.json", "w")
+            f = open("inputs/trainingdata.json", "w")
             f.write(json.dumps(rows, indent=4))
             f.close()
         except:
-            f = open("inputs/historicalmatchups.json", "x")
+            f = open("inputs/trainingdata.json", "x")
             f.write(json.dumps(rows, indent=4))
             f.close()
+
+        rows = self.get_historical_data(test_seasons)
+        try:
+            f = open("inputs/testdata.json", "w")
+            f.write(json.dumps(rows, indent=4))
+            f.close()
+        except:
+            f = open("inputs/testdata.json", "x")
+            f.write(json.dumps(rows, indent=4))
+            f.close()
+
