@@ -256,13 +256,13 @@ class ProFootballReferenceService:
         soup = BeautifulSoup(teamSeasonStats, features="html.parser")
         gamesTable = soup.find(id="games")
         values = []
-        print(teamName, season)
         if gamesTable is not None and gamesTable.findAll("tbody")[0] is not None:
             tablerows = gamesTable.findAll("tbody")[0].findAll("tr")
-            print(tablerows)
             for idx, row in enumerate(tablerows):
                 # get the week
                 rowWeek = row.findAll("th")[0].getText()
+                if int(rowWeek) >= int(week):
+                    continue
                 values.append([season, rowWeek] + [td.getText() for td in row.findAll("td")])
             for game in values:
                 try:
@@ -276,6 +276,8 @@ class ProFootballReferenceService:
                         teamGameStats.append(formatted)
                 except Exception as error:
                     continue
+
+        print(teamGameStats)
 
         recentGames = teamGameStats[-recency:]
 

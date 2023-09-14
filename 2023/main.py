@@ -91,22 +91,22 @@ def train_and_evaluate_model(auto = False, max_iterations=50, outlierspread=10):
     # exit()
 
     nn_sizes = [
-        [48,48,12],
-        [48,24,12],
-        [48,12,12],
-        [24,24,12],
-        [24,12,12],
-        [12,12,4],
+        # [48,48,12],
+        # [48,24,12],
+        # [48,12,12],
+        # [24,24,12],
+        # [24,12,12],
+        # [12,12,4],
         [12,8,4],
-        [48,48],
-        [48,24],
-        [48,12],
-        [48,8],
-        [24,12],
-        [24,8],
-        [12,12],
-        [12,8],
-        [12,4]
+        # [48,48],
+        # [48,24],
+        # [48,12],
+        # [48,8],
+        # [24,12],
+        # [24,8],
+        # [12,12],
+        # [12,8],
+        # [12,4]
     ]
 
     results = []
@@ -147,19 +147,10 @@ def train_and_evaluate_model(auto = False, max_iterations=50, outlierspread=10):
 
                 # plot_loss(history)
 
-            # print(dnn_model.summary())
+            print(dnn_model.summary())
             print(dnn_model.evaluate(test_features, test_labels, verbose=0))
             test_predictions = dnn_model.predict(test_features).flatten()
 
-            # a = plt.axes(aspect='equal')
-            # plt.scatter(test_labels, test_predictions)
-            # plt.xlabel('True Values [Spread]')
-            # plt.ylabel('Predictions [Spread]')
-            # lims = [-20, 20]
-            # plt.xlim(lims)
-            # plt.ylim(lims)
-            # plt.plot(lims, lims)
-            # plt.show()
 
             # error = test_predictions - test_labels
             # plt.hist(error, bins=25)
@@ -177,6 +168,16 @@ def train_and_evaluate_model(auto = False, max_iterations=50, outlierspread=10):
                 rval = thisr2
                 print("Saving incremental model", rval)
                 dnn_model.save(model_label)
+                a = plt.axes(aspect='equal')
+                plt.scatter(test_labels, test_predictions)
+                plt.xlabel('True Values [Spread]')
+                plt.ylabel('Predictions [Spread]')
+                lims = [-20, 20]
+                plt.xlim(lims)
+                plt.ylim(lims)
+                plt.plot(lims, lims)
+                plt.show()
+
             rvals.append(rval)
 
         plt.xlabel(model_label)
@@ -189,6 +190,8 @@ def train_and_evaluate_model(auto = False, max_iterations=50, outlierspread=10):
 
 def load_and_predict(games, model='trained.keras'):
     dnn_model = tf.keras.models.load_model(model)
+    # for layer in dnn_model.layers:
+    #     print(layer.get_config(), layer.get_weights())
     raw = pd.DataFrame(games)
     dataset = raw.copy()
     dataset = dataset.dropna()
@@ -211,4 +214,4 @@ if __name__ == '__main__':
     season = 2023
     week = 2
     games = get_weekly_games(season, week)
-    load_and_predict(games,model='trained242412.keras')
+    load_and_predict(games,model='trained1284.keras')
