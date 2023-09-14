@@ -214,4 +214,4 @@ if __name__ == '__main__':
     season = 2023
     week = 2
     games = get_weekly_games(season, week)
-    load_and_predict(games,model='trained1284.keras')
+    load_and_predict(games,model='trained242412.keras')

@@ -277,8 +277,6 @@ class ProFootballReferenceService:
                 except Exception as error:
                     continue
 
-        print(teamGameStats)
-
         recentGames = teamGameStats[-recency:]
 
         if len(recentGames) > 0:
