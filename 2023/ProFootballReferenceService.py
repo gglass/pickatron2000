@@ -208,7 +208,8 @@ class ProFootballReferenceService:
             "Team": "",
             "Score": 0,
             "FirstDowns": 0,
-            "Turnovers": 0,
+            "TurnoversLost": 0,
+            "TurnoversForced": 0,
             "OffensiveYards": 0,
             "PassingYards": 0,
             "RushingYards": 0,
@@ -284,7 +285,8 @@ class ProFootballReferenceService:
                 sums["Team"] = teamName
                 sums['Score'] += int(game['Tm'])
                 sums['FirstDowns'] += int(game["O1stD"])
-                sums['Turnovers'] += int(game["OTO"])
+                sums['TurnoversLost'] += int(game["OTO"])
+                sums['TurnoversForced'] += int(game["DTO"])
                 sums['OffensiveYards'] += int(game["OTotYd"])
                 sums['PassingYards'] += int(game["OPassY"])
                 sums['RushingYards'] += int(game["ORushY"])
@@ -303,7 +305,8 @@ class ProFootballReferenceService:
                 "team": sums['Team'],
                 "avgScore": sums['Score']/recency,
                 "avgFirstDowns": sums['FirstDowns'] / recency,
-                "avgTurnovers": sums['Turnovers'] / recency,
+                "avgTurnoversLost": sums['TurnoversLost'] / recency,
+                "avgTurnoversForced": sums['TurnoversForced'] / recency,
                 "avgPassingYards": sums['PassingYards'] / recency,
                 "avgRushingYards": sums['RushingYards'] / recency,
                 "avgOffensiveYards": sums['OffensiveYards'] / recency,
@@ -330,7 +333,8 @@ class ProFootballReferenceService:
             "Team": "",
             "Score": 0,
             "FirstDowns": 0,
-            "Turnovers": 0,
+            "TurnoversLost": 0,
+            "TurnoversForced": 0,
             "OffensiveYards": 0,
             "PassingYards": 0,
             "RushingYards": 0,
@@ -409,11 +413,12 @@ class ProFootballReferenceService:
                 sums["Team"] = teamName
                 sums['Score'] += int(game['Tm'])
                 sums['FirstDowns'] += int(game["O1stD"])
-                sums['Turnovers'] += int(game["OTO"])
+                sums['TurnoversLost'] += int(game["OTO"])
                 sums['OffensiveYards'] += int(game["OTotYd"])
                 sums['PassingYards'] += int(game["OPassY"])
                 sums['RushingYards'] += int(game["ORushY"])
                 sums['DefensiveYardsAllowed'] += int(game["DTotYd"])
+                sums['TurnoversForced'] += int(game["DTO"])
                 sums['PassingAllowed'] += int(game["DPassY"])
                 sums['RushingAllowed'] += int(game["DRushY"])
                 sums['OpponentScore'] += int(game["Opp"])
@@ -428,12 +433,13 @@ class ProFootballReferenceService:
                 "team": sums['Team'],
                 "avgScore": sums['Score']/recency,
                 "avgFirstDowns": sums['FirstDowns'] / recency,
-                "avgTurnovers": sums['Turnovers'] / recency,
+                "avgTurnoversLost": sums['TurnoversLost'] / recency,
                 "avgPassingYards": sums['PassingYards'] / recency,
                 "avgRushingYards": sums['RushingYards'] / recency,
                 "avgOffensiveYards": sums['OffensiveYards'] / recency,
                 "avgPassingYardsAllowed": sums['PassingAllowed'] / recency,
                 "avgRushingYardsAllowed": sums['RushingAllowed'] / recency,
+                "avgTurnoversForced": sums['TurnoversForced'] / recency,
                 "avgYardsAllowed": sums['DefensiveYardsAllowed'] / recency,
                 "avgOppScore": sums['OpponentScore'] / recency,
                 "Wins": sums['Wins'] / recency,
