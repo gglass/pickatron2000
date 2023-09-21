@@ -91,22 +91,22 @@ def train_and_evaluate_model(auto = False, max_iterations=50, outlierspread=10):
     # exit()
 
     nn_sizes = [
-        [48,48,12],
-        [48,24,12],
-        [48,12,12],
-        [24,24,12],
-        [24,12,12],
-        [12,12,4],
-        [12,8,4],
-        [48,48],
-        [48,24],
-        [48,12],
-        [48,8],
-        [24,12],
-        [24,8],
-        [12,12],
-        [12,8],
-        [12,4]
+        [52,52,13],
+        [52,26,13],
+        [48,13,13],
+        [26,26,13],
+        [26,13,13],
+        [13,13,4],
+        [13,8,4],
+        [52,52],
+        [52,26],
+        [52,13],
+        [52,8],
+        [26,13],
+        [26,8],
+        [13,13],
+        [13,8],
+        [13,4]
     ]
 
     results = []
@@ -211,8 +211,8 @@ def get_weekly_games(season, week):
 if __name__ == '__main__':
     # might want to integrate sacks into inputs
     # generate_training_data()
-    train_and_evaluate_model(auto=False,outlierspread=20,max_iterations=35)
-    # season = 2023
-    # week = 2
-    # games = get_weekly_games(season, week)
-    # load_and_predict(games,model='trained242412.keras')
+    # train_and_evaluate_model(auto=False,outlierspread=15,max_iterations=50)
+    season = 2023
+    week = 3
+    games = get_weekly_games(season, week)
+    load_and_predict(games,model='trained522613.keras')
