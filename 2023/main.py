@@ -9,6 +9,26 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 import random
 
+nn_sizes = [
+    [52, 52, 13],
+    [52, 26, 13],
+    [52, 13, 13],
+    [48, 13, 13],
+    [26, 26, 13],
+    [26, 13, 13],
+    [13, 13, 4],
+    [13, 8, 4],
+    [52, 52],
+    [52, 26],
+    [52, 13],
+    [52, 8],
+    [26, 13],
+    [26, 8],
+    [13, 13],
+    [13, 8],
+    [13, 4]
+]
+
 import warnings
 warnings.filterwarnings("ignore")
 # best candidates so far [48->8]
@@ -90,24 +110,7 @@ def train_and_evaluate_model(auto = False, max_iterations=50, outlierspread=10):
     #     print('Normalized:', normalizer(first).numpy())
     # exit()
 
-    nn_sizes = [
-        [52,52,13],
-        [52,26,13],
-        [48,13,13],
-        [26,26,13],
-        [26,13,13],
-        [13,13,4],
-        [13,8,4],
-        [52,52],
-        [52,26],
-        [52,13],
-        [52,8],
-        [26,13],
-        [26,8],
-        [13,13],
-        [13,8],
-        [13,4]
-    ]
+
 
     results = []
 
@@ -202,6 +205,20 @@ def load_and_predict(games, model='trained.keras'):
     for idx, game in enumerate(games):
         print(game['awayteam'], "@", game['hometeam'], predictions[idx][0])
 
+def load_and_sum(games, model='trained.keras'):
+    dnn_model = tf.keras.models.load_model(model)
+    # for layer in dnn_model.layers:
+    #     print(layer.get_config(), layer.get_weights())
+    raw = pd.DataFrame(games)
+    dataset = raw.copy()
+    dataset = dataset.dropna()
+    dataset = dataset.drop(columns=["hometeam", "awayteam"])
+
+    predictions = dnn_model.predict(dataset)
+    sums = 0
+    for idx, game in enumerate(games):
+        sums += predictions[idx][0]
+    print(model, sums)
 
 def get_weekly_games(season, week):
     service = ProFootballReferenceService()
@@ -211,8 +228,19 @@ def get_weekly_games(season, week):
 if __name__ == '__main__':
     # might want to integrate sacks into inputs
     # generate_training_data()
-    # train_and_evaluate_model(auto=False,outlierspread=15,max_iterations=50)
+    # train_and_evaluate_model(auto=False,outlierspread=25,max_iterations=50)
+
+    model_evaluations = []
     season = 2023
     week = 3
     games = get_weekly_games(season, week)
-    load_and_predict(games,model='trained522613.keras')
+
+    # model_label = ''
+    # for nnsize in nn_sizes:
+    #     model_label = 'trained'
+    #     for layer in nnsize:
+    #         model_label = model_label+str(layer)
+    #     model_label = model_label + '.keras'
+    #     load_and_sum(games,model=model_label)
+
+    load_and_predict(games, 'trained481313.keras')
