@@ -222,7 +222,7 @@ def load_and_sum(games, model='trained.keras'):
 
 def get_weekly_games(season, week):
     service = ProFootballReferenceService()
-    return service.get_upcoming_inputs(season, week, overwrite=True)
+    return service.get_upcoming_inputs(season, week, overwrite=False)
 
 
 if __name__ == '__main__':
