@@ -222,17 +222,17 @@ def load_and_sum(games, model='trained.keras'):
 
 def get_weekly_games(season, week):
     service = ProFootballReferenceService()
-    return service.get_upcoming_inputs(season, week, overwrite=False)
+    return service.get_upcoming_inputs(season, week, overwrite=True)
 
 
 if __name__ == '__main__':
     # might want to integrate sacks into inputs
     # generate_training_data()
-    # train_and_evaluate_model(auto=False,outlierspread=25,max_iterations=50)
+    # train_and_evaluate_model(auto=False,outlierspread=25,max_iterations=5)
 
     model_evaluations = []
     season = 2023
-    week = 3
+    week = 4
     games = get_weekly_games(season, week)
 
     # model_label = ''
@@ -243,4 +243,4 @@ if __name__ == '__main__':
     #     model_label = model_label + '.keras'
     #     load_and_sum(games,model=model_label)
 
-    load_and_predict(games, 'trained481313.keras')
+    load_and_predict(games, 'trained134.keras')
