@@ -228,11 +228,11 @@ def get_weekly_games(season, week):
 if __name__ == '__main__':
     # might want to integrate sacks into inputs
     # generate_training_data()
-    # train_and_evaluate_model(auto=False,outlierspread=25,max_iterations=5)
+    # train_and_evaluate_model(auto=False,outlierspread=20,max_iterations=1)
 
     model_evaluations = []
     season = 2023
-    week = 4
+    week = 5
     games = get_weekly_games(season, week)
 
     # model_label = ''
@@ -243,4 +243,4 @@ if __name__ == '__main__':
     #     model_label = model_label + '.keras'
     #     load_and_sum(games,model=model_label)
 
-    load_and_predict(games, 'trained134.keras')
+    load_and_predict(games, 'trained521313.keras')
