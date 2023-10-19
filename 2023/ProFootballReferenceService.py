@@ -96,6 +96,52 @@ class ProFootballReferenceService:
                 f.close()
                 return data
 
+    def get_weekly_results(self, season, week):
+        yearlygames = self.get_or_fetch_from_cache(endpoint="years/" + str(season) + "/games.htm")
+        soup = BeautifulSoup(yearlygames, features="html.parser")
+        table = soup.find(id="games")
+        headers = ['Season','Week', 'Day', 'Date', 'Time', 'Winner/tie', 'at', 'Loser/tie', 'boxlink', 'WPts', 'LPts', 'YdsW', 'TOW', 'YdsL', 'TOL']
+        values = []
+        try:
+            tablerows = table.findAll("tbody")[0].findAll("tr")
+        except:
+            print(soup)
+            print(table)
+            exit()
+
+        for idx, row in enumerate(tablerows):
+            if "class" in row and row["class"] == "thead":
+                print("found a thead... skipping")
+                continue
+            #get the week
+            rowWeek = row.findAll("th")[0].getText()
+            if str(rowWeek) == str(week):
+                values.append([season, rowWeek] + [td.getText() for td in row.findAll("td")])
+        yearWeekStats = []
+
+        for game in values:
+            formatted = {headers[i]: game[i] for i in range(len(headers))}
+            yearWeekStats.append(formatted)
+
+        rows = []
+        print("Processing... ", season, week)
+        for game in yearWeekStats:
+            row = {}
+            if game["Winner/tie"] != "" and game["Loser/tie"] != "":
+                #this signifies the hometeam lost
+                if game["at"] == "@":
+                    row["HomeScore"] = int(game["LPts"])
+                    row["AwayScore"] = int(game["WPts"])
+                else:
+                    row["AwayScore"] = int(game["LPts"])
+                    row["HomeScore"] = int(game["WPts"])
+                #note on spread notation. Its always AWAY - HOME, so a spread of -3 indicates that the Home team won by 3
+                if "AwayScore" in row and "HomeScore" in row:
+                    row["actualSpread"] = row["AwayScore"] - row["HomeScore"]
+                row["Date"] = game["Date"]
+                rows.append(row)
+        return rows
+
     def get_weekly_inputs(self, season, week):
         yearlygames = self.get_or_fetch_from_cache(endpoint="years/" + str(season) + "/games.htm")
         soup = BeautifulSoup(yearlygames, features="html.parser")
@@ -108,6 +154,7 @@ class ProFootballReferenceService:
             print(soup)
             print(table)
             exit()
+
         for idx, row in enumerate(tablerows):
             if "class" in row and row["class"] == "thead":
                 print("found a thead... skipping")
