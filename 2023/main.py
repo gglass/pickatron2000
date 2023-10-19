@@ -198,7 +198,8 @@ def load_and_predict(games, model='trained.keras'):
     raw = pd.DataFrame(games)
     dataset = raw.copy()
     dataset = dataset.dropna()
-    dataset = dataset.drop(columns=["hometeam", "awayteam", "AwayScore", "HomeScore", "actualSpread", "Date"])
+    # dataset = dataset.drop(columns=["hometeam", "awayteam", "AwayScore", "HomeScore", "actualSpread", "Date"])
+    dataset = dataset.drop(columns=["hometeam", "awayteam"])
 
     predictions = dnn_model.predict(dataset)
     predicted_results = []
@@ -283,16 +284,18 @@ if __name__ == '__main__':
 
     model_evaluations = []
     season = 2023
-    week = 6
+    week = 7
     # print(predict_past_week(season, week, 'trained521313.keras'))
     # print(evaluate_past_week(season, week, 'trained521313.keras'))
 
-    evaluations = []
-    model_label = ''
-    for nnsize in nn_sizes:
-        model_label = 'trained'
-        for layer in nnsize:
-            model_label = model_label+str(layer)
-        model_label = model_label + '.keras'
-        evaluations.append(evaluate_past_week(season, week,model=model_label))
-    print(evaluations)
+    # evaluations = []
+    # model_label = ''
+    # for nnsize in nn_sizes:
+    #     model_label = 'trained'
+    #     for layer in nnsize:
+    #         model_label = model_label+str(layer)
+    #     model_label = model_label + '.keras'
+    #     evaluations.append(evaluate_past_week(season, week,model=model_label))
+    # print(evaluations)
+
+    print(predict_upcoming_week(season, week, 'trained5213.keras'))
