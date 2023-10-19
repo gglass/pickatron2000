@@ -13,3 +13,21 @@ Philadelphia Eagles @ New York Jets -4.5005627
 Arizona Cardinals @ Los Angeles Rams -7.3449516
 New York Giants @ Buffalo Bills -8.759221
 Dallas Cowboys @ Los Angeles Chargers -5.190009
+
+[
+    {'awayteam': 'Denver Broncos', 'hometeam': 'Kansas City Chiefs', 'spread': -7.474715},
+    {'awayteam': 'Baltimore Ravens', 'hometeam': 'Tennessee Titans', 'spread': 0.77821445},
+    {'awayteam': 'San Francisco 49ers', 'hometeam': 'Cleveland Browns', 'spread': 2.5791907},
+    {'awayteam': 'Seattle Seahawks', 'hometeam': 'Cincinnati Bengals', 'spread': -1.15625},
+    {'awayteam': 'Washington Commanders', 'hometeam': 'Atlanta Falcons', 'spread': -3.4048138},
+    {'awayteam': 'Indianapolis Colts', 'hometeam': 'Jacksonville Jaguars', 'spread': -6.077329},
+    {'awayteam': 'Minnesota Vikings', 'hometeam': 'Chicago Bears', 'spread': 3.7288342},
+    {'awayteam': 'New Orleans Saints', 'hometeam': 'Houston Texans', 'spread': -1.6244164},
+    {'awayteam': 'Carolina Panthers', 'hometeam': 'Miami Dolphins', 'spread': -4.7517395},
+    {'awayteam': 'New England Patriots', 'hometeam': 'Las Vegas Raiders', 'spread': -2.2492476},
+    {'awayteam': 'Philadelphia Eagles', 'hometeam': 'New York Jets', 'spread': 3.690237},
+    {'awayteam': 'Arizona Cardinals', 'hometeam': 'Los Angeles Rams', 'spread': -4.625681},
+    {'awayteam': 'Detroit Lions', 'hometeam': 'Tampa Bay Buccaneers', 'spread': 0.51711464},
+    {'awayteam': 'New York Giants', 'hometeam': 'Buffalo Bills', 'spread': -7.654909},
+    {'awayteam': 'Dallas Cowboys', 'hometeam': 'Los Angeles Chargers', 'spread': -2.830717}
+]

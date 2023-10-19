@@ -1,0 +1,19 @@
+[
+    {'trained525213.keras': {'spreadDiff': 121.38834427297115, 'correctPickNum': 9, 'correctPicks': ['true', 'false', 'false', 'true', 'false', 'true', 'false', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'false']}},
+    {'trained522613.keras': {'spreadDiff': 104.65014672279358, 'correctPickNum': 10, 'correctPicks': ['true', 'true', 'false', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'false', 'true', 'false']}},
+    {'trained521313.keras': {'spreadDiff': 110.17632579803467, 'correctPickNum': 11, 'correctPicks': ['true', 'true', 'false', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'false']}},
+    {'trained481313.keras': {'spreadDiff': 111.28639721870422, 'correctPickNum': 10, 'correctPicks': ['true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'false']}},
+    {'trained262613.keras': {'spreadDiff': 118.01570648699999, 'correctPickNum': 10, 'correctPicks': ['true', 'true', 'false', 'false', 'true', 'true', 'true', 'false', 'true', 'false', 'true', 'true', 'true', 'true', 'false']}},
+    {'trained261313.keras': {'spreadDiff': 113.46380424499512, 'correctPickNum': 9, 'correctPicks': ['true', 'true', 'false', 'false', 'false', 'true', 'true', 'false', 'true', 'true', 'false', 'true', 'true', 'true', 'false']}},
+    {'trained13134.keras': {'spreadDiff': 113.75021493434906, 'correctPickNum': 10, 'correctPicks': ['true', 'false', 'true', 'true', 'false', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'false']}},
+    {'trained1384.keras': {'spreadDiff': 106.79354685544968, 'correctPickNum': 11, 'correctPicks': ['true', 'true', 'true', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'false']}},
+    {'trained5252.keras': {'spreadDiff': 111.21644234657288, 'correctPickNum': 12, 'correctPicks': ['true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'false']}},
+    {'trained5226.keras': {'spreadDiff': 115.57947066053748, 'correctPickNum': 10, 'correctPicks': ['true', 'true', 'false', 'false', 'true', 'true', 'true', 'false', 'true', 'false', 'false', 'true', 'true', 'true', 'true']}},
+    {'trained5213.keras': {'spreadDiff': 101.26606619358063, 'correctPickNum': 11, 'correctPicks': ['true', 'true', 'false', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'false']}},
+    {'trained528.keras': {'spreadDiff': 125.99586713314056, 'correctPickNum': 10, 'correctPicks': ['true', 'false', 'true', 'true', 'false', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'false']}},
+    {'trained2613.keras': {'spreadDiff': 113.60393679141998, 'correctPickNum': 10, 'correctPicks': ['true', 'true', 'false', 'false', 'true', 'true', 'true', 'false', 'true', 'false', 'false', 'true', 'true', 'true', 'true']}},
+    {'trained268.keras': {'spreadDiff': 109.35402548313141, 'correctPickNum': 11, 'correctPicks': ['true', 'true', 'false', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'false']}},
+    {'trained1313.keras': {'spreadDiff': 114.207987844944, 'correctPickNum': 9, 'correctPicks': ['true', 'true', 'false', 'false', 'false', 'true', 'true', 'false', 'true', 'true', 'false', 'true', 'true', 'true', 'false']}},
+    {'trained138.keras': {'spreadDiff': 112.56911274790764, 'correctPickNum': 10, 'correctPicks': ['true', 'true', 'false', 'false', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'true', 'true', 'false']}},
+    {'trained134.keras': {'spreadDiff': 112.1021278500557, 'correctPickNum': 10, 'correctPicks': ['true', 'true', 'false', 'true', 'false', 'true', 'true', 'true', 'true', 'true', 'false', 'true', 'false', 'true', 'false']}}
+]
