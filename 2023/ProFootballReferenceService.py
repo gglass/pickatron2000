@@ -146,8 +146,8 @@ class ProFootballReferenceService:
                 rows.append(row)
         return rows
 
-    def get_weekly_inputs(self, season, week):
-        yearlygames = self.get_or_fetch_from_cache(endpoint="years/" + str(season) + "/games.htm")
+    def get_weekly_inputs(self, season, week, overwrite=False):
+        yearlygames = self.get_or_fetch_from_cache(endpoint="years/" + str(season) + "/games.htm",overwrite=overwrite)
         soup = BeautifulSoup(yearlygames, features="html.parser")
         table = soup.find(id="games")
         headers = ['Season','Week', 'Day', 'Date', 'Time', 'Winner/tie', 'at', 'Loser/tie', 'boxlink', 'WPts', 'LPts', 'YdsW', 'TOW', 'YdsL', 'TOL']

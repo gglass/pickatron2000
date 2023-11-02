@@ -1,0 +1,16 @@
+[
+    {'awayteam': 'Tennessee Titans', 'hometeam': 'Pittsburgh Steelers', 'spread': 1.6170566},
+    {'awayteam': 'Miami Dolphins', 'hometeam': 'Kansas City Chiefs', 'spread': -11.408812},
+    {'awayteam': 'Chicago Bears', 'hometeam': 'New Orleans Saints', 'spread': -5.323032},
+    {'awayteam': 'Arizona Cardinals', 'hometeam': 'Cleveland Browns', 'spread': -11.224407},
+    {'awayteam': 'Minnesota Vikings', 'hometeam': 'Atlanta Falcons', 'spread': -0.17510983},
+    {'awayteam': 'Los Angeles Rams', 'hometeam': 'Green Bay Packers', 'spread': -0.48320958},
+    {'awayteam': 'Seattle Seahawks', 'hometeam': 'Baltimore Ravens', 'spread': -7.3611274},
+    {'awayteam': 'Tampa Bay Buccaneers', 'hometeam': 'Houston Texans', 'spread': 7.124258},
+    {'awayteam': 'Washington Commanders', 'hometeam': 'New England Patriots', 'spread': 9.8865795},
+    {'awayteam': 'Indianapolis Colts', 'hometeam': 'Carolina Panthers', 'spread': -1.9358144},
+    {'awayteam': 'Dallas Cowboys', 'hometeam': 'Philadelphia Eagles', 'spread': -3.1319232},
+    {'awayteam': 'New York Giants', 'hometeam': 'Las Vegas Raiders', 'spread': -3.130598},
+    {'awayteam': 'Buffalo Bills', 'hometeam': 'Cincinnati Bengals', 'spread': -0.68951654},
+    {'awayteam': 'Los Angeles Chargers', 'hometeam': 'New York Jets', 'spread': 4.4659567}
+]

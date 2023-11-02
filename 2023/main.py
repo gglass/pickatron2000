@@ -233,11 +233,11 @@ def load_and_sum(games, model='trained.keras'):
 
 def get_weekly_games(season, week):
     service = ProFootballReferenceService()
-    return service.get_upcoming_inputs(season, week, overwrite=True)
+    return service.get_upcoming_inputs(season, week, overwrite=False)
 
 def get_past_weekly_games(season, week):
     service = ProFootballReferenceService()
-    return service.get_weekly_inputs(season, week)
+    return service.get_weekly_inputs(season, week, overwrite=True)
 
 def get_weekly_results(season, week):
     service = ProFootballReferenceService()
@@ -284,7 +284,8 @@ if __name__ == '__main__':
 
     model_evaluations = []
     season = 2023
-    week = 7
+    week = 9
+
     # print(predict_past_week(season, week, 'trained521313.keras'))
     # print(evaluate_past_week(season, week, 'trained521313.keras'))
 
@@ -298,4 +299,5 @@ if __name__ == '__main__':
     #     evaluations.append(evaluate_past_week(season, week,model=model_label))
     # print(evaluations)
 
-    print(predict_upcoming_week(season, week, 'trained5213.keras'))
+    # print(evaluate_past_week(season, week, 'trained521313.keras'))
+    print(predict_upcoming_week(season, week, 'trained521313.keras'))
