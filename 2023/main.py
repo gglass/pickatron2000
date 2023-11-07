@@ -225,6 +225,7 @@ def get_weekly_results(season, week):
     return service.get_weekly_results(season, week)
 
 def evaluate_past_week(season, week, model):
+    # print("Evaluation model "+model)
     f = open("week" + str(week) + "predictions", "r")
     allpredictions = json.load(f)
     f.close()
@@ -235,24 +236,55 @@ def evaluate_past_week(season, week, model):
     correctPickNum = 0
     totalmoney = 0
     for id, prediction in enumerate(predictions):
+        result = {}
+        for game in results:
+            if game['HomeTeam'] == prediction['hometeam'] and game['AwayTeam'] == prediction['awayteam']:
+                result = game
         predictedspread = float(prediction['spread'])
-        actualspread = results[id]['actualSpread']
+        actualspread = result['actualSpread']
+        vegas = result["VegasLine"]
         diff = actualspread - predictedspread
         spreadDiff += abs(diff)
         correctPick = 'false'
+
+        # try and figure out how we did against vegas
         money = -110
+        vegas_parts = vegas.split(" -")
+        vegas_fav = vegas_parts[0]
+        vegas_spread = float(vegas_parts[1])
+        # vegas thinks the hometeam is the favorite
+        if vegas_fav == prediction['hometeam']:
+            if actualspread == -vegas_spread:
+                money = 0
+            else:
+                if predictedspread < -vegas_spread and actualspread < -vegas_spread:
+                    money = 100
+                if predictedspread > -vegas_spread and actualspread > -vegas_spread:
+                    money = 100
+
+        elif vegas_fav == prediction['awayteam']:
+            if actualspread == vegas_spread:
+                money = 0
+            else:
+                if predictedspread > vegas_spread and actualspread > vegas_spread:
+                    money = 100
+                if predictedspread < vegas_spread and actualspread < vegas_spread:
+                    money = 100
+        else:
+            print("We couldn't find a match on teams... oh noes.")
+            print(vegas_fav, prediction['awayteam'], prediction['hometeam'])
+
+        # the away team was predicted to win
         if predictedspread > 0 and actualspread > 0:
             correctPick = 'true'
             correctPickNum += 1
-            if actualspread > predictedspread:
-                money = 100
+        # the home team was predicted to win and did
         if predictedspread < 0 and actualspread < 0:
             correctPick = 'true'
             correctPickNum += 1
-            if actualspread < predictedspread:
-                money = 100
         totalmoney += money
         correctPicks.append(correctPick)
+        # print(predictedspread, vegas, actualspread, money)
 
     return {"spreadDiff": spreadDiff, "correctPickNum": correctPickNum, "totalmoney": totalmoney}
 

@@ -97,7 +97,7 @@ class ProFootballReferenceService:
                 return data
 
     def get_weekly_results(self, season, week):
-        yearlygames = self.get_or_fetch_from_cache(endpoint="years/" + str(season) + "/games.htm", overwrite=True)
+        yearlygames = self.get_or_fetch_from_cache(endpoint="years/" + str(season) + "/games.htm", overwrite=False)
         soup = BeautifulSoup(yearlygames, features="html.parser")
         table = soup.find(id="games")
         headers = ['Season','Week', 'Day', 'Date', 'Time', 'Winner/tie', 'at', 'Loser/tie', 'boxlink', 'WPts', 'LPts', 'YdsW', 'TOW', 'YdsL', 'TOL']
@@ -116,7 +116,17 @@ class ProFootballReferenceService:
             #get the week
             rowWeek = row.findAll("th")[0].getText()
             if str(rowWeek) == str(week):
-                values.append([season, rowWeek] + [td.getText() for td in row.findAll("td")])
+                parsed = [season, week]
+                index = 2
+                for td in row.findAll("td"):
+                    if index == 8:
+                        a = td.findAll("a")[0]
+                        parsed.append(a['href'])
+                    else:
+                        parsed.append(td.getText())
+                    index += 1
+                values.append(parsed)
+                # values.append([season, rowWeek] + [td.getText() for td in row.findAll("td")])
         yearWeekStats = []
 
         for game in values:
@@ -124,8 +134,14 @@ class ProFootballReferenceService:
             yearWeekStats.append(formatted)
 
         rows = []
-        # print("Processing... ", season, week)
         for game in yearWeekStats:
+
+            #lets go get the game boxscore so we can get the vegas line
+            boxlink = self.get_or_fetch_from_cache(endpoint=game['boxlink'], overwrite=False)
+            for line in boxlink.split("\n"):
+                if "Vegas Line" in line:
+                    soup = BeautifulSoup(line, features="html.parser")
+            vegas_line = soup.find("td").getText()
             row = {}
             if game["Winner/tie"] != "" and game["Loser/tie"] != "":
                 #this signifies the hometeam lost
@@ -143,6 +159,7 @@ class ProFootballReferenceService:
                 if "AwayScore" in row and "HomeScore" in row:
                     row["actualSpread"] = row["AwayScore"] - row["HomeScore"]
                 row["Date"] = game["Date"]
+                row["VegasLine"] = vegas_line
                 rows.append(row)
         return rows
 
