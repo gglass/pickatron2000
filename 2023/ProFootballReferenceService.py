@@ -97,7 +97,7 @@ class ProFootballReferenceService:
                 return data
 
     def get_weekly_results(self, season, week):
-        yearlygames = self.get_or_fetch_from_cache(endpoint="years/" + str(season) + "/games.htm")
+        yearlygames = self.get_or_fetch_from_cache(endpoint="years/" + str(season) + "/games.htm", overwrite=True)
         soup = BeautifulSoup(yearlygames, features="html.parser")
         table = soup.find(id="games")
         headers = ['Season','Week', 'Day', 'Date', 'Time', 'Winner/tie', 'at', 'Loser/tie', 'boxlink', 'WPts', 'LPts', 'YdsW', 'TOW', 'YdsL', 'TOL']

@@ -207,33 +207,14 @@ def load_and_predict(games, model='trained.keras'):
         predicted_results.append({
             "awayteam": game['awayteam'],
             "hometeam": game['hometeam'],
-            "spread": predictions[idx][0]
+            "spread": str(predictions[idx][0])
         })
         # print(game['awayteam'], "@", game['hometeam'], predictions[idx][0])
     return predicted_results
 
-def load_and_eval(predictions, results):
-
-        return 1
-
-def load_and_sum(games, model='trained.keras'):
-    dnn_model = tf.keras.models.load_model(model)
-    # for layer in dnn_model.layers:
-    #     print(layer.get_config(), layer.get_weights())
-    raw = pd.DataFrame(games)
-    dataset = raw.copy()
-    dataset = dataset.dropna()
-    dataset = dataset.drop(columns=["hometeam", "awayteam", "AwayScore", "HomeScore", "actualSpread", "Date"])
-
-    predictions = dnn_model.predict(dataset)
-    sums = 0
-    for idx, game in enumerate(games):
-        sums += predictions[idx][0]
-    print(model, sums)
-
-def get_weekly_games(season, week):
+def get_weekly_games(season, week, overwrite):
     service = ProFootballReferenceService()
-    return service.get_upcoming_inputs(season, week, overwrite=False)
+    return service.get_upcoming_inputs(season, week, overwrite=overwrite)
 
 def get_past_weekly_games(season, week):
     service = ProFootballReferenceService()
@@ -244,60 +225,98 @@ def get_weekly_results(season, week):
     return service.get_weekly_results(season, week)
 
 def evaluate_past_week(season, week, model):
-    games = get_past_weekly_games(season, week)
-    predictions = load_and_predict(games, model)
+    f = open("week" + str(week) + "predictions", "r")
+    allpredictions = json.load(f)
+    f.close()
+    predictions = allpredictions[model]
     results = get_weekly_results(season, week)
     spreadDiff = 0
     correctPicks = []
     correctPickNum = 0
+    totalmoney = 0
     for id, prediction in enumerate(predictions):
-        predictedspread = prediction['spread']
+        predictedspread = float(prediction['spread'])
         actualspread = results[id]['actualSpread']
         diff = actualspread - predictedspread
         spreadDiff += abs(diff)
         correctPick = 'false'
+        money = -110
         if predictedspread > 0 and actualspread > 0:
             correctPick = 'true'
             correctPickNum += 1
+            if actualspread > predictedspread:
+                money = 100
         if predictedspread < 0 and actualspread < 0:
             correctPick = 'true'
             correctPickNum += 1
+            if actualspread < predictedspread:
+                money = 100
+        totalmoney += money
         correctPicks.append(correctPick)
 
-    return {model: {"spreadDiff": spreadDiff, "correctPickNum": correctPickNum}}
+    return {"spreadDiff": spreadDiff, "correctPickNum": correctPickNum, "totalmoney": totalmoney}
 
 def predict_past_week(season, week, model):
     games = get_past_weekly_games(season, week)
     predictions = load_and_predict(games, model)
     print(predictions)
 
-def predict_upcoming_week(season, week, model):
+def predict_upcoming_week(season, week, model, overwrite=True):
     #warning! this will upset the caches so evaluating the last week will no longer be possible after running this
-    games = get_weekly_games(season, week)
+    games = get_weekly_games(season, week, overwrite)
     predictions = load_and_predict(games, model)
-    print(predictions)
+    return predictions
 
 if __name__ == '__main__':
+
     # might want to integrate sacks into inputs
     # generate_training_data()
     # train_and_evaluate_model(auto=False,outlierspread=20,max_iterations=1)
 
-    model_evaluations = []
     season = 2023
     week = 9
 
     # print(predict_past_week(season, week, 'trained521313.keras'))
     # print(evaluate_past_week(season, week, 'trained521313.keras'))
 
-    # evaluations = []
+    #generate all predictions
+    # predictions = {}
     # model_label = ''
     # for nnsize in nn_sizes:
     #     model_label = 'trained'
     #     for layer in nnsize:
     #         model_label = model_label+str(layer)
     #     model_label = model_label + '.keras'
-    #     evaluations.append(evaluate_past_week(season, week,model=model_label))
-    # print(evaluations)
+    #     predictions[model_label] = predict_upcoming_week(season, week, model_label, overwrite=False)
+    #     # evaluations.append(evaluate_past_week(season, week,model=model_label))
+    # f = open("week" + str(week) + "predictions", "w")
+    # f.write(json.dumps(predictions, indent=4))
+    # f.close()
 
-    # print(evaluate_past_week(season, week, 'trained521313.keras'))
-    print(predict_upcoming_week(season, week, 'trained521313.keras'))
+    #evaluate all past predictions
+    evaluations = {}
+    model_label = ''
+    for nnsize in nn_sizes:
+        model_label = 'trained'
+        for layer in nnsize:
+            model_label = model_label + str(layer)
+        model_label = model_label + '.keras'
+        evaluations[model_label] = evaluate_past_week(season, week,model=model_label)
+    f = open("week" + str(week) + "evaluations", "w")
+    f.write(json.dumps(evaluations, indent=4))
+    f.close()
+
+    #generate all predictions
+    # predictions = {}
+    # model_label = ''
+    # first = True
+    # for nnsize in nn_sizes:
+    #     model_label = 'trained'
+    #     for layer in nnsize:
+    #         model_label = model_label+str(layer)
+    #     model_label = model_label + '.keras'
+    #     predictions[model_label] = predict_upcoming_week(season, week, model_label, overwrite=first)
+    #     first = False
+    # f = open("week" + str(week) + "predictions", "w")
+    # f.write(json.dumps(predictions, indent=4))
+    # f.close()
