@@ -31,7 +31,6 @@ nn_sizes = [
 
 import warnings
 warnings.filterwarnings("ignore")
-# best candidates so far [48->8]
 
 def build_and_compile_model(norm,sizes):
   # model = keras.Sequential([
