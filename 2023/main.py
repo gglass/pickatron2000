@@ -305,49 +305,32 @@ if __name__ == '__main__':
     # train_and_evaluate_model(auto=False,outlierspread=20,max_iterations=1)
 
     season = 2023
-    week = 9
+    week = 11
 
-    # print(predict_past_week(season, week, 'trained521313.keras'))
-    # print(evaluate_past_week(season, week, 'trained521313.keras'))
-
-    #generate all predictions
-    # predictions = {}
+    #evaluate all past predictions
+    # evaluations = {}
     # model_label = ''
     # for nnsize in nn_sizes:
     #     model_label = 'trained'
     #     for layer in nnsize:
-    #         model_label = model_label+str(layer)
+    #         model_label = model_label + str(layer)
     #     model_label = model_label + '.keras'
-    #     predictions[model_label] = predict_upcoming_week(season, week, model_label, overwrite=False)
-    #     # evaluations.append(evaluate_past_week(season, week,model=model_label))
-    # f = open("week" + str(week) + "predictions", "w")
-    # f.write(json.dumps(predictions, indent=4))
+    #     evaluations[model_label] = evaluate_past_week(season, week,model=model_label)
+    # f = open("week" + str(week) + "evaluations", "w")
+    # f.write(json.dumps(evaluations, indent=4))
     # f.close()
 
-    #evaluate all past predictions
-    evaluations = {}
+    #generate all predictions
+    predictions = {}
     model_label = ''
+    first = True
     for nnsize in nn_sizes:
         model_label = 'trained'
         for layer in nnsize:
-            model_label = model_label + str(layer)
+            model_label = model_label+str(layer)
         model_label = model_label + '.keras'
-        evaluations[model_label] = evaluate_past_week(season, week,model=model_label)
-    f = open("week" + str(week) + "evaluations", "w")
-    f.write(json.dumps(evaluations, indent=4))
+        predictions[model_label] = predict_upcoming_week(season, week, model_label, overwrite=first)
+        first = False
+    f = open("week" + str(week) + "predictions", "w")
+    f.write(json.dumps(predictions, indent=4))
     f.close()
-
-    #generate all predictions
-    # predictions = {}
-    # model_label = ''
-    # first = True
-    # for nnsize in nn_sizes:
-    #     model_label = 'trained'
-    #     for layer in nnsize:
-    #         model_label = model_label+str(layer)
-    #     model_label = model_label + '.keras'
-    #     predictions[model_label] = predict_upcoming_week(season, week, model_label, overwrite=first)
-    #     first = False
-    # f = open("week" + str(week) + "predictions", "w")
-    # f.write(json.dumps(predictions, indent=4))
-    # f.close()
