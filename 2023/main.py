@@ -316,7 +316,7 @@ if __name__ == '__main__':
     #         model_label = model_label + str(layer)
     #     model_label = model_label + '.keras'
     #     evaluations[model_label] = evaluate_past_week(season, week,model=model_label)
-    # f = open("week" + str(week) + "evaluations", "w")
+    # f = open("week" + str(week) + "evaluations.json", "w")
     # f.write(json.dumps(evaluations, indent=4))
     # f.close()
 
@@ -331,6 +331,6 @@ if __name__ == '__main__':
         model_label = model_label + '.keras'
         predictions[model_label] = predict_upcoming_week(season, week, model_label, overwrite=first)
         first = False
-    f = open("week" + str(week) + "predictions", "w")
+    f = open("week" + str(week) + "predictions.json", "w")
     f.write(json.dumps(predictions, indent=4))
     f.close()
