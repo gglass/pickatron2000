@@ -305,7 +305,7 @@ if __name__ == '__main__':
     # train_and_evaluate_model(auto=False,outlierspread=20,max_iterations=1)
 
     season = 2023
-    week = 12
+    week = 13
 
     #evaluate past weeks predictions
     # evaluations = {}
@@ -322,46 +322,47 @@ if __name__ == '__main__':
     # f.write(json.dumps(evaluations, indent=4))
     # f.close()
 
-    #generate this weeks predictions
-    # predictions = {}
-    # model_label = ''
-    # first = True
+    #evaluate models running accuracy
+    # startweek = 9
+    # endweek = 12
+    # totals = {
+    #     "startweek": startweek,
+    #     "endweek": endweek
+    # }
     # for nnsize in nn_sizes:
     #     model_label = 'trained'
     #     for layer in nnsize:
-    #         model_label = model_label+str(layer)
+    #         model_label = model_label + str(layer)
     #     model_label = model_label + '.keras'
-    #     predictions[model_label] = predict_upcoming_week(season, week, model_label, overwrite=first)
-    #     first = False
-    # f = open("week" + str(week) + "predictions.json", "w")
-    # f.write(json.dumps(predictions, indent=4))
+    #     totals[model_label] = {
+    #         "spreadDiff": 0,
+    #         "correctPickNum": 0,
+    #         "totalmoney": 0,
+    #     }
+    # for week in range(startweek,endweek+1):
+    #     f = open("week" + str(week) + "evaluations.json", "r")
+    #     evaluations = json.load(f)
+    #     f.close()
+    #     for model in evaluations:
+    #         totals[model]["spreadDiff"] += evaluations[model]["spreadDiff"]
+    #         totals[model]["correctPickNum"] += evaluations[model]["correctPickNum"]
+    #         totals[model]["totalmoney"] += evaluations[model]["totalmoney"]
+    # f = open("runningEvaluations.json", "w")
+    # f.write(json.dumps(totals, indent=4))
     # f.close()
 
-    #evaluate models running accuracy
-    startweek = 9
-    endweek = 11
-    totals = {
-        "startweek": startweek,
-        "endweek": endweek
-    }
+
+    #generate this weeks predictions
+    predictions = {}
+    model_label = ''
+    first = True
     for nnsize in nn_sizes:
         model_label = 'trained'
         for layer in nnsize:
-            model_label = model_label + str(layer)
+            model_label = model_label+str(layer)
         model_label = model_label + '.keras'
-        totals[model_label] = {
-            "spreadDiff": 0,
-            "correctPickNum": 0,
-            "totalmoney": 0,
-        }
-    for week in range(startweek,endweek+1):
-        f = open("week" + str(week) + "evaluations.json", "r")
-        evaluations = json.load(f)
-        f.close()
-        for model in evaluations:
-            totals[model]["spreadDiff"] += evaluations[model]["spreadDiff"]
-            totals[model]["correctPickNum"] += evaluations[model]["correctPickNum"]
-            totals[model]["totalmoney"] += evaluations[model]["totalmoney"]
-    f = open("runningEvaluations.json", "w")
-    f.write(json.dumps(totals, indent=4))
+        predictions[model_label] = predict_upcoming_week(season, week, model_label, overwrite=first)
+        first = False
+    f = open("week" + str(week) + "predictions.json", "w")
+    f.write(json.dumps(predictions, indent=4))
     f.close()
