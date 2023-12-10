@@ -305,7 +305,7 @@ if __name__ == '__main__':
     # train_and_evaluate_model(auto=False,outlierspread=20,max_iterations=1)
 
     season = 2023
-    week = 13
+    week = 14
 
     #evaluate past weeks predictions
     # evaluations = {}
@@ -324,7 +324,7 @@ if __name__ == '__main__':
 
     #evaluate models running accuracy
     # startweek = 9
-    # endweek = 12
+    # endweek = week
     # totals = {
     #     "startweek": startweek,
     #     "endweek": endweek
