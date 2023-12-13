@@ -1,0 +1,1396 @@
+{
+    "trained525213.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "-5.806815"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "-7.153797"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "-9.131827"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "-6.578809"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "-9.176778"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "-6.892784"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "-4.8110676"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "-7.62809"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "-5.9948754"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "-5.750448"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "-8.827782"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "-8.071347"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "-7.6377563"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "-4.8909774"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "-6.3251696"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "-5.7582436"
+        }
+    ],
+    "trained522613.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "-3.992992"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "-0.6936528"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "-7.998843"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "-0.5486023"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "-6.7663627"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "-4.130013"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "-2.2132792"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "-5.6652675"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "3.0662904"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "-4.0891314"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "-2.3776135"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "-3.9981992"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "-5.147072"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "3.083983"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "1.6761028"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "-5.4423842"
+        }
+    ],
+    "trained521313.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "5.4298105"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "-7.5575895"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "-6.426406"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "-2.691045"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "0.9156306"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "-12.803508"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "-0.6263666"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "-7.098405"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "-2.9939108"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "2.8171446"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "-1.7015331"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "3.1088903"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "-3.247972"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "-6.702336"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "-8.392368"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "6.677087"
+        }
+    ],
+    "trained481313.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "-13.235165"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "-10.158691"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "2.8017383"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "4.5201087"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "-7.4846425"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "0.741694"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "-8.852578"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "-2.6028152"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "-11.168508"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "-12.308211"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "3.2981963"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "-11.44851"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "-12.13035"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "-6.19038"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "-7.701499"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "-12.9109125"
+        }
+    ],
+    "trained262613.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "1.817909"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "-1.4974469"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "1.2698002"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "3.0204167"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "-2.6170323"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "-0.93636775"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "10.102861"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "2.5030065"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "1.4962649"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "-1.1907306"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "0.98163795"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "-4.154505"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "1.1675653"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "-0.47053638"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "5.408594"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "3.4133782"
+        }
+    ],
+    "trained261313.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "-5.864309"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "-2.4371428"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "-13.139736"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "-8.95808"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "-9.552315"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "-2.8502498"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "0.30331945"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "-6.0192313"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "-0.21846533"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "-1.7039104"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "-7.012942"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "-5.7624965"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "-1.7206378"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "-0.80422735"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "0.42244864"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "-5.2892356"
+        }
+    ],
+    "trained13134.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "-28.522211"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "-16.607016"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "-36.469925"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "-36.185776"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "-31.659971"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "-32.7008"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "-57.880943"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "-34.65708"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "-44.77346"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "-29.800848"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "-46.734566"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "-35.31816"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "-19.953028"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "-36.910423"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "-44.506657"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "-32.6556"
+        }
+    ],
+    "trained1384.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "34.23338"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "13.432702"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "3.9456568"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "55.550728"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "40.847607"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "14.921481"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "52.85532"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "13.897174"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "42.37886"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "41.1095"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "33.29041"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "43.099197"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "29.677843"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "63.801693"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "37.07533"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "42.762287"
+        }
+    ],
+    "trained5252.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "-8.000363"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "-12.096679"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "1.9280574"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "4.7821646"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "0.31971624"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "-7.6238413"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "-12.227132"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "-3.6716359"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "-10.925046"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "-7.445615"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "0.0542629"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "-6.4031725"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "-13.37906"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "-3.771825"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "-17.908964"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "-3.1485302"
+        }
+    ],
+    "trained5226.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "-42.95876"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "-49.528973"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "-34.582542"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "-50.867027"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "-39.391937"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "-39.33196"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "-44.423454"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "-38.274643"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "-45.665554"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "-44.57592"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "-35.415253"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "-42.51217"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "-58.6328"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "-63.42103"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "-53.286255"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "-43.648766"
+        }
+    ],
+    "trained5213.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "7.1344085"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "20.391195"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "-11.688672"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "-17.548483"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "6.8106055"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "16.249165"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "-0.17379062"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "0.38803613"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "-1.6840042"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "28.870646"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "-12.6304035"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "22.48064"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "32.02797"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "19.376019"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "10.905604"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "9.618385"
+        }
+    ],
+    "trained528.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "-1.4008266"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "-4.7047353"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "-1.4008266"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "-1.4008266"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "-1.4008266"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "-1.4008266"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "-1.4008266"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "-1.4008266"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "-1.4008266"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "-2.660153"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "-1.4008266"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "-1.4008266"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "-5.0178246"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "-1.4008266"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "-4.1416435"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "-1.4008266"
+        }
+    ],
+    "trained2613.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "-23.388468"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "-30.850956"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "-35.798782"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "-16.405392"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "-32.75282"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "-37.166264"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "-20.950794"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "-33.62351"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "-20.288061"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "-25.758457"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "-31.372229"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "-27.88896"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "-27.624056"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "-28.177988"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "-28.108671"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "-23.65309"
+        }
+    ],
+    "trained268.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "65.79783"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "53.416767"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "97.82838"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "88.63098"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "92.54546"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "85.604294"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "84.535286"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "85.241875"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "57.166603"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "70.00763"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "100.05805"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "78.6537"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "67.53257"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "82.56501"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "73.440895"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "80.53048"
+        }
+    ],
+    "trained1313.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "20.051865"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "18.523664"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "15.203426"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "1.0114142"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "10.6619215"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "20.534996"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "33.40655"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "23.224289"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "7.428863"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "24.026138"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "10.446192"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "14.17218"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "32.618195"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "7.785843"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "25.879513"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "32.699932"
+        }
+    ],
+    "trained138.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "36.941956"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "28.720232"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "28.187742"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "34.24308"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "34.277466"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "16.82647"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "19.000784"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "24.111979"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "25.96787"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "26.612476"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "22.458166"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "28.491434"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "31.96554"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "36.187073"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "12.150635"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "34.275063"
+        }
+    ],
+    "trained134.keras": [
+        {
+            "awayteam": "Los Angeles Chargers",
+            "hometeam": "Las Vegas Raiders",
+            "spread": "81.34759"
+        },
+        {
+            "awayteam": "Atlanta Falcons",
+            "hometeam": "Carolina Panthers",
+            "spread": "75.88395"
+        },
+        {
+            "awayteam": "New York Giants",
+            "hometeam": "New Orleans Saints",
+            "spread": "67.389534"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "Miami Dolphins",
+            "spread": "40.771084"
+        },
+        {
+            "awayteam": "Tampa Bay Buccaneers",
+            "hometeam": "Green Bay Packers",
+            "spread": "91.7666"
+        },
+        {
+            "awayteam": "Chicago Bears",
+            "hometeam": "Cleveland Browns",
+            "spread": "62.444324"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "Cincinnati Bengals",
+            "spread": "54.678246"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Indianapolis Colts",
+            "spread": "66.96236"
+        },
+        {
+            "awayteam": "Kansas City Chiefs",
+            "hometeam": "New England Patriots",
+            "spread": "55.980145"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Tennessee Titans",
+            "spread": "89.11639"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Detroit Lions",
+            "spread": "61.211884"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Los Angeles Rams",
+            "spread": "89.16453"
+        },
+        {
+            "awayteam": "San Francisco 49ers",
+            "hometeam": "Arizona Cardinals",
+            "spread": "75.01354"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Buffalo Bills",
+            "spread": "75.80715"
+        },
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Jacksonville Jaguars",
+            "spread": "41.776054"
+        },
+        {
+            "awayteam": "Philadelphia Eagles",
+            "hometeam": "Seattle Seahawks",
+            "spread": "89.163025"
+        }
+    ]
+}
