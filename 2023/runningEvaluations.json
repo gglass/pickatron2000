@@ -1,89 +1,89 @@
 {
     "startweek": 9,
-    "endweek": 14,
+    "endweek": 15,
     "trained525213.keras": {
-        "spreadDiff": 968.7955824,
-        "correctPickNum": 50,
-        "totalmoney": -610
+        "spreadDiff": 1186.5035484999999,
+        "correctPickNum": 61,
+        "totalmoney": -470
     },
     "trained522613.keras": {
-        "spreadDiff": 877.548592271,
-        "correctPickNum": 49,
-        "totalmoney": 20
+        "spreadDiff": 1092.976695871,
+        "correctPickNum": 61,
+        "totalmoney": -470
     },
     "trained521313.keras": {
-        "spreadDiff": 948.883868005,
-        "correctPickNum": 44,
-        "totalmoney": -400
+        "spreadDiff": 1191.116137205,
+        "correctPickNum": 54,
+        "totalmoney": -680
     },
     "trained481313.keras": {
-        "spreadDiff": 1126.7911929399997,
-        "correctPickNum": 43,
-        "totalmoney": -1030
+        "spreadDiff": 1409.2884720399998,
+        "correctPickNum": 50,
+        "totalmoney": -1310
     },
     "trained262613.keras": {
-        "spreadDiff": 921.3084836265,
-        "correctPickNum": 42,
-        "totalmoney": 440
+        "spreadDiff": 1164.0939758465,
+        "correctPickNum": 49,
+        "totalmoney": -260
     },
     "trained261313.keras": {
-        "spreadDiff": 860.355247408,
-        "correctPickNum": 52,
-        "totalmoney": -610
+        "spreadDiff": 1051.746553198,
+        "correctPickNum": 63,
+        "totalmoney": -680
     },
     "trained13134.keras": {
-        "spreadDiff": 2989.8514090000003,
-        "correctPickNum": 50,
-        "totalmoney": -1660
+        "spreadDiff": 3469.1434510000004,
+        "correctPickNum": 61,
+        "totalmoney": -1310
     },
     "trained1384.keras": {
-        "spreadDiff": 3448.1598588,
-        "correctPickNum": 36,
-        "totalmoney": 860
+        "spreadDiff": 4124.0390276,
+        "correctPickNum": 41,
+        "totalmoney": 370
     },
     "trained5252.keras": {
-        "spreadDiff": 1148.9151991259998,
-        "correctPickNum": 39,
-        "totalmoney": -820
+        "spreadDiff": 1427.267838886,
+        "correctPickNum": 48,
+        "totalmoney": -1100
     },
     "trained5226.keras": {
-        "spreadDiff": 3714.819228,
-        "correctPickNum": 50,
-        "totalmoney": -1660
+        "spreadDiff": 4328.336272,
+        "correctPickNum": 61,
+        "totalmoney": -1310
     },
     "trained5213.keras": {
-        "spreadDiff": 1378.3341974,
-        "correctPickNum": 47,
-        "totalmoney": 1280
+        "spreadDiff": 1669.79710761,
+        "correctPickNum": 55,
+        "totalmoney": 1210
     },
     "trained528.keras": {
-        "spreadDiff": 901.2313301999999,
-        "correctPickNum": 50,
-        "totalmoney": -610
+        "spreadDiff": 1133.5490737999999,
+        "correctPickNum": 61,
+        "totalmoney": -1100
     },
     "trained2613.keras": {
-        "spreadDiff": 2261.5339495000003,
-        "correctPickNum": 50,
-        "totalmoney": -1660
+        "spreadDiff": 2656.7547275,
+        "correctPickNum": 61,
+        "totalmoney": -1310
     },
     "trained268.keras": {
-        "spreadDiff": 6854.4378990000005,
-        "correctPickNum": 36,
-        "totalmoney": 860
+        "spreadDiff": 8230.993709,
+        "correctPickNum": 41,
+        "totalmoney": 370
     },
     "trained1313.keras": {
-        "spreadDiff": 1565.5430335,
-        "correctPickNum": 43,
-        "totalmoney": 1490
+        "spreadDiff": 1988.0364462,
+        "correctPickNum": 48,
+        "totalmoney": 790
     },
     "trained138.keras": {
-        "spreadDiff": 2645.8912830000004,
-        "correctPickNum": 36,
-        "totalmoney": 860
+        "spreadDiff": 3207.0079790000004,
+        "correctPickNum": 41,
+        "totalmoney": 370
     },
     "trained134.keras": {
-        "spreadDiff": 6122.550872999999,
-        "correctPickNum": 36,
-        "totalmoney": 860
+        "spreadDiff": 7354.027278999999,
+        "correctPickNum": 41,
+        "totalmoney": 370
     }
 }
