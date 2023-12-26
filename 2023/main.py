@@ -305,7 +305,7 @@ if __name__ == '__main__':
     # train_and_evaluate_model(auto=False,outlierspread=20,max_iterations=1)
 
     season = 2023
-    week = 16
+    week = 17
 
     #evaluate past weeks predictions
     week = week - 1
