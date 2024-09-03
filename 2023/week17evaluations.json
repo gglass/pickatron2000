@@ -1,0 +1,87 @@
+{
+    "trained525213.keras": {
+        "spreadDiff": 214.87087859999997,
+        "correctPickNum": 10,
+        "totalmoney": 130
+    },
+    "trained522613.keras": {
+        "spreadDiff": 198.0026456,
+        "correctPickNum": 12,
+        "totalmoney": -290
+    },
+    "trained521313.keras": {
+        "spreadDiff": 207.43142697,
+        "correctPickNum": 9,
+        "totalmoney": -290
+    },
+    "trained481313.keras": {
+        "spreadDiff": 258.45879354000004,
+        "correctPickNum": 6,
+        "totalmoney": -80
+    },
+    "trained262613.keras": {
+        "spreadDiff": 196.02661836600004,
+        "correctPickNum": 11,
+        "totalmoney": 340
+    },
+    "trained261313.keras": {
+        "spreadDiff": 201.35652560000005,
+        "correctPickNum": 11,
+        "totalmoney": -290
+    },
+    "trained13134.keras": {
+        "spreadDiff": 539.15565,
+        "correctPickNum": 10,
+        "totalmoney": -80
+    },
+    "trained1384.keras": {
+        "spreadDiff": 651.095519,
+        "correctPickNum": 6,
+        "totalmoney": -80
+    },
+    "trained5252.keras": {
+        "spreadDiff": 242.43216499999994,
+        "correctPickNum": 7,
+        "totalmoney": 130
+    },
+    "trained5226.keras": {
+        "spreadDiff": 638.8472209999999,
+        "correctPickNum": 10,
+        "totalmoney": -80
+    },
+    "trained5213.keras": {
+        "spreadDiff": 290.5299308,
+        "correctPickNum": 9,
+        "totalmoney": 130
+    },
+    "trained528.keras": {
+        "spreadDiff": 210.663639,
+        "correctPickNum": 10,
+        "totalmoney": -80
+    },
+    "trained2613.keras": {
+        "spreadDiff": 398.11096399999997,
+        "correctPickNum": 10,
+        "totalmoney": -80
+    },
+    "trained268.keras": {
+        "spreadDiff": 1364.3359160000002,
+        "correctPickNum": 6,
+        "totalmoney": -80
+    },
+    "trained1313.keras": {
+        "spreadDiff": 399.8329166,
+        "correctPickNum": 6,
+        "totalmoney": -80
+    },
+    "trained138.keras": {
+        "spreadDiff": 541.635238,
+        "correctPickNum": 6,
+        "totalmoney": -80
+    },
+    "trained134.keras": {
+        "spreadDiff": 1130.3083450000001,
+        "correctPickNum": 6,
+        "totalmoney": -80
+    }
+}
