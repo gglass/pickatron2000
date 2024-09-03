@@ -45,6 +45,31 @@ def build_and_compile_model_hp(hp):
     )
     return dnnmodel
 
+def build_and_compile_classification_model_hp(hp):
+    dnnmodel = keras.Sequential()
+    dnnmodel.add(keras.layers.Input(shape=(29,)))
+    dnnmodel.add(keras.layers.BatchNormalization())
+    for i in range(hp.Int("num_layers", 1, 20)):
+        dnnmodel.add(
+            keras.layers.Dense(
+                # Tune number of units separately.
+                units=hp.Int(f"units_{i}", min_value=15, max_value=550, step=29),
+                activation="relu",
+            )
+        )
+
+    if hp.Boolean("dropout"):
+        dnnmodel.add(keras.layers.Dropout(rate=0.25))
+
+    dnnmodel.add(keras.layers.Dense(units=1, activation="sigmoid"))
+
+    learning_rate = hp.Float("lr", min_value=1e-4, max_value=1e-2, sampling="log")
+    dnnmodel.compile(loss='binary_crossentropy',
+                optimizer=keras.optimizers.Adam(learning_rate=learning_rate),
+                metrics=['binary_accuracy']
+    )
+    return dnnmodel
+
 def plot_loss(history):
   plt.plot(history.history['loss'], label='loss')
   plt.plot(history.history['val_loss'], label='val_loss')
@@ -70,7 +95,7 @@ def preprocess_data(outlierspread=10):
     # clean up games where the spread was wildly out of the norm
     dataset['outlier'] = np.abs(dataset['actualSpread']) > outlierspread
     dataset = dataset[dataset['outlier'] == False]
-    train_dataset = dataset.drop(columns=["AwayScore", "HomeScore", "hometeam", "awayteam", "Date", 'outlier', 'VegasLine'])
+    train_dataset = dataset.drop(columns=["AwayScore", "HomeScore", "hometeam", "awayteam", "Date", 'outlier', 'VegasLine', 'actualSpread'])
     # print(train_dataset.describe().transpose()[['mean', 'std']])
 
     f = open("inputs/testdata.json", "r")
@@ -83,22 +108,22 @@ def preprocess_data(outlierspread=10):
     # clean up games where the spread was wildly out of the norm
     dataset['outlier'] = np.abs(dataset['actualSpread']) > outlierspread
     dataset = dataset[dataset['outlier'] == False]
-    test_dataset = dataset.drop(columns=["AwayScore", "HomeScore", "hometeam", "awayteam", "Date", 'outlier', 'VegasLine'])
+    test_dataset = dataset.drop(columns=["AwayScore", "HomeScore", "hometeam", "awayteam", "Date", 'outlier', 'VegasLine', 'actualSpread'])
     return train_dataset, test_dataset
 
 def train_and_evaluate_model(outlierspread=10):
     train_dataset, test_dataset, = preprocess_data(outlierspread)
     train_inputs = train_dataset.copy()
     eval_inputs = test_dataset.copy()
-    train_outputs = train_inputs.pop("actualSpread")
-    eval_outputs = eval_inputs.pop("actualSpread")
+    train_outputs = train_inputs.pop("Winner")
+    eval_outputs = eval_inputs.pop("Winner")
 
     train_inputs = train_inputs.to_numpy()
     eval_inputs = eval_inputs.to_numpy()
     train_outputs = train_outputs.to_numpy()
     eval_outputs = eval_outputs.to_numpy()
 
-    label = 'trainedSimple.keras'
+    label = 'trainedClassifier.keras'
 
     # dnn = build_and_compile_model()
     # history = dnn.fit(train_inputs,
@@ -111,25 +136,25 @@ def train_and_evaluate_model(outlierspread=10):
     #       )
 
     tuner = keras_tuner.RandomSearch(
-        hypermodel=build_and_compile_model_hp,
+        hypermodel=build_and_compile_classification_model_hp,
         objective=keras_tuner.Objective("val_loss", direction="min"),
-        max_trials=100,
+        max_trials=10,
         overwrite=True,
-        executions_per_trial=5,
+        executions_per_trial=3,
         directory="search_results",
-        project_name="scratch",
+        project_name="classification",
     )
 
     # print("Tuner search space:")
     # print(tuner.search_space_summary())
 
     tuner.search(train_inputs,
-              train_outputs,
-              validation_split=0.15,
-              verbose=1,
-              epochs=100,
-              batch_size=64,
-              shuffle=True
+        train_outputs,
+        validation_split=0.15,
+        verbose=1,
+        epochs=100,
+        batch_size=64,
+        shuffle=True
      )
 
     # print("Tuner results:")
@@ -151,7 +176,7 @@ def train_and_evaluate_model(outlierspread=10):
     plt.scatter(eval_outputs, test_predictions)
     plt.xlabel('True Values [Spread]')
     plt.ylabel('Predictions [Spread]')
-    lims = [-20, 20]
+    lims = [-2, 2]
     plt.xlim(lims)
     plt.ylim(lims)
     plt.plot(lims, lims)
@@ -162,7 +187,7 @@ def load_and_predict_from_training(games, model='trained.keras'):
     raw = pd.DataFrame(games)
     dataset = raw.copy()
     dataset = dataset.dropna()
-    dataset = dataset.drop(columns=["hometeam", "awayteam", "AwayScore", "HomeScore", "actualSpread", "Date", "VegasLine"])
+    dataset = dataset.drop(columns=["hometeam", "awayteam", "AwayScore", "HomeScore", "actualSpread", "Date", "VegasLine", "Winner"])
 
     predictions = dnn_model.predict(dataset)
     predicted_results = []
@@ -170,7 +195,7 @@ def load_and_predict_from_training(games, model='trained.keras'):
         predicted_results.append({
             "awayteam": game['awayteam'],
             "hometeam": game['hometeam'],
-            "spread": str(predictions[idx][0])
+            "Winner": str(predictions[idx][0]),
         })
         # print(game['awayteam'], "@", game['hometeam'], predictions[idx][0])
     return predicted_results
@@ -334,6 +359,49 @@ def evaluate_full_season(games, predictions):
 
     return {"spreadDiff": spreadDiff, "avgSpreadDiff": spreadDiff/len(games),"correctPickNum": correctPickNum, "vegasCorrectPickNum": vegasCorrectPickNum, "homeWins": hometeamWins, "awayWins": awayteamWins, "totalgames": len(games), "totalMoney": totalmoney}
 
+def evaluate_full_season_classification(games, predictions):
+    # print("Evaluation model "+model)
+    correctPickNum = 0
+    vegasCorrectPickNum = 0
+    hometeamWins = 0
+    awayteamWins = 0
+
+    for id, prediction in enumerate(predictions):
+        result = games[id]
+        if float(prediction["Winner"]) < 0.5:
+            predictedwinner = 0
+        else:
+            predictedwinner = 1
+
+        actualwinner = result['Winner']
+        actualspread = result['actualSpread']
+
+        vegas = result["VegasLine"]
+        vegas_parts = vegas.split(" -")
+        vegas_spread = float(vegas_parts[1])
+        vegas_fav = vegas_parts[0]
+
+        if actualwinner == 1:
+            hometeamWins += 1
+        elif actualwinner == 0:
+            awayteamWins += 1
+
+        # the away team was predicted to win
+        if actualwinner == predictedwinner:
+            correctPickNum += 1
+
+        if vegas_fav == prediction['hometeam']:
+            vegas_spread = -vegas_spread
+
+        if vegas_spread > 0 and actualspread > 0:
+            vegasCorrectPickNum += 1
+        if vegas_spread < 0 and actualspread < 0:
+            vegasCorrectPickNum += 1
+
+        print("Predicted Winner:", predictedwinner, "Actual Winner", actualwinner)
+
+    return {"correctPickNum": correctPickNum, "vegasCorrectPickNum": vegasCorrectPickNum, "homeWins": hometeamWins, "awayWins": awayteamWins, "totalgames": len(games)}
+
 def predict_past_week(season, week, model):
     games = get_past_weekly_games(season, week)
     predictions = load_and_predict(games, model)
@@ -356,8 +424,8 @@ if __name__ == '__main__':
     f = open("inputs/testdata.json", "r")
     seasondata = json.load(f)
     f.close()
-    predictions = load_and_predict_from_training(seasondata, 'trainedSimple.keras')
-    evaluations = evaluate_full_season(seasondata, predictions)
+    predictions = load_and_predict_from_training(seasondata, 'trainedClassifier.keras')
+    evaluations = evaluate_full_season_classification(seasondata, predictions)
     print(evaluations)
     exit(1)
 

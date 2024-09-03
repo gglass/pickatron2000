@@ -165,6 +165,7 @@ class ProFootballReferenceService:
                             row["home" + key] = loserAvgs[key]
                         row["HomeScore"] = LPTs
                         row["AwayScore"] = WPTs
+                        row["Winner"] = 0
                     else:
                         for key in winnerAvgs.keys():
                             row["away" + key] = loserAvgs[key]
@@ -172,6 +173,7 @@ class ProFootballReferenceService:
                             row["home" + key] = winnerAvgs[key]
                         row["AwayScore"] = LPTs
                         row["HomeScore"] = WPTs
+                        row["Winner"] = 1
 
                     # note on spread notation. Its always AWAY - HOME, so a spread of -3 indicates that the Home team won by 3
                     if "AwayScore" in row and "HomeScore" in row:
@@ -233,6 +235,7 @@ class ProFootballReferenceService:
                             row["home" + key] = loserAvgs[key]
                         row["HomeScore"] = LPTs
                         row["AwayScore"] = WPTs
+                        row["Winner"] = 0
                     else:
                         for key in winnerAvgs.keys():
                             row["away" + key] = loserAvgs[key]
@@ -240,6 +243,7 @@ class ProFootballReferenceService:
                             row["home" + key] = winnerAvgs[key]
                         row["AwayScore"] = LPTs
                         row["HomeScore"] = WPTs
+                        row["Winner"] = 1
 
                     #note on spread notation. Its always AWAY - HOME, so a spread of -3 indicates that the Home team won by 3
                     if "AwayScore" in row and "HomeScore" in row:
