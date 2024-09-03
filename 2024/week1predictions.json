@@ -1,0 +1,84 @@
+{
+    "trainedClassifier.keras": [
+        {
+            "awayteam": "Baltimore Ravens",
+            "hometeam": "Kansas City Chiefs",
+            "Winner": "Baltimore Ravens"
+        },
+        {
+            "awayteam": "Green Bay Packers",
+            "hometeam": "Philadelphia Eagles",
+            "Winner": "Green Bay Packers"
+        },
+        {
+            "awayteam": "Pittsburgh Steelers",
+            "hometeam": "Atlanta Falcons",
+            "Winner": "Pittsburgh Steelers"
+        },
+        {
+            "awayteam": "Arizona Cardinals",
+            "hometeam": "Buffalo Bills",
+            "Winner": "Buffalo Bills"
+        },
+        {
+            "awayteam": "Tennessee Titans",
+            "hometeam": "Chicago Bears",
+            "Winner": "Chicago Bears"
+        },
+        {
+            "awayteam": "New England Patriots",
+            "hometeam": "Cincinnati Bengals",
+            "Winner": "Cincinnati Bengals"
+        },
+        {
+            "awayteam": "Houston Texans",
+            "hometeam": "Indianapolis Colts",
+            "Winner": "Indianapolis Colts"
+        },
+        {
+            "awayteam": "Jacksonville Jaguars",
+            "hometeam": "Miami Dolphins",
+            "Winner": "Miami Dolphins"
+        },
+        {
+            "awayteam": "Carolina Panthers",
+            "hometeam": "New Orleans Saints",
+            "Winner": "New Orleans Saints"
+        },
+        {
+            "awayteam": "Minnesota Vikings",
+            "hometeam": "New York Giants",
+            "Winner": "New York Giants"
+        },
+        {
+            "awayteam": "Las Vegas Raiders",
+            "hometeam": "Los Angeles Chargers",
+            "Winner": "Las Vegas Raiders"
+        },
+        {
+            "awayteam": "Denver Broncos",
+            "hometeam": "Seattle Seahawks",
+            "Winner": "Denver Broncos"
+        },
+        {
+            "awayteam": "Dallas Cowboys",
+            "hometeam": "Cleveland Browns",
+            "Winner": "Dallas Cowboys"
+        },
+        {
+            "awayteam": "Washington Commanders",
+            "hometeam": "Tampa Bay Buccaneers",
+            "Winner": "Tampa Bay Buccaneers"
+        },
+        {
+            "awayteam": "Los Angeles Rams",
+            "hometeam": "Detroit Lions",
+            "Winner": "Los Angeles Rams"
+        },
+        {
+            "awayteam": "New York Jets",
+            "hometeam": "San Francisco 49ers",
+            "Winner": "San Francisco 49ers"
+        }
+    ]
+}

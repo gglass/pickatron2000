@@ -256,7 +256,10 @@ class ProFootballReferenceService:
         yearlygames = self.get_or_fetch_from_cache(endpoint="years/" + str(season) + "/games.htm")
         soup = BeautifulSoup(yearlygames, features="html.parser")
         table = soup.find(id="games")
-        headers = ['Season','Week', 'Day', 'Date', 'Time', 'VisTm', 'at', 'HomeTm', 'boxlink', 'WPts', 'LPts', 'YdsW', 'TOW', 'YdsL', 'TOL']
+        if(week == 1):
+            headers = ['Season','Week', 'Day', 'Date', 'VisTm', 'Pts','at', 'HomeTm', 'Pts', 'Time']
+        else:
+            headers = ['Season','Week', 'Day', 'Date', 'Time', 'VisTm', 'at', 'HomeTm', 'boxlink', 'WPts', 'LPts', 'YdsW', 'TOW', 'YdsL', 'TOL']
         values = []
         try:
             tablerows = table.findAll("tbody")[0].findAll("tr")
@@ -291,7 +294,7 @@ class ProFootballReferenceService:
                         row["away" + key] = AwayAvgs[key]
                     for key in HomeAvgs.keys():
                         row["home" + key] = HomeAvgs[key]
-
+                    row['week'] = int(week)
                     rows.append(row)
         return rows
 
@@ -307,19 +310,33 @@ class ProFootballReferenceService:
             "Score": 0,
             "FirstDowns": 0,
             "TurnoversLost": 0,
-            "TurnoversForced": 0,
-            "OffensiveYards": 0,
             "PassingYards": 0,
             "RushingYards": 0,
-            "DefensiveYardsAllowed": 0,
-            "RushingAllowed": 0,
+            "OffensiveYards": 0,
             "PassingAllowed": 0,
+            "RushingAllowed": 0,
+            "TurnoversForced": 0,
+            "DefensiveYardsAllowed": 0,
             "OpponentScore": 0,
             "Wins": 0,
             "Streak": 0,
         }
         headers = ['Season','Week', 'Day', 'Date', 'Time', 'boxlink', 'W/L', 'OT', 'Rec', 'at', 'Opponent', 'Tm', 'Opp', 'O1stD', 'OTotYd', 'OPassY', 'ORushY', 'OTO', 'D1stD', 'DTotYd', 'DPassY', 'DRushY', 'DTO', 'Offense', 'Defense', 'Sp. Tms']
         teamGameStats = []
+
+        # lets start by getting the teams SOS for this given year
+        seasonStats = self.get_or_fetch_from_cache(
+            endpoint="teams/" + str(self.teamMap[teamName]) + "/" + str(season) + ".htm")
+        try:
+            soup = BeautifulSoup(seasonStats, features="html.parser")
+            metaTable = soup.find(id="meta")
+            summaryStats = metaTable.findAll("div")[1].findAll("p")
+            strength = summaryStats[5]
+            SRSSOSText = strength.getText()
+            split = SRSSOSText.split(":")
+            SOS = float(split[2])
+        except:
+            SOS = 0
 
         #if we don't have enough data in this year, we need to go fetch the previous year as well
         if week <= recency:
@@ -404,16 +421,17 @@ class ProFootballReferenceService:
                 "avgScore": sums['Score']/recency,
                 "avgFirstDowns": sums['FirstDowns'] / recency,
                 "avgTurnoversLost": sums['TurnoversLost'] / recency,
-                "avgTurnoversForced": sums['TurnoversForced'] / recency,
                 "avgPassingYards": sums['PassingYards'] / recency,
                 "avgRushingYards": sums['RushingYards'] / recency,
                 "avgOffensiveYards": sums['OffensiveYards'] / recency,
                 "avgPassingYardsAllowed": sums['PassingAllowed'] / recency,
                 "avgRushingYardsAllowed": sums['RushingAllowed'] / recency,
+                "avgTurnoversForced": sums['TurnoversForced'] / recency,
                 "avgYardsAllowed": sums['DefensiveYardsAllowed'] / recency,
                 "avgOppScore": sums['OpponentScore'] / recency,
                 "Wins": sums['Wins'] / recency,
                 "Streak": sums['Streak'],
+                "SOS": SOS
             }
             return teamAvg
 
