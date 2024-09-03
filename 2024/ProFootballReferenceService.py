@@ -63,7 +63,7 @@ class ProFootballReferenceService:
             sleep(2)
             response = requests.get(url)
             data = response.text
-            f = open(directory + "/" + file_key, "w")
+            f = open(directory + "/" + file_key, "w", encoding="utf-8")
             f.write(data)
             f.close()
             return data
@@ -84,14 +84,16 @@ class ProFootballReferenceService:
             except:
                 # couldn't find that file yet, lets fetch the thing and put it there in the file
                 print("Couldn't find resource. Fetching it new.")
+                print(endpoint)
                 sleep(2)
                 response = requests.get(url)
                 data = response.text
                 if data.find("429 error") >= 0:
                     print("429 detected... refetching")
-                    sleep(2)
+                    print(data)
+                    sleep(20)
                     return self.get_or_fetch_from_cache(endpoint)
-                f = open(directory+"/"+file_key, "x")
+                f = open(directory+"/"+file_key, "x", encoding="utf-8")
                 f.write(data)
                 f.close()
                 return data
@@ -135,32 +137,48 @@ class ProFootballReferenceService:
 
         rows = []
         for game in yearWeekStats:
-
-            #lets go get the game boxscore so we can get the vegas line
-            boxlink = self.get_or_fetch_from_cache(endpoint=game['boxlink'], overwrite=False)
-            for line in boxlink.split("\n"):
-                if "Vegas Line" in line:
-                    soup = BeautifulSoup(line, features="html.parser")
-            vegas_line = soup.find("td").getText()
             row = {}
             if game["Winner/tie"] != "" and game["Loser/tie"] != "":
-                #this signifies the hometeam lost
-                if game["at"] == "@":
-                    row["HomeTeam"] = game["Loser/tie"]
-                    row["AwayTeam"] = game["Winner/tie"]
-                    row["HomeScore"] = int(game["LPts"])
-                    row["AwayScore"] = int(game["WPts"])
-                else:
-                    row["AwayTeam"] = game["Loser/tie"]
-                    row["HomeTeam"] = game["Winner/tie"]
-                    row["AwayScore"] = int(game["LPts"])
-                    row["HomeScore"] = int(game["WPts"])
-                #note on spread notation. Its always AWAY - HOME, so a spread of -3 indicates that the Home team won by 3
-                if "AwayScore" in row and "HomeScore" in row:
-                    row["actualSpread"] = row["AwayScore"] - row["HomeScore"]
-                row["Date"] = game["Date"]
-                row["VegasLine"] = vegas_line
-                rows.append(row)
+                winnerAvgs = self.get_team_recent_stats(season=season, teamName=game["Winner/tie"], week=week)
+                loserAvgs = self.get_team_recent_stats(season=season, teamName=game["Loser/tie"], week=week)
+
+                try:
+                    LPTs = int(game["LPts"])
+                    WPTs = int(game["WPts"])
+                except:
+                    print("Uh oh...")
+                    print(game)
+                    continue
+
+                boxlink = self.get_or_fetch_from_cache(endpoint=game['boxlink'], overwrite=False)
+                for line in boxlink.split("\n"):
+                    if "Vegas Line" in line:
+                        soup = BeautifulSoup(line, features="html.parser")
+                vegas_line = soup.find("td").getText()
+
+                if winnerAvgs != False and loserAvgs != False:
+                    # this signifies the hometeam lost
+                    if game["at"] == "@":
+                        for key in winnerAvgs.keys():
+                            row["away" + key] = winnerAvgs[key]
+                        for key in loserAvgs.keys():
+                            row["home" + key] = loserAvgs[key]
+                        row["HomeScore"] = LPTs
+                        row["AwayScore"] = WPTs
+                    else:
+                        for key in winnerAvgs.keys():
+                            row["away" + key] = loserAvgs[key]
+                        for key in loserAvgs.keys():
+                            row["home" + key] = winnerAvgs[key]
+                        row["AwayScore"] = LPTs
+                        row["HomeScore"] = WPTs
+
+                    # note on spread notation. Its always AWAY - HOME, so a spread of -3 indicates that the Home team won by 3
+                    if "AwayScore" in row and "HomeScore" in row:
+                        row["actualSpread"] = row["AwayScore"] - row["HomeScore"]
+                    row["Date"] = game["Date"]
+                    row["VegasLine"] = vegas_line
+                    rows.append(row)
         return rows
 
     def get_weekly_inputs(self, season, week, overwrite=False):
@@ -198,6 +216,14 @@ class ProFootballReferenceService:
                 winnerAvgs = self.get_team_recent_stats(season=season, teamName=game["Winner/tie"], week=week)
                 loserAvgs = self.get_team_recent_stats(season=season, teamName=game["Loser/tie"], week=week)
 
+                try:
+                    LPTs = int(game["LPts"])
+                    WPTs = int(game["WPts"])
+                except:
+                    print("Uh oh...")
+                    print(game)
+                    continue
+
                 if winnerAvgs != False and loserAvgs != False:
                     #this signifies the hometeam lost
                     if game["at"] == "@":
@@ -205,15 +231,15 @@ class ProFootballReferenceService:
                             row["away" + key] = winnerAvgs[key]
                         for key in loserAvgs.keys():
                             row["home" + key] = loserAvgs[key]
-                        row["HomeScore"] = int(game["LPts"])
-                        row["AwayScore"] = int(game["WPts"])
+                        row["HomeScore"] = LPTs
+                        row["AwayScore"] = WPTs
                     else:
                         for key in winnerAvgs.keys():
                             row["away" + key] = loserAvgs[key]
                         for key in loserAvgs.keys():
                             row["home" + key] = winnerAvgs[key]
-                        row["AwayScore"] = int(game["LPts"])
-                        row["HomeScore"] = int(game["WPts"])
+                        row["AwayScore"] = LPTs
+                        row["HomeScore"] = WPTs
 
                     #note on spread notation. Its always AWAY - HOME, so a spread of -3 indicates that the Home team won by 3
                     if "AwayScore" in row and "HomeScore" in row:
@@ -395,7 +421,7 @@ class ProFootballReferenceService:
         if teamName == "":
             print("Empty team name for recent stats!!!")
 
-        #start by getting their last 10 games. We can up this if we want to.
+        #start by getting their last 8 games. We can up this if we want to.
         recency = 8
         sums = {
             "Team": "",
@@ -415,6 +441,20 @@ class ProFootballReferenceService:
         }
         headers = ['Season','Week', 'Day', 'Date', 'Time', 'boxlink', 'W/L', 'OT', 'Rec', 'at', 'Opponent', 'Tm', 'Opp', 'O1stD', 'OTotYd', 'OPassY', 'ORushY', 'OTO', 'D1stD', 'DTotYd', 'DPassY', 'DRushY', 'DTO', 'Offense', 'Defense', 'Sp. Tms']
         teamGameStats = []
+
+        #lets start by getting the teams SOS for this given year
+        seasonStats = self.get_or_fetch_from_cache(
+            endpoint="teams/" + str(self.teamMap[teamName]) + "/" + str(season) + ".htm")
+        try:
+            soup = BeautifulSoup(seasonStats, features="html.parser")
+            metaTable = soup.find(id="meta")
+            summaryStats = metaTable.findAll("div")[1].findAll("p")
+            strength = summaryStats[5]
+            SRSSOSText = strength.getText()
+            split = SRSSOSText.split(":")
+            SOS = float(split[2])
+        except:
+            SOS = 0
 
         #if we don't have enough data in this year, we need to go fetch the previous year as well
         if week <= recency:
@@ -512,6 +552,7 @@ class ProFootballReferenceService:
                 "avgOppScore": sums['OpponentScore'] / recency,
                 "Wins": sums['Wins'] / recency,
                 "Streak": sums['Streak'],
+                "SOS": SOS
             }
             return teamAvg
 
@@ -522,15 +563,25 @@ class ProFootballReferenceService:
         tasks = []
         rows = []
         weeks = []
+
+        #this does it in parallel
         for season in seasons:
             for week in range(1, season["weeks"] + 1):
                 tasks.append([season["season"], week])
 
         with Pool() as p:
-            weeks = weeks + p.starmap(self.get_weekly_inputs, tasks)
+            weeks = weeks + p.starmap(self.get_weekly_results, tasks)
 
-        for weekbatch in weeks:
+        #single thread
+        # for season in seasons:
+        #     for week in range(1, season["weeks"] + 1):
+        #         weeks = weeks + self.get_weekly_results(season["season"], week)
+
+
+
+        for idx, weekbatch in enumerate(weeks):
             for game in weekbatch:
+                game["week"] = idx + 1
                 rows.append(game)
 
         return rows
@@ -538,10 +589,10 @@ class ProFootballReferenceService:
 
     def generate_training_data(self):
         training_seasons = [
-            # {
-            #     "season": 2022,
-            #     "weeks": 18
-            # },
+            {
+                "season": 2022,
+                "weeks": 18
+            },
             {
                 "season": 2021,
                 "weeks": 18
@@ -601,12 +652,13 @@ class ProFootballReferenceService:
         ]
         test_seasons = [
             {
-                "season": 2022,
+                "season": 2023,
                 "weeks": 18
             }
         ]
 
         rows = self.get_historical_data(training_seasons)
+        print(rows)
         try:
             f = open("inputs/trainingdata.json", "w")
             f.write(json.dumps(rows, indent=4))
