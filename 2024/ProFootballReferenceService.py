@@ -401,7 +401,6 @@ class ProFootballReferenceService:
                     continue
 
         recentGames = teamGameStats[-recency:]
-
         if len(recentGames) > 0:
             for game in recentGames:
                 sums["Team"] = teamName
@@ -420,7 +419,6 @@ class ProFootballReferenceService:
                     sums['Wins'] += 1
                     sums['Streak'] += 1
                 else:
-                    sums['Wins'] -= 1
                     sums['Streak'] = 0
 
             teamAvg = {
@@ -563,7 +561,6 @@ class ProFootballReferenceService:
                     sums['Wins'] += 1
                     sums['Streak'] += 1
                 else:
-                    sums['Wins'] -= 1
                     sums['Streak'] = 0
 
             teamAvg = {
@@ -763,7 +760,6 @@ class ProFootballReferenceService:
         ]
 
         rows = self.get_historical_data(training_seasons)
-        print(rows)
         try:
             f = open("inputs/trainingdata.json", "w")
             f.write(json.dumps(rows, indent=4))

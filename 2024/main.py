@@ -6,6 +6,8 @@ from tensorflow import keras
 import keras_tuner
 import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
+import os
+import hashlib
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -227,7 +229,7 @@ def train_and_evaluate_model(outlierspread=10, outputParam='Winner', type="Class
         tuner = keras_tuner.RandomSearch(
             hypermodel=build_and_compile_model_hp,
             objective=keras_tuner.Objective("val_loss", direction="min"),
-            max_trials=25,
+            max_trials=15,
             overwrite=True,
             executions_per_trial=5,
             directory="search_results",
@@ -616,12 +618,35 @@ def populate_db_from_file(filename='data/alldata.json'):
     insert_games_into_db(alldata)
 
 if __name__ == '__main__':
-    model_label = 'trainedRegressor.keras'
-    modeltype = 'Regression'
-    outputParam = 'actualSpread'
-    # might want to integrate sacks into inputs
-    # generate_training_data_from_db(2022, 2023)
+    model_label = 'trainedClassifier.keras'
+    modeltype = 'Classification'
+    outputParam = 'Winner'
+
+    #purge cache data for team games
+    # for team in ProFootballReferenceService.teamMap.values():
+    #     url = "https://www.pro-football-reference.com/years/2023/games.htm"
+    #     hash = hashlib.md5(url.encode('UTF-8')).hexdigest()
+    #     print(url, hash)
+    #     if os.path.exists("caches/"+hash):
+    #         print("removing 2023 cache data")
+    #         os.remove("caches/"+hash)
+
+    # overwrite a particular cache
+    # service = ProFootballReferenceService()
+    # data = service.get_or_fetch_from_cache(endpoint="years/2023/games.htm", overwrite=True)
+    # print(data)
+
+    # generate the alldata file from the cached footballservice data
+    # service = ProFootballReferenceService()
+    # service.dump_historic_data()
     # exit(1)
+
+    #insert the data from alldata into the database
+    # populate_db_from_file()
+    # exit(1)
+
+    # might want to integrate sacks into inputs
+    # generate_training_data_from_db(2008, 2022)
     # train_and_evaluate_model(outlierspread=25, outputParam=outputParam, type=modeltype, modelLabel=model_label)
 
     # #now that we have a trained model, lets simluate its performance against the 2023 season
@@ -634,7 +659,7 @@ if __name__ == '__main__':
     #
     # print(evaluations)
     # exit(1)
-    #
+
     season = 2024
     week = 1
 
@@ -672,6 +697,8 @@ if __name__ == '__main__':
     # f = open("runningEvaluations.json", "w")
     # f.write(json.dumps(totals, indent=4))
     # f.close()
+
+
 
     #generate this weeks predictions
     predictions = {}
