@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from time import sleep
 from multiprocessing import Pool
 import os
+import datetime
 
 class ProFootballReferenceService:
 
@@ -180,6 +181,8 @@ class ProFootballReferenceService:
                         row["actualSpread"] = row["AwayScore"] - row["HomeScore"]
                     row["Date"] = game["Date"]
                     row["VegasLine"] = vegas_line
+                    row["week"] = week
+                    row["season"] = season
                     rows.append(row)
         return rows
 
@@ -295,6 +298,10 @@ class ProFootballReferenceService:
                     for key in HomeAvgs.keys():
                         row["home" + key] = HomeAvgs[key]
                     row['week'] = int(week)
+                    date_format = "%B %d %Y"
+                    row['Date'] = datetime.datetime.strptime(game['Date']+" 2024", date_format).strftime("%Y-%m-%d")
+                    row["awayTeamShort"] = ProFootballReferenceService.teamMap[game["VisTm"]]
+                    row["homeTeamShort"] = ProFootballReferenceService.teamMap[game["HomeTm"]]
                     rows.append(row)
         return rows
 
@@ -417,7 +424,7 @@ class ProFootballReferenceService:
                     sums['Streak'] = 0
 
             teamAvg = {
-                "team": sums['Team'],
+                "Team": sums['Team'],
                 "avgScore": sums['Score']/recency,
                 "avgFirstDowns": sums['FirstDowns'] / recency,
                 "avgTurnoversLost": sums['TurnoversLost'] / recency,
@@ -603,11 +610,87 @@ class ProFootballReferenceService:
 
         for idx, weekbatch in enumerate(weeks):
             for game in weekbatch:
-                game["week"] = idx + 1
                 rows.append(game)
 
         return rows
 
+    def dump_historic_data(self):
+        seasons = [
+            {
+                "season": 2023,
+                "weeks": 18
+            },
+            {
+                "season": 2022,
+                "weeks": 18
+            },
+            {
+                "season": 2021,
+                "weeks": 18
+            },
+            {
+                "season": 2020,
+                "weeks": 17
+            },
+            {
+                "season": 2019,
+                "weeks": 17
+            },
+            {
+                "season": 2018,
+                "weeks": 17
+            },
+            {
+                "season": 2017,
+                "weeks": 17
+            },
+            {
+                "season": 2016,
+                "weeks": 17
+            },
+            {
+                "season": 2015,
+                "weeks": 17
+            },
+            {
+                "season": 2014,
+                "weeks": 17
+            },
+            {
+                "season": 2013,
+                "weeks": 17
+            },
+            {
+                "season": 2012,
+                "weeks": 17
+            },
+            {
+                "season": 2011,
+                "weeks": 17
+            },
+            {
+                "season": 2010,
+                "weeks": 17
+            },
+            {
+                "season": 2009,
+                "weeks": 17
+            },
+            {
+                "season": 2008,
+                "weeks": 17
+            }
+        ]
+
+        rows = self.get_historical_data(seasons)
+        try:
+            f = open("data/alldata.json", "w")
+            f.write(json.dumps(rows, indent=4))
+            f.close()
+        except:
+            f = open("data/alldata.json", "x")
+            f.write(json.dumps(rows, indent=4))
+            f.close()
 
     def generate_training_data(self):
         training_seasons = [
