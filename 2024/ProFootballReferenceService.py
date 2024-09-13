@@ -291,15 +291,15 @@ class ProFootballReferenceService:
             if game["HomeTm"] != "" and game["VisTm"] != "":
                 HomeAvgs = self.get_team_recent_stats_future(season=season, teamName=game["HomeTm"], week=week, overwrite=overwrite)
                 AwayAvgs = self.get_team_recent_stats_future(season=season, teamName=game["VisTm"], week=week, overwrite=overwrite)
-
                 if HomeAvgs != False and AwayAvgs != False:
                     for key in AwayAvgs.keys():
                         row["away" + key] = AwayAvgs[key]
                     for key in HomeAvgs.keys():
                         row["home" + key] = HomeAvgs[key]
                     row['week'] = int(week)
-                    date_format = "%B %d %Y"
-                    row['Date'] = datetime.datetime.strptime(game['Date']+" 2024", date_format).strftime("%Y-%m-%d")
+                    # date_format = "%B %d %Y"
+                    # row['Date'] = datetime.datetime.strptime(game['Date']+" 2024", date_format).strftime("%Y-%m-%d")
+                    row['Date'] = game['Date']
                     row["awayTeamShort"] = ProFootballReferenceService.teamMap[game["VisTm"]]
                     row["homeTeamShort"] = ProFootballReferenceService.teamMap[game["HomeTm"]]
                     rows.append(row)
@@ -333,7 +333,7 @@ class ProFootballReferenceService:
 
         # lets start by getting the teams SOS for this given year
         seasonStats = self.get_or_fetch_from_cache(
-            endpoint="teams/" + str(self.teamMap[teamName]) + "/" + str(season) + ".htm")
+            endpoint="teams/" + str(self.teamMap[teamName]) + "/" + str(season) + ".htm", overwrite=True)
         try:
             soup = BeautifulSoup(seasonStats, features="html.parser")
             metaTable = soup.find(id="meta")
@@ -471,7 +471,7 @@ class ProFootballReferenceService:
 
         #lets start by getting the teams SOS for this given year
         seasonStats = self.get_or_fetch_from_cache(
-            endpoint="teams/" + str(self.teamMap[teamName]) + "/" + str(season) + ".htm")
+            endpoint="teams/" + str(self.teamMap[teamName]) + "/" + str(season) + ".htm", overwrite=True)
         try:
             soup = BeautifulSoup(seasonStats, features="html.parser")
             metaTable = soup.find(id="meta")

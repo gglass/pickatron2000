@@ -336,6 +336,9 @@ def evaluate_past_week(season, week, model, overwrite=False):
     f.close()
     predictions = allpredictions[model]
     results = get_weekly_results(season, week, overwrite=overwrite)
+    if overwrite == True:
+        insert_games_into_db([results])
+
     spreadDiff = 0
     correctPicks = []
     correctPickNum = 0
@@ -343,53 +346,69 @@ def evaluate_past_week(season, week, model, overwrite=False):
     for id, prediction in enumerate(predictions):
         result = {}
         for game in results:
-            if game['HomeTeam'] == prediction['hometeam'] and game['AwayTeam'] == prediction['awayteam']:
+            if game['hometeam'] == prediction['homeTeam'] and game['awayteam'] == prediction['awayTeam']:
                 result = game
-        predictedspread = float(prediction['spread'])
-        actualspread = result['actualSpread']
-        vegas = result["VegasLine"]
-        diff = actualspread - predictedspread
-        spreadDiff += abs(diff)
-        correctPick = 'false'
 
-        # try and figure out how we did against vegas
-        money = -110
-        vegas_parts = vegas.split(" -")
-        vegas_fav = vegas_parts[0]
-        vegas_spread = float(vegas_parts[1])
-        # vegas thinks the hometeam is the favorite
-        if vegas_fav == prediction['hometeam']:
-            if actualspread == -vegas_spread:
-                money = 0
+        try:
+            predictedspread = float(prediction['prediction'])
+            actualspread = result['actualSpread']
+            vegas = result["VegasLine"]
+            diff = actualspread - predictedspread
+            spreadDiff += abs(diff)
+            correctPick = 'false'
+            # try and figure out how we did against vegas
+            money = -110
+            vegas_parts = vegas.split(" -")
+            vegas_fav = vegas_parts[0]
+            vegas_spread = float(vegas_parts[1])
+            # vegas thinks the hometeam is the favorite
+            if vegas_fav == prediction['homeTeam']:
+                if actualspread == -vegas_spread:
+                    money = 0
+                else:
+                    if predictedspread < -vegas_spread and actualspread < -vegas_spread:
+                        money = 100
+                    if predictedspread > -vegas_spread and actualspread > -vegas_spread:
+                        money = 100
+
+            elif vegas_fav == prediction['awayTeam']:
+                if actualspread == vegas_spread:
+                    money = 0
+                else:
+                    if predictedspread > vegas_spread and actualspread > vegas_spread:
+                        money = 100
+                    if predictedspread < vegas_spread and actualspread < vegas_spread:
+                        money = 100
             else:
-                if predictedspread < -vegas_spread and actualspread < -vegas_spread:
-                    money = 100
-                if predictedspread > -vegas_spread and actualspread > -vegas_spread:
-                    money = 100
+                print("We couldn't find a match on teams... oh noes.")
+                print(vegas_fav, prediction['awayTeam'], prediction['homeTeam'])
 
-        elif vegas_fav == prediction['awayteam']:
-            if actualspread == vegas_spread:
-                money = 0
-            else:
-                if predictedspread > vegas_spread and actualspread > vegas_spread:
-                    money = 100
-                if predictedspread < vegas_spread and actualspread < vegas_spread:
-                    money = 100
-        else:
-            print("We couldn't find a match on teams... oh noes.")
-            print(vegas_fav, prediction['awayteam'], prediction['hometeam'])
-
-        # the away team was predicted to win
-        if predictedspread > 0 and actualspread > 0:
-            correctPick = 'true'
-            correctPickNum += 1
-        # the home team was predicted to win and did
-        if predictedspread < 0 and actualspread < 0:
-            correctPick = 'true'
-            correctPickNum += 1
-        totalmoney += money
-        correctPicks.append(correctPick)
-        # print(predictedspread, vegas, actualspread, money)
+            # the away team was predicted to win
+            if predictedspread > 0 and actualspread > 0:
+                correctPick = 'true'
+                correctPickNum += 1
+            # the home team was predicted to win and did
+            if predictedspread < 0 and actualspread < 0:
+                correctPick = 'true'
+                correctPickNum += 1
+            totalmoney += money
+            correctPicks.append(correctPick)
+        except:
+            money = 0
+            spreadDiff += 0
+            predictedwinner = prediction['prediction']
+            actualspread = result['actualSpread']
+            correctPick = 'false'
+            # the away team was predicted to win
+            if predictedwinner == prediction['homeTeam'] and actualspread < 0:
+                correctPick = 'true'
+                correctPickNum += 1
+            # the home team was predicted to win and did
+            if predictedwinner == prediction['awayTeam'] and actualspread > 0:
+                correctPick = 'true'
+                correctPickNum += 1
+            totalmoney += money
+            correctPicks.append(correctPick)
 
     return {"spreadDiff": spreadDiff, "correctPickNum": correctPickNum, "totalmoney": totalmoney}
 
@@ -399,6 +418,7 @@ def evaluate_full_season(games, predictions):
     correctPickNum = 0
     vegasCorrectPickNum = 0
     totalmoney = 0
+    upsidedowntotal = 0
     hometeamWins = 0
     awayteamWins = 0
     vegasSpreadDiff = 0
@@ -426,16 +446,24 @@ def evaluate_full_season(games, predictions):
         vegas_parts = vegas.split(" -")
         vegas_fav = vegas_parts[0]
         vegas_spread = float(vegas_parts[1])
+        upsidedown = 0
 
         if vegas_fav == prediction['homeTeam']:
             vegas_spread = -vegas_spread
             if actualspread == vegas_spread:
                 money = 0
+                upsidedown = 0
             else:
                 if predictedspread < vegas_spread and actualspread < vegas_spread:
                     money = 100
                 if predictedspread > vegas_spread and actualspread > vegas_spread:
                     money = 100
+                #if pickatron predicted an upset
+                if predictedspread > 0:
+                    if actualspread > vegas_spread:
+                        upsidedown = 100
+                    if actualspread <= vegas_spread:
+                        upsidedown = -110
 
         elif vegas_fav == prediction['awayTeam']:
             if actualspread == vegas_spread:
@@ -445,6 +473,12 @@ def evaluate_full_season(games, predictions):
                     money = 100
                 if predictedspread < vegas_spread and actualspread < vegas_spread:
                     money = 100
+                # if pickatron predicted an upset
+                if predictedspread < 0:
+                    if actualspread < vegas_spread:
+                        upsidedown = 100
+                    if actualspread >= vegas_spread:
+                        upsidedown = -110
         else:
             print("We couldn't find a match on teams... oh noes.")
             print(vegas_fav, prediction['awayTeam'], prediction['homeTeam'])
@@ -459,8 +493,9 @@ def evaluate_full_season(games, predictions):
 
         print("Predicted Spread:", predictedspread, "Actual Spread", actualspread, "Vegas Spread", vegas_spread, "Bet Result", money)
         totalmoney += money
+        upsidedowntotal += upsidedown
 
-    return {"spreadDiff": spreadDiff, "avgSpreadDiff": spreadDiff/len(games)," vegasSpreadDiff": vegasSpreadDiff, "vegasAvgSpreadDiff": vegasSpreadDiff/len(games),"correctPickNum": correctPickNum, "vegasCorrectPickNum": vegasCorrectPickNum, "homeWins": hometeamWins, "awayWins": awayteamWins, "totalgames": len(games), "totalMoney": totalmoney}
+    return {"spreadDiff": spreadDiff, "avgSpreadDiff": spreadDiff/len(games)," vegasSpreadDiff": vegasSpreadDiff, "vegasAvgSpreadDiff": vegasSpreadDiff/len(games),"correctPickNum": correctPickNum, "vegasCorrectPickNum": vegasCorrectPickNum, "homeWins": hometeamWins, "awayWins": awayteamWins, "totalgames": len(games), "totalMoney": totalmoney, "upsidedownMoney": upsidedowntotal}
 
 def evaluate_full_season_classification(games, predictions):
     # print("Evaluation model "+model)
@@ -617,10 +652,53 @@ def populate_db_from_file(filename='data/alldata.json'):
     f.close()
     insert_games_into_db(alldata)
 
+def evaluate_past_week_and_update_running_totales(season, week):
+    # evaluate past weeks predictions
+    week = week - 1
+    evaluations = {}
+    first = False
+    models = ["trainedClassifier.keras", "trainedRegressor.keras"]
+    for model_label in models:
+        evaluations[model_label] = evaluate_past_week(season, week, model=model_label, overwrite=first)
+        first = False
+    f = open("week" + str(week) + "evaluations.json", "w")
+    f.write(json.dumps(evaluations, indent=4))
+    f.close()
+
+    # evaluate models running accuracy
+    startweek = 1
+    endweek = week
+    totals = {
+        "startweek": startweek,
+        "endweek": endweek,
+        "trainedClassifier.keras": {
+            "spreadDiff": 0,
+            "correctPickNum": 0,
+            "totalmoney": 0,
+        },
+        "trainedRegressor.keras": {
+            "spreadDiff": 0,
+            "correctPickNum": 0,
+            "totalmoney": 0,
+        }
+    }
+
+    for week in range(startweek, endweek + 1):
+        f = open("week" + str(week) + "evaluations.json", "r")
+        evaluations = json.load(f)
+        f.close()
+        for model in evaluations:
+            totals[model]["spreadDiff"] += evaluations[model]["spreadDiff"]
+            totals[model]["correctPickNum"] += evaluations[model]["correctPickNum"]
+            totals[model]["totalmoney"] += evaluations[model]["totalmoney"]
+    f = open("runningEvaluations.json", "w")
+    f.write(json.dumps(totals, indent=4))
+    f.close()
+
 if __name__ == '__main__':
-    model_label = 'trainedClassifier.keras'
-    modeltype = 'Classification'
-    outputParam = 'Winner'
+    model_label = 'trainedRegressor.keras'
+    modeltype = 'Regression'
+    outputParam = 'actualSpread'
 
     #purge cache data for team games
     # for team in ProFootballReferenceService.teamMap.values():
@@ -661,44 +739,9 @@ if __name__ == '__main__':
     # exit(1)
 
     season = 2024
-    week = 1
+    week = 2
 
-    #evaluate past weeks predictions
-    # week = week - 1
-    # evaluations = {}
-    # first = True
-    #
-    # evaluations[model_label] = evaluate_past_week(season, week,model=model_label,overwrite=first)
-    # f = open("week" + str(week) + "evaluations.json", "w")
-    # f.write(json.dumps(evaluations, indent=4))
-    # f.close()
-    #
-    # #evaluate models running accuracy
-    # startweek = 9
-    # endweek = week
-    # totals = {
-    #     "startweek": startweek,
-    #     "endweek": endweek,
-    #     model_label: {
-    #         "spreadDiff": 0,
-    #         "correctPickNum": 0,
-    #         "totalmoney": 0,
-    #     }
-    # }
-    #
-    # for week in range(startweek,endweek+1):
-    #     f = open("week" + str(week) + "evaluations.json", "r")
-    #     evaluations = json.load(f)
-    #     f.close()
-    #     for model in evaluations:
-    #         totals[model]["spreadDiff"] += evaluations[model]["spreadDiff"]
-    #         totals[model]["correctPickNum"] += evaluations[model]["correctPickNum"]
-    #         totals[model]["totalmoney"] += evaluations[model]["totalmoney"]
-    # f = open("runningEvaluations.json", "w")
-    # f.write(json.dumps(totals, indent=4))
-    # f.close()
-
-
+    # evaluate_past_week_and_update_running_totales(season, week)
 
     #generate this weeks predictions
     predictions = {}

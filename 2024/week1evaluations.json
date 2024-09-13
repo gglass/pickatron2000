@@ -1,6 +1,4 @@
 {
-    "startweek": 1,
-    "endweek": 1,
     "trainedClassifier.keras": {
         "spreadDiff": 0,
         "correctPickNum": 9,
