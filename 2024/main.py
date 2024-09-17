@@ -337,7 +337,7 @@ def evaluate_past_week(season, week, model, overwrite=False):
     predictions = allpredictions[model]
     results = get_weekly_results(season, week, overwrite=overwrite)
     if overwrite == True:
-        insert_games_into_db([results])
+        insert_games_into_db(results)
 
     spreadDiff = 0
     correctPicks = []
@@ -656,7 +656,7 @@ def evaluate_past_week_and_update_running_totales(season, week):
     # evaluate past weeks predictions
     week = week - 1
     evaluations = {}
-    first = False
+    first = True
     models = ["trainedClassifier.keras", "trainedRegressor.keras"]
     for model_label in models:
         evaluations[model_label] = evaluate_past_week(season, week, model=model_label, overwrite=first)
@@ -739,9 +739,10 @@ if __name__ == '__main__':
     # exit(1)
 
     season = 2024
-    week = 2
+    week = 3
 
     # evaluate_past_week_and_update_running_totales(season, week)
+    # exit(1)
 
     #generate this weeks predictions
     predictions = {}
