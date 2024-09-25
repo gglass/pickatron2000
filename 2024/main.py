@@ -739,10 +739,9 @@ if __name__ == '__main__':
     # exit(1)
 
     season = 2024
-    week = 3
+    week = 4
 
-    # evaluate_past_week_and_update_running_totales(season, week)
-    # exit(1)
+    evaluate_past_week_and_update_running_totales(season, week)
 
     #generate this weeks predictions
     predictions = {}
