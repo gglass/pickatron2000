@@ -1,14 +1,14 @@
 {
     "startweek": 1,
-    "endweek": 8,
+    "endweek": 9,
     "trainedClassifier.keras": {
         "spreadDiff": 0,
-        "correctPickNum": 62,
+        "correctPickNum": 70,
         "totalmoney": 0
     },
     "trainedRegressor.keras": {
-        "spreadDiff": 1426.034305056,
-        "correctPickNum": 60,
-        "totalmoney": -900
+        "spreadDiff": 1585.8892369559999,
+        "correctPickNum": 67,
+        "totalmoney": -1500
     }
 }

@@ -6,8 +6,7 @@ from tensorflow import keras
 import keras_tuner
 import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
-import os
-import hashlib
+import datetime
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -103,47 +102,30 @@ def generate_training_data_from_db(starting_season, ending_season):
     mycursor.execute(sql, val)
     columns = mycursor.description
     games = [{columns[index][0]: column for index, column in enumerate(value)} for value in mycursor.fetchall()]
-    output = calculate_previous_opp_record(games, 4)
-    return output
+
+    jsondata = json.dumps(games, default=str)
+    converteddata = json.loads(jsondata)
+
+    return converteddata
 
 def calculate_previous_opp_record(games, numMatchups=4):
     # now that we have the base data, lets go calculate some historic stuff
     mycursor = mydb.cursor()
     output = []
     for game in games:
-        if type(game['Date']) is not str:
-            game["Date"] = game["Date"].strftime("%Y-%m-%d")
-        homeTeam = game["homeTeamShort"]
-        awayTeam = game["awayTeamShort"]
-        awayWins = 0
-        homeWins = 0
-        previousGames = 0
-
         # lets go get (up to) the last 4 matchups of these two teams to see how they did
-        sql = "SELECT * FROM game_log WHERE date < %s AND (homeTeamShort = %s OR awayTeamShort = %s) AND (awayTeamShort = %s OR homeTeamShort = %s) ORDER BY Date desc LIMIT "+str(numMatchups)
-        val = (game["Date"], homeTeam, homeTeam, awayTeam, awayTeam)
+        sql = "SELECT ROUND(AVG(IF(`W/L` = 'W', 1, 0)),2) as HomeWinPct FROM season_data_by_team WHERE Team = %s AND Opponent = %s ORDER BY Season desc, Week desc LIMIT %s"
+        val = (game["homeTeam"], game["awayTeam"], numMatchups)
         mycursor.execute(sql, val)
         columns = mycursor.description
 
         pastMatchups = [{columns[index][0]: column for index, column in enumerate(value)} for value in
                         mycursor.fetchall()]
 
-        for matchup in pastMatchups:
-            previousGames += 1
-            if matchup['awayTeamShort'] == awayTeam:
-                if matchup['actualSpread'] < 0:
-                    homeWins += 1
-                else:
-                    awayWins += 1
-            else:
-                if matchup['actualSpread'] < 0:
-                    awayWins += 1
-                else:
-                    homeWins += 1
-
-        if previousGames > 0:
-            game["awayRecordAgainstOpp"] = awayWins / previousGames
-            game["homeRecordAgainstOpp"] = homeWins / previousGames
+        if pastMatchups[0]:
+            avgs = pastMatchups[0]
+            game["awayRecordAgainstOpp"] = 1 - avgs['HomeWinPct']
+            game["homeRecordAgainstOpp"] = avgs['HomeWinPct']
         else:
             game["homeRecordAgainstOpp"] = 0
             game["awayRecordAgainstOpp"] = 0
@@ -192,6 +174,7 @@ def preprocess_data(outlierspread=10, outputParam='Winner'):
 
 def train_and_evaluate_model(outlierspread=10, outputParam='Winner', type="Classification", modelLabel='trained.keras'):
     train_dataset, test_dataset, = preprocess_data(outlierspread, outputParam)
+
     train_inputs = train_dataset.copy()
     eval_inputs = test_dataset.copy()
     train_outputs = train_inputs.pop(outputParam)
@@ -218,7 +201,7 @@ def train_and_evaluate_model(outlierspread=10, outputParam='Winner', type="Class
         tuner = keras_tuner.RandomSearch(
             hypermodel=build_and_compile_classification_model_hp,
             objective=keras_tuner.Objective("val_binary_accuracy", direction="max"),
-            max_trials=25,
+            max_trials=15,
             overwrite=True,
             executions_per_trial=5,
             directory="search_results",
@@ -292,6 +275,7 @@ def load_and_predict_from_training(games, model='trained.keras', outputParams='W
     return predicted_results
 
 def load_and_predict(games, model='trained.keras', modeltype='Classification'):
+    print(games)
     dnn_model = keras.models.load_model(model)
     raw = pd.DataFrame(games)
     dataset = raw.copy()
@@ -321,9 +305,9 @@ def get_weekly_games(season, week, overwrite):
     service = ProFootballReferenceService()
     return service.get_upcoming_inputs(season, week, overwrite=overwrite)
 
-def get_past_weekly_games(season, week):
+def get_past_weekly_games(season, week, overwrite):
     service = ProFootballReferenceService()
-    return service.get_weekly_inputs(season, week, overwrite=True)
+    return service.get_weekly_inputs(season, week, overwrite=overwrite)
 
 def get_weekly_results(season, week, overwrite):
     service = ProFootballReferenceService()
@@ -336,8 +320,10 @@ def evaluate_past_week(season, week, model, overwrite=False):
     f.close()
     predictions = allpredictions[model]
     results = get_weekly_results(season, week, overwrite=overwrite)
-    if overwrite == True:
-        insert_games_into_db(results)
+
+    #not gonna do this anymore because it has janky data in it
+    # if overwrite == True:
+    #     insert_games_into_db(results)
 
     spreadDiff = 0
     correctPicks = []
@@ -346,7 +332,7 @@ def evaluate_past_week(season, week, model, overwrite=False):
     for id, prediction in enumerate(predictions):
         result = {}
         for game in results:
-            if game['hometeam'] == prediction['homeTeam'] and game['awayteam'] == prediction['awayTeam']:
+            if game['homeTeam'] == prediction['homeTeam'] and game['awayTeam'] == prediction['awayTeam']:
                 result = game
 
         try:
@@ -540,25 +526,237 @@ def evaluate_full_season_classification(games, predictions):
 
     return {"correctPickNum": correctPickNum, "vegasCorrectPickNum": vegasCorrectPickNum, "homeWins": hometeamWins, "awayWins": awayteamWins, "totalgames": len(games)}
 
-def predict_past_week(season, week, model):
-    games = get_past_weekly_games(season, week)
-    thispredictions = load_and_predict(games, model)
-    print(predictions)
+def get_team_recent_stats_from_db(season, week, team, recency = 8):
+    # now that we have the base data, lets go calculate some historic stuff
+
+    #go get the target date for the week we are currently processing
+    mycursor = mydb.cursor()
+    sql = """
+    SELECT
+    isoDate
+    FROM season_data_by_team
+    WHERE Season = %s
+    AND Week = %s
+    ORDER BY isoDate DESC
+    LIMIT 1;"""
+    val = (season, week)
+
+    mycursor.execute(sql, val)
+    columns = mycursor.description
+    result = [{columns[index][0]: column for index, column in enumerate(value)} for value in mycursor.fetchall()]
+
+    if not result:
+        # this means that we may be processing the current week, for which we cannot go get the targetDate so we can probably just use today's date for the targetDate
+        targetDate = datetime.date.today().isoformat()
+    else:
+        # this means we are currently processing some week that already exists in the database, probably for historical reasons
+        targetDate = result[0]['isoDate']
+
+    mycursor = mydb.cursor()
+    sql = """
+    SELECT
+    Team,
+    ROUND(AVG(Tm), 2) as avgScore,
+    ROUND(AVG(O1stD), 2) as avgFirstDowns,
+    ROUND(AVG(OTO), 2) as avgTurnoversLost,
+    ROUND(AVG(OPassY), 2) as avgPassingYards,
+    ROUND(AVG(ORushY), 2) as avgRushingYards,
+    ROUND(AVG(OTotYd), 2) as avgOffensiveYards,
+    ROUND(AVG(DPassY), 2) as avgPassingYardsAllowed,
+    ROUND(AVG(DRushY), 2) as avgRushingYardsAllowed,
+    ROUND(AVG(DTO), 2) as avgTurnoversForced,
+    ROUND(AVG(DTotYd), 2) as avgYardsAllowed,
+    ROUND(AVG(Opp), 2) as avgOppScore,
+    ROUND(AVG(IF(`W/L` = 'W', 1, 0)), 2) as Wins,
+    ROUND(AVG(SOS), 2) as SOS
+    FROM (
+        SELECT * FROM season_data_by_team
+        WHERE Team = %s
+        AND isoDate < %s
+        ORDER BY isoDate DESC
+    ) as recent
+    GROUP BY Team
+    LIMIT %s;"""
+    val = (team, targetDate, recency)
+
+    mycursor.execute(sql, val)
+    columns = mycursor.description
+    result = [{columns[index][0]: column for index, column in enumerate(value)} for value in mycursor.fetchall()]
+    if not result:
+        #we couldn't find any games before this, so lets set all the avgs to just the most recent game we know abouut
+        mycursor = mydb.cursor()
+        sql = """
+            SELECT
+            Team,
+            ROUND(AVG(Tm), 2) as avgScore,
+            ROUND(AVG(O1stD), 2) as avgFirstDowns,
+            ROUND(AVG(OTO), 2) as avgTurnoversLost,
+            ROUND(AVG(OPassY), 2) as avgPassingYards,
+            ROUND(AVG(ORushY), 2) as avgRushingYards,
+            ROUND(AVG(OTotYd), 2) as avgOffensiveYards,
+            ROUND(AVG(DPassY), 2) as avgPassingYardsAllowed,
+            ROUND(AVG(DRushY), 2) as avgRushingYardsAllowed,
+            ROUND(AVG(DTO), 2) as avgTurnoversForced,
+            ROUND(AVG(DTotYd), 2) as avgYardsAllowed,
+            ROUND(AVG(Opp), 2) as avgOppScore,
+            ROUND(AVG(IF(`W/L` = 'W', 1, 0)), 2) as Wins,
+            ROUND(AVG(SOS), 2) as SOS
+            FROM (
+                SELECT * FROM season_data_by_team
+                WHERE Team = %s
+                AND isoDate <= %s
+                ORDER BY isoDate DESC
+            ) as recent
+            GROUP BY Team
+            LIMIT %s;"""
+        val = (team, targetDate, recency)
+
+        mycursor.execute(sql, val)
+        columns = mycursor.description
+        result = [{columns[index][0]: column for index, column in enumerate(value)} for value in mycursor.fetchall()]
+        if not result:
+            # something is wrong/weird here, so lets just return some zeros
+            return {
+                'Team': team,
+                'avgScore': 0,
+                'avgFirstDowns': 0,
+                'avgTurnoversLost': 0,
+                'avgPassingYards': 0,
+                'avgRushingYards': 0,
+                'avgOffensiveYards': 0,
+                'avgPassingYardsAllowed': 0,
+                'avgRushingYardsAllowed': 0,
+                'avgTurnoversForced': 0,
+                'avgYardsAllowed': 0,
+                'avgOppScore': 0,
+                'Wins': 0,
+                'SOS': 0,
+                'Streak': 0
+            }
+        else:
+            avgs = result[0]
+    else:
+        avgs = result[0]
+
+    mycursor = mydb.cursor()
+    sql = """
+    SELECT `Week`,
+    `W/L`
+    FROM season_data_by_team 
+    WHERE  Team = %s 
+    AND isoDate < %s 
+    ORDER BY `Week`"""
+
+    val = (team, targetDate)
+    mycursor.execute(sql, val)
+    columns = mycursor.description
+    fullseason = [{columns[index][0]: column for index, column in enumerate(value)} for value in mycursor.fetchall()]
+
+    streak = 0
+    for game in fullseason:
+        if game['W/L'] == 'W':
+            streak += 1
+        else:
+            streak = 0
+
+    avgs['Streak'] = streak
+    return avgs
+
+def get_team_recent_stats(season, week, teamName):
+
+    if teamName == "":
+        print("Empty team name for recent stats!!!")
+        return False
+    else:
+        teamAvg = get_team_recent_stats_from_db(season, week, teamName, 8)
+        return teamAvg
+
+def insert_past_week_into_game_log(season, week):
+    #we should have already updated this by this point so we don't need to overwrite the cache
+    games = get_weekly_results(season, week - 1, False)
+    # now that we have the games, we need to go calculate the averages from the data we are now storing in the database
+    rows = []
+    # print("Processing... ", season, week)
+    for game in games:
+        row = {}
+        if game["homeTeam"] != "" and game["awayTeam"] != "":
+
+            HomeAvgs = get_team_recent_stats(season=season, teamName=game["homeTeam"], week=week - 1)
+            AwayAvgs = get_team_recent_stats(season=season, teamName=game["awayTeam"], week=week - 1)
+
+            if HomeAvgs != False and AwayAvgs != False:
+                for key in AwayAvgs.keys():
+                    row["away" + key] = AwayAvgs[key]
+                for key in HomeAvgs.keys():
+                    row["home" + key] = HomeAvgs[key]
+                row['week'] = int(week - 1)
+                row['season'] = int(season)
+                # date_format = "%B %d %Y"
+                # row['Date'] = datetime.datetime.strptime(game['Date']+" 2024", date_format).strftime("%Y-%m-%d")
+                row['Date'] = game['Date']
+                row["awayTeamShort"] = ProFootballReferenceService.teamMap[game["awayTeam"]]
+                row["homeTeamShort"] = ProFootballReferenceService.teamMap[game["homeTeam"]]
+                row["AwayScore"] = game["AwayScore"]
+                row["HomeScore"] = game["HomeScore"]
+                row["Winner"] = game["Winner"]
+                row["actualSpread"] = game["actualSpread"]
+                row["VegasLine"] = game["VegasLine"]
+                rows.append(row)
+
+    games = calculate_previous_opp_record(rows, 4)
+    # write it and reload it so it converts Decimal types to floats
+    convertedjson = json.dumps(games, indent=4, default=float)
+    newdataforinserting = json.loads(convertedjson)
+    insert_games_into_db(newdataforinserting)
 
 def predict_upcoming_week(season, week, model, overwrite=True, modeltype='Classification'):
     #warning! this will upset the caches so evaluating the last week will no longer be possible after running this
     games = get_weekly_games(season, week, overwrite)
+
+    #now that we have the games, we need to go calculate the averages from the data we are now storing in the database
+    rows = []
+    # print("Processing... ", season, week)
+    for game in games:
+        row = {}
+        if game["HomeTm"] != "" and game["VisTm"] != "":
+
+            HomeAvgs = get_team_recent_stats(season=season, teamName=game["HomeTm"], week=week)
+            AwayAvgs = get_team_recent_stats(season=season, teamName=game["VisTm"], week=week)
+
+            if HomeAvgs != False and AwayAvgs != False:
+                for key in AwayAvgs.keys():
+                    row["away" + key] = AwayAvgs[key]
+                for key in HomeAvgs.keys():
+                    row["home" + key] = HomeAvgs[key]
+                row['week'] = int(week)
+                # date_format = "%B %d %Y"
+                # row['Date'] = datetime.datetime.strptime(game['Date']+" 2024", date_format).strftime("%Y-%m-%d")
+                row['Date'] = game['Date']
+                row["awayTeamShort"] = ProFootballReferenceService.teamMap[game["VisTm"]]
+                row["homeTeamShort"] = ProFootballReferenceService.teamMap[game["HomeTm"]]
+                rows.append(row)
+
+    games = calculate_previous_opp_record(rows, 4)
+
+    #write it and reload it so it converts Decimal types to floats
     f = open("week" + str(week) + "games.json", "w")
-    f.write(json.dumps(games, indent=4))
+    f.write(json.dumps(games, indent=4, default=float))
     f.close()
-    games = calculate_previous_opp_record(games, 4)
+
+    f = open("week" + str(week) + "games.json", "r")
+    games = json.load(f)
+    f.close()
+
+
+
     weekPredictions = load_and_predict(games, model, modeltype)
     return weekPredictions
 
 def insert_games_into_db(games):
     mycursor = mydb.cursor()
     for game in games:
-        sql = """INSERT INTO game_log (awayTeam,
+        sql = """INSERT INTO game_log (
+        awayTeam,
         awayTeamShort,
         awayavgScore,
         awayavgFirstDowns,
@@ -597,12 +795,14 @@ def insert_games_into_db(games):
         Date,
         VegasLine,
         week,
-        season
-    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-        game["awayTeamShort"] = ProFootballReferenceService.teamMap[game["awayteam"]]
-        game["homeTeamShort"] = ProFootballReferenceService.teamMap[game["hometeam"]]
+        season,
+        awayRecordAgainstOpp,
+        homeRecordAgainstOpp
+    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+        game["awayTeamShort"] = ProFootballReferenceService.teamMap[game["awayTeam"]]
+        game["homeTeamShort"] = ProFootballReferenceService.teamMap[game["homeTeam"]]
         val = (
-            game["awayteam"],
+            game["awayTeam"],
             game["awayTeamShort"],
             game["awayavgScore"],
             game["awayavgFirstDowns"],
@@ -618,7 +818,7 @@ def insert_games_into_db(games):
             game["awayWins"],
             game["awayStreak"],
             game["awaySOS"],
-            game["hometeam"],
+            game["homeTeam"],
             game["homeTeamShort"],
             game["homeavgScore"],
             game["homeavgFirstDowns"],
@@ -641,7 +841,79 @@ def insert_games_into_db(games):
             game["Date"],
             game["VegasLine"],
             game["week"],
-            game["season"]
+            game["season"],
+            game["awayRecordAgainstOpp"],
+            game["homeRecordAgainstOpp"]
+        )
+        mycursor.execute(sql, val)
+        mydb.commit()
+
+def insert_team_season_into_db(games):
+    mycursor = mydb.cursor()
+    for game in games:
+        date_format = "%B %d %Y"
+        formatted_date = datetime.datetime.strptime(game['Date']+" "+str(game['Season']), date_format).strftime("%Y-%m-%d")
+
+        sql = """INSERT IGNORE INTO season_data_by_team (Team,
+            Season,
+            Week, 
+            Day, 
+            Date, 
+            Time, 
+            boxlink, 
+            `W/L`, 
+            OT, 
+            Rec, 
+            at, 
+            Opponent, 
+            Tm, 
+            Opp, 
+            O1stD, 
+            OTotYd, 
+            OPassY, 
+            ORushY, 
+            OTO, 
+            D1stD, 
+            DTotYd, 
+            DPassY, 
+            DRushY, 
+            DTO, 
+            Offense, 
+            Defense, 
+            `Sp. Tms`,
+            SOS,
+            isoDate
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+        val = (
+            game['Team'],
+            game['Season'],
+            game['Week'],
+            game['Day'],
+            game['Date'],
+            game['Time'],
+            game['boxlink'],
+            game['W/L'],
+            game['OT'],
+            game['Rec'],
+            game['at'],
+            game['Opponent'],
+            game['Tm'],
+            game['Opp'],
+            game['O1stD'],
+            game['OTotYd'],
+            game['OPassY'],
+            game['ORushY'],
+            game['OTO'],
+            game['D1stD'],
+            game['DTotYd'],
+            game['DPassY'],
+            game['DRushY'],
+            game['DTO'],
+            game['Offense'],
+            game['Defense'],
+            game['Sp. Tms'],
+            game['SOS'],
+            formatted_date
         )
         mycursor.execute(sql, val)
         mydb.commit()
@@ -695,6 +967,111 @@ def evaluate_past_week_and_update_running_totales(season, week):
     f.write(json.dumps(totals, indent=4))
     f.close()
 
+def supplement_all_data():
+    f = open("data/alldata.json", "r")
+    alldata = json.load(f)
+    f.close()
+    # now that we have the games, we need to go calculate the averages from the data we are now storing in the database
+    rows = []
+    # print("Processing... ", season, week)
+    for game in alldata:
+        row = {}
+        if game["homeTeam"] != "" and game["awayTeam"] != "":
+
+            HomeAvgs = get_team_recent_stats(season=game['season'], teamName=game["homeTeam"], week=game['week'])
+            AwayAvgs = get_team_recent_stats(season=game['season'], teamName=game["awayTeam"], week=game['week'])
+
+            if HomeAvgs != False and AwayAvgs != False:
+                for key in AwayAvgs.keys():
+                    row["away" + key] = AwayAvgs[key]
+                for key in HomeAvgs.keys():
+                    row["home" + key] = HomeAvgs[key]
+                row['week'] = int(game['week'])
+                row['season'] = int(game['season'])
+                # date_format = "%B %d %Y"
+                # row['Date'] = datetime.datetime.strptime(game['Date']+" 2024", date_format).strftime("%Y-%m-%d")
+                row['Date'] = game['Date']
+                row["awayTeamShort"] = ProFootballReferenceService.teamMap[game["awayTeam"]]
+                row["homeTeamShort"] = ProFootballReferenceService.teamMap[game["homeTeam"]]
+                row["AwayScore"] = game["AwayScore"]
+                row["HomeScore"] = game["HomeScore"]
+                row["Winner"] = game["Winner"]
+                row["actualSpread"] = game["actualSpread"]
+                row["VegasLine"] = game["VegasLine"]
+                rows.append(row)
+
+    games = calculate_previous_opp_record(rows, 4)
+    f = open("data/alldata.json", "w")
+    f.write(json.dumps(games, indent=4, default=float))
+    f.close()
+
+def populate_team_historic_data_to_db():
+    seasons = [
+        {
+            "season": 2024,
+        },
+        {
+            "season": 2023,
+        },
+        {
+            "season": 2022,
+        },
+        {
+            "season": 2021,
+        },
+        {
+            "season": 2020,
+        },
+        {
+            "season": 2019,
+        },
+        {
+            "season": 2018,
+        },
+        {
+            "season": 2017,
+        },
+        {
+            "season": 2016,
+        },
+        {
+            "season": 2015,
+        },
+        {
+            "season": 2014,
+        },
+        {
+            "season": 2013,
+        },
+        {
+            "season": 2012,
+        },
+        {
+            "season": 2011,
+        },
+        {
+            "season": 2010,
+        },
+        {
+            "season": 2009,
+        },
+        {
+            "season": 2008,
+        }
+    ]
+
+    footballservice = ProFootballReferenceService()
+    for thisseason in seasons:
+        for team in footballservice.teams:
+            games = footballservice.get_team_season_data(thisseason['season'], team)
+            insert_team_season_into_db(games)
+
+def populate_team_season_data_to_db(season):
+    footballservice = ProFootballReferenceService()
+    for team in footballservice.teams:
+        games = footballservice.get_team_season_data(season, team)
+        insert_team_season_into_db(games)
+
 if __name__ == '__main__':
     model_label = 'trainedRegressor.keras'
     modeltype = 'Regression'
@@ -714,9 +1091,17 @@ if __name__ == '__main__':
     # data = service.get_or_fetch_from_cache(endpoint="years/2023/games.htm", overwrite=True)
     # print(data)
 
-    # generate the alldata file from the cached footballservice data
+    #populate the team seasson database fully: this populates the season_data_by_team
+    # populate_team_historic_data_to_db()
+    # exit(1)
+
+    # # generate the start of alldata file from the cached footballservice data
     # service = ProFootballReferenceService()
     # service.dump_historic_data()
+    # exit(1)
+
+    # #supplement the "alldata" with team averages
+    # supplement_all_data()
     # exit(1)
 
     #insert the data from alldata into the database
@@ -724,7 +1109,6 @@ if __name__ == '__main__':
     # exit(1)
 
     # might want to integrate sacks into inputs
-    # generate_training_data_from_db(2008, 2022)
     # train_and_evaluate_model(outlierspread=25, outputParam=outputParam, type=modeltype, modelLabel=model_label)
 
     # #now that we have a trained model, lets simluate its performance against the 2023 season
@@ -739,9 +1123,16 @@ if __name__ == '__main__':
     # exit(1)
 
     season = 2024
-    week = 9
+    week = 10
 
+    #start by going at getting the
     evaluate_past_week_and_update_running_totales(season, week)
+
+    #now update the team season data table
+    populate_team_season_data_to_db(season)
+
+    #now updated the game_log_table
+    insert_past_week_into_game_log(season, week)
 
     #generate this weeks predictions
     predictions = {}

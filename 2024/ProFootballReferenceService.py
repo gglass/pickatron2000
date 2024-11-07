@@ -52,6 +52,46 @@ class ProFootballReferenceService:
         "Denver Broncos": "den",
     }
 
+    teams = [
+        "Buffalo Bills",
+        "Los Angeles Rams",
+        "St. Louis Rams",
+        "New Orleans Saints",
+        "Atlanta Falcons",
+        "Cleveland Browns",
+        "Carolina Panthers",
+        "Chicago Bears",
+        "San Francisco 49ers",
+        "Pittsburgh Steelers",
+        "Cincinnati Bengals",
+        "Houston Texans",
+        "Indianapolis Colts",
+        "Philadelphia Eagles",
+        "Detroit Lions",
+        "Washington Commanders",
+        "Washington Redskins",
+        "Washington Football Team",
+        "Jacksonville Jaguars",
+        "Miami Dolphins",
+        "New England Patriots",
+        "Baltimore Ravens",
+        "New York Jets",
+        "Kansas City Chiefs",
+        "Arizona Cardinals",
+        "Minnesota Vikings",
+        "Green Bay Packers",
+        "New York Giants",
+        "Tennessee Titans",
+        "Los Angeles Chargers",
+        "San Diego Chargers",
+        "Las Vegas Raiders",
+        "Oakland Raiders",
+        "Tampa Bay Buccaneers",
+        "Dallas Cowboys",
+        "Seattle Seahawks",
+        "Denver Broncos"
+    ]
+
     # def __init__(self):
     #     print("Initializing scraper")
 
@@ -140,9 +180,6 @@ class ProFootballReferenceService:
         for game in yearWeekStats:
             row = {}
             if game["Winner/tie"] != "" and game["Loser/tie"] != "":
-                winnerAvgs = self.get_team_recent_stats(season=season, teamName=game["Winner/tie"], week=week)
-                loserAvgs = self.get_team_recent_stats(season=season, teamName=game["Loser/tie"], week=week)
-
                 try:
                     LPTs = int(game["LPts"])
                     WPTs = int(game["WPts"])
@@ -157,33 +194,29 @@ class ProFootballReferenceService:
                         soup = BeautifulSoup(line, features="html.parser")
                 vegas_line = soup.find("td").getText()
 
-                if winnerAvgs != False and loserAvgs != False:
-                    # this signifies the hometeam lost
-                    if game["at"] == "@":
-                        for key in winnerAvgs.keys():
-                            row["away" + key] = winnerAvgs[key]
-                        for key in loserAvgs.keys():
-                            row["home" + key] = loserAvgs[key]
-                        row["HomeScore"] = LPTs
-                        row["AwayScore"] = WPTs
-                        row["Winner"] = 0
-                    else:
-                        for key in winnerAvgs.keys():
-                            row["away" + key] = loserAvgs[key]
-                        for key in loserAvgs.keys():
-                            row["home" + key] = winnerAvgs[key]
-                        row["AwayScore"] = LPTs
-                        row["HomeScore"] = WPTs
-                        row["Winner"] = 1
+                # this signifies the hometeam lost
+                if game["at"] == "@":
+                    row["homeTeam"] = game["Loser/tie"]
+                    row["awayTeam"] = game["Winner/tie"]
+                    row["HomeScore"] = LPTs
+                    row["AwayScore"] = WPTs
+                    row["Winner"] = 0
+                else:
+                    row["homeTeam"] = game["Winner/tie"]
+                    row["awayTeam"] = game["Loser/tie"]
+                    row["AwayScore"] = LPTs
+                    row["HomeScore"] = WPTs
+                    row["Winner"] = 1
 
-                    # note on spread notation. Its always AWAY - HOME, so a spread of -3 indicates that the Home team won by 3
-                    if "AwayScore" in row and "HomeScore" in row:
-                        row["actualSpread"] = row["AwayScore"] - row["HomeScore"]
-                    row["Date"] = game["Date"]
-                    row["VegasLine"] = vegas_line
-                    row["week"] = week
-                    row["season"] = season
-                    rows.append(row)
+                # note on spread notation. Its always AWAY - HOME, so a spread of -3 indicates that the Home team won by 3
+                if "AwayScore" in row and "HomeScore" in row:
+                    row["actualSpread"] = row["AwayScore"] - row["HomeScore"]
+                row["Date"] = game["Date"]
+                row["VegasLine"] = vegas_line
+                row["week"] = week
+                row["season"] = season
+                rows.append(row)
+
         return rows
 
     def get_weekly_inputs(self, season, week, overwrite=False):
@@ -284,26 +317,30 @@ class ProFootballReferenceService:
             formatted = {headers[i]: game[i] for i in range(len(headers))}
             yearWeekStats.append(formatted)
 
-        rows = []
-        # print("Processing... ", season, week)
-        for game in yearWeekStats:
-            row = {}
-            if game["HomeTm"] != "" and game["VisTm"] != "":
-                HomeAvgs = self.get_team_recent_stats_future(season=season, teamName=game["HomeTm"], week=week, overwrite=overwrite)
-                AwayAvgs = self.get_team_recent_stats_future(season=season, teamName=game["VisTm"], week=week, overwrite=overwrite)
-                if HomeAvgs != False and AwayAvgs != False:
-                    for key in AwayAvgs.keys():
-                        row["away" + key] = AwayAvgs[key]
-                    for key in HomeAvgs.keys():
-                        row["home" + key] = HomeAvgs[key]
-                    row['week'] = int(week)
-                    # date_format = "%B %d %Y"
-                    # row['Date'] = datetime.datetime.strptime(game['Date']+" 2024", date_format).strftime("%Y-%m-%d")
-                    row['Date'] = game['Date']
-                    row["awayTeamShort"] = ProFootballReferenceService.teamMap[game["VisTm"]]
-                    row["homeTeamShort"] = ProFootballReferenceService.teamMap[game["HomeTm"]]
-                    rows.append(row)
-        return rows
+        return yearWeekStats
+
+        #note: we're no longer calculating this on the fly by parsing the data from the scraper.
+
+        # rows = []
+        # # print("Processing... ", season, week)
+        # for game in yearWeekStats:
+        #     row = {}
+        #     if game["HomeTm"] != "" and game["VisTm"] != "":
+        #         HomeAvgs = self.get_team_recent_stats_future(season=season, teamName=game["HomeTm"], week=week, overwrite=overwrite)
+        #         AwayAvgs = self.get_team_recent_stats_future(season=season, teamName=game["VisTm"], week=week, overwrite=overwrite)
+        #         if HomeAvgs != False and AwayAvgs != False:
+        #             for key in AwayAvgs.keys():
+        #                 row["away" + key] = AwayAvgs[key]
+        #             for key in HomeAvgs.keys():
+        #                 row["home" + key] = HomeAvgs[key]
+        #             row['week'] = int(week)
+        #             # date_format = "%B %d %Y"
+        #             # row['Date'] = datetime.datetime.strptime(game['Date']+" 2024", date_format).strftime("%Y-%m-%d")
+        #             row['Date'] = game['Date']
+        #             row["awayTeamShort"] = ProFootballReferenceService.teamMap[game["VisTm"]]
+        #             row["homeTeamShort"] = ProFootballReferenceService.teamMap[game["HomeTm"]]
+        #             rows.append(row)
+        # return rows
 
     def get_team_recent_stats_future(self, season, week, teamName, overwrite=True):
 
@@ -585,6 +622,58 @@ class ProFootballReferenceService:
         else:
             return False
 
+    def get_team_season_data(self, season, teamName):
+
+        if teamName == "":
+            print("Empty team name for recent stats!!!")
+
+        headers = ['Season','Week', 'Day', 'Date', 'Time', 'boxlink', 'W/L', 'OT', 'Rec', 'at', 'Opponent', 'Tm', 'Opp', 'O1stD', 'OTotYd', 'OPassY', 'ORushY', 'OTO', 'D1stD', 'DTotYd', 'DPassY', 'DRushY', 'DTO', 'Offense', 'Defense', 'Sp. Tms']
+        teamGameStats = []
+
+        #lets start by getting the teams SOS for this given year
+        seasonStats = self.get_or_fetch_from_cache(
+            endpoint="teams/" + str(self.teamMap[teamName]) + "/" + str(season) + ".htm", overwrite=False)
+        try:
+            soup = BeautifulSoup(seasonStats, features="html.parser")
+            metaTable = soup.find(id="meta")
+            summaryStats = metaTable.findAll("div")[1].findAll("p")
+            strength = summaryStats[5]
+            SRSSOSText = strength.getText()
+            split = SRSSOSText.split(":")
+            SOS = float(split[2])
+        except:
+            SOS = 0
+
+        teamSeasonStats = self.get_or_fetch_from_cache(endpoint="teams/" + str(self.teamMap[teamName]) + "/" + str(season) + ".htm")
+        soup = BeautifulSoup(teamSeasonStats, features="html.parser")
+        gamesTable = soup.find(id="games")
+        values = []
+        if gamesTable is not None and gamesTable.findAll("tbody")[0] is not None:
+            tablerows = gamesTable.findAll("tbody")[0].findAll("tr")
+            for idx, row in enumerate(tablerows):
+                # get the week
+                rowWeek = row.findAll("th")[0].getText()
+                values.append([season, rowWeek] + [td.getText() for td in row.findAll("td")])
+            for game in values:
+                try:
+                    if len(game) == 26 and int(game[1]):
+                        formatted = {headers[i]: game[i] for i in range(len(headers))}
+                        if formatted['Opponent'] == 'Bye Week' or formatted['Opponent'] == "" or formatted['W/L'] == '':
+                            continue
+                        for key in headers:
+                            if formatted[key] == "":
+                                formatted[key] = 0
+                        formatted['Team'] = teamName
+                        formatted['SOS'] = SOS
+                        teamGameStats.append(formatted)
+                except Exception as error:
+                    continue
+
+        if len(teamGameStats) > 0:
+            return teamGameStats
+        else:
+            return False
+
     def get_historical_data(self, seasons):
         tasks = []
         rows = []
@@ -602,9 +691,6 @@ class ProFootballReferenceService:
         # for season in seasons:
         #     for week in range(1, season["weeks"] + 1):
         #         weeks = weeks + self.get_weekly_results(season["season"], week)
-
-
-
         for idx, weekbatch in enumerate(weeks):
             for game in weekbatch:
                 rows.append(game)
@@ -613,6 +699,10 @@ class ProFootballReferenceService:
 
     def dump_historic_data(self):
         seasons = [
+            {
+                "season": 2024,
+                "weeks": 9
+            },
             {
                 "season": 2023,
                 "weeks": 18
