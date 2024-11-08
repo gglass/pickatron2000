@@ -198,7 +198,3 @@ if __name__ == '__main__':
     #
     # plots = modify_inputs(["homeRecordAgainstOpp"], [0], [0.1])
     # show_plots(plots, "homeRecordAgainstOpp")
-
-    plots = modify_inputs(["homeavgTurnoversForced", "awayavgTurnoversLost"], [0, 0], [0.2, 0.2])
-    show_plots(plots, "homeavgTurnoversForced_with_awayavgTurnoversLost")
-

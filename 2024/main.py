@@ -265,7 +265,6 @@ def load_and_predict_from_training(games, model='trained.keras', outputParams='W
     return predicted_results
 
 def load_and_predict(games, model='trained.keras', modeltype='Classification'):
-    print(games)
     dnn_model = keras.models.load_model(model)
     raw = pd.DataFrame(games)
     dataset = raw.copy()
@@ -699,6 +698,38 @@ def insert_past_week_into_game_log(season, week):
     newdataforinserting = json.loads(convertedjson)
     insert_games_into_db(newdataforinserting)
 
+def predict_past_week(season, week, model, overwrite=False, modeltype='Classification'):
+    games = get_past_weekly_games(season, week, overwrite)
+    #now that we have the games, we need to go calculate the averages from the data we are now storing in the database
+    rows = []
+    for game in games:
+        row = {}
+        if game["HomeTm"] != "" and game["VisTm"] != "":
+
+            HomeAvgs = get_team_recent_stats(season=season, teamName=game["HomeTm"], week=week)
+            AwayAvgs = get_team_recent_stats(season=season, teamName=game["VisTm"], week=week)
+
+            if HomeAvgs != False and AwayAvgs != False:
+                for key in AwayAvgs.keys():
+                    row["away" + key] = AwayAvgs[key]
+                for key in HomeAvgs.keys():
+                    row["home" + key] = HomeAvgs[key]
+                row['week'] = int(week)
+                # date_format = "%B %d %Y"
+                # row['Date'] = datetime.datetime.strptime(game['Date']+" 2024", date_format).strftime("%Y-%m-%d")
+                row['Date'] = game['Date']
+                row["awayTeamShort"] = ProFootballReferenceService.teamMap[game["VisTm"]]
+                row["homeTeamShort"] = ProFootballReferenceService.teamMap[game["HomeTm"]]
+                rows.append(row)
+
+    games = calculate_previous_opp_record(rows, 4)
+
+    #write it and reload it so it converts Decimal types to floats
+    convertedjson =  json.dumps(games, indent=4, default=float)
+    games = json.loads(convertedjson)
+    weekPredictions = load_and_predict(games, model, modeltype)
+    return weekPredictions
+
 def predict_upcoming_week(season, week, model, overwrite=True, modeltype='Classification'):
     #warning! this will upset the caches so evaluating the last week will no longer be possible after running this
     games = get_weekly_games(season, week, overwrite)
@@ -1110,6 +1141,10 @@ if __name__ == '__main__':
     #     evaluations = evaluate_full_season(seasondata, predictions)
     #
     # print(evaluations)
+    # exit(1)
+
+    # predictions = predict_past_week(2024, 8, model_label, overwrite=False, modeltype=modeltype)
+    # print(json.dumps(predictions, indent=4, default=float))
     # exit(1)
 
     season = 2024
