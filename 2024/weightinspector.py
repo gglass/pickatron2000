@@ -9,35 +9,35 @@ from sklearn.metrics import r2_score
 
 samplematchup = {
     "awayTeam": "Cincinnati Bengals",
-    "awayavgScore": 28.25,
-    "awayavgFirstDowns": 20.5,
-    "awayavgTurnoversLost": 0.875,
-    "awayavgPassingYards": 246.625,
-    "awayavgRushingYards": 97.25,
-    "awayavgOffensiveYards": 343.875,
-    "awayavgPassingYardsAllowed": 224.0,
-    "awayavgRushingYardsAllowed": 125.5,
-    "awayavgTurnoversForced": 1.25,
-    "awayavgYardsAllowed": 349.5,
-    "awayavgOppScore": 26.375,
+    "awayavgScore": 30.0,
+    "awayavgFirstDowns": 20.0,
+    "awayavgTurnoversLost": 0.5,
+    "awayavgPassingYards": 250.0,
+    "awayavgRushingYards": 125.0,
+    "awayavgOffensiveYards": 375.0,
+    "awayavgPassingYardsAllowed": 280.0,
+    "awayavgRushingYardsAllowed": 75.0,
+    "awayavgTurnoversForced": 1.0,
+    "awayavgYardsAllowed": 350.0,
+    "awayavgOppScore": 24.0,
     "awayWins": 0.5,
     "awayStreak": 1,
-    "awaySOS": -2.64,
+    "awaySOS": 0.0,
     "homeTeam": "Baltimore Ravens",
-    "homeavgScore": 32.875,
-    "homeavgFirstDowns": 24.25,
-    "homeavgTurnoversLost": 0.625,
-    "homeavgPassingYards": 252.375,
-    "homeavgRushingYards": 192.75,
-    "homeavgOffensiveYards": 445.125,
-    "homeavgPassingYardsAllowed": 280.875,
-    "homeavgRushingYardsAllowed": 76.125,
+    "homeavgScore": 30.0,
+    "homeavgFirstDowns": 20.0,
+    "homeavgTurnoversLost": 0.5,
+    "homeavgPassingYards": 250.0,
+    "homeavgRushingYards": 125.0,
+    "homeavgOffensiveYards": 375.0,
+    "homeavgPassingYardsAllowed": 280.0,
+    "homeavgRushingYardsAllowed": 75.0,
     "homeavgTurnoversForced": 1.0,
-    "homeavgYardsAllowed": 357.0,
+    "homeavgYardsAllowed": 350.0,
     "homeavgOppScore": 24.0,
-    "homeWins": 0.75,
+    "homeWins": 0.5,
     "homeStreak": 1,
-    "homeSOS": 1.03,
+    "homeSOS": 0.0,
     "week": 10,
     "Date": "2024-11-07",
     "awayTeamShort": "cin",
@@ -72,241 +72,133 @@ def load_and_predict(games, model='trained.keras', modeltype='Classification'):
         })
     return predicted_results
 
+def modify_inputs(inputs, start_vals, coefficient):
+    for input in inputs:
+        print("Modifying " + input)
+    samplematchups = []
+    xdata = []
+    for i in range(1,11):
+        xdata.append(i)
+        sample = samplematchup.copy()
+        idx = 0
+        for input in inputs:
+            sample[input] = start_vals[idx] + (coefficient[idx] * i)
+            samplematchups.append(sample)
+            idx += 1
+    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
+    ydata = []
+    for prediction in predictions:
+        ydata.append(round(float(prediction['prediction']),2))
+
+    print([xdata, ydata])
+    return [xdata, ydata]
+
+def show_plots(axes, label):
+    plt.figure(figsize=(16,9))
+    plt.plot(axes[0], axes[1], label=label)
+    plt.xlabel(label)
+    plt.ylabel('Spread')
+    plt.grid(True)
+    plt.savefig('weightplots/'+label+'.png')
+    plt.close()
 
 if __name__ == '__main__':
     model_label = 'trainedRegressor.keras'
     modeltype = 'Regression'
 
-    plots = []
+    # plots = modify_inputs(["week"], [0], [1])
+    # show_plots(plots, "week")
+    #
+    # plots = modify_inputs(["awayavgScore"], [10], [2])
+    # show_plots(plots, "awayavgScore")
+    #
+    # plots = modify_inputs(["awayavgFirstDowns"], [10], [2])
+    # show_plots(plots, "awayavgFirstDowns")
+    #
+    # plots = modify_inputs(["awayavgTurnoversLost"], [0], [0.2])
+    # show_plots(plots, "awayavgTurnoversLost")
+    #
+    # plots = modify_inputs(["awayavgPassingYards"], [200], [15])
+    # show_plots(plots, "awayavgPassingYards")
+    #
+    # plots = modify_inputs(["awayavgRushingYards"], [100], [15])
+    # show_plots(plots, "awayavgRushingYards")
+    #
+    # plots = modify_inputs(["awayavgOffensiveYards"], [200], [30])
+    # show_plots(plots, "awayavgOffensiveYards")
+    #
+    # plots = modify_inputs(["awayavgPassingYardsAllowed"], [200], [15])
+    # show_plots(plots, "awayavgPassingYardsAllowed")
+    #
+    # plots = modify_inputs(["awayavgRushingYardsAllowed"], [100], [15])
+    # show_plots(plots, "awayavgRushingYardsAllowed")
+    #
+    # plots = modify_inputs(["awayavgTurnoversForced"], [0], [0.4])
+    # show_plots(plots, "awayavgTurnoversForced")
+    #
+    # plots = modify_inputs(["awayavgYardsAllowed"], [200], [30])
+    # show_plots(plots, "awayavgYardsAllowed")
+    #
+    # plots = modify_inputs(["awayavgOppScore"], [10], [2])
+    # show_plots(plots, "awayavgOppScore")
+    #
+    # plots = modify_inputs(["awayWins"], [0], [0.1])
+    # show_plots(plots, "awayWins")
+    #
+    # plots = modify_inputs(["awayStreak"], [0], [1])
+    # show_plots(plots, "awayStreak")
+    #
+    # plots = modify_inputs(["awaySOS"], [-2.5], [0.5])
+    # show_plots(plots, "awaySOS")
+    #
+    # plots = modify_inputs(["homeavgScore"], [10], [2])
+    # show_plots(plots, "homeavgScore")
+    #
+    # plots = modify_inputs(["homeavgFirstDowns"], [10], [2])
+    # show_plots(plots, "homeavgFirstDowns")
+    #
+    # plots = modify_inputs(["homeavgTurnoversLost"], [0], [0.2])
+    # show_plots(plots, "homeavgTurnoversLost")
+    #
+    # plots = modify_inputs(["homeavgPassingYards"], [200], [15])
+    # show_plots(plots, "homeavgPassingYards")
+    #
+    # plots = modify_inputs(["homeavgRushingYards"], [100], [15])
+    # show_plots(plots, "homeavgRushingYards")
+    #
+    # plots = modify_inputs(["homeavgOffensiveYards"], [200], [30])
+    # show_plots(plots, "homeavgOffensiveYards")
+    #
+    # plots = modify_inputs(["homeavgPassingYardsAllowed"], [200], [15])
+    # show_plots(plots, "homeavgPassingYardsAllowed")
+    #
+    # plots = modify_inputs(["homeavgRushingYardsAllowed"], [100], [15])
+    # show_plots(plots, "homeavgRushingYardsAllowed")
+    #
+    # plots = modify_inputs(["homeavgTurnoversForced"], [0], [0.2])
+    # show_plots(plots, "homeavgTurnoversForced")
+    #
+    # plots = modify_inputs(["homeavgYardsAllowed"], [200], [30])
+    # show_plots(plots, "homeavgYardsAllowed")
+    #
+    # plots = modify_inputs(["homeavgOppScore"], [10], [2])
+    # show_plots(plots, "homeavgOppScore")
+    #
+    # plots = modify_inputs(["homeWins"], [0], [0.1])
+    # show_plots(plots, "homeWins")
+    #
+    # plots = modify_inputs(["homeStreak"], [0], [1])
+    # show_plots(plots, "homeStreak")
+    #
+    # plots = modify_inputs(["homeSOS"], [-2.5], [0.5])
+    # show_plots(plots, "homeSOS")
+    #
+    # plots = modify_inputs(["awayRecordAgainstOpp"], [0], [0.1])
+    # show_plots(plots, "awayRecordAgainstOpp")
+    #
+    # plots = modify_inputs(["homeRecordAgainstOpp"], [0], [0.1])
+    # show_plots(plots, "homeRecordAgainstOpp")
 
-    print("Modifying weeks")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["week"] = i
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
+    plots = modify_inputs(["homeavgTurnoversForced", "awayavgTurnoversLost"], [0, 0], [0.2, 0.2])
+    show_plots(plots, "homeavgTurnoversForced_with_awayavgTurnoversLost")
 
-    print("Modifying awayavgScore")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayavgScore"] = 10 + (2 * i)
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awayavgFirstDowns")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayavgFirstDowns"] = 10 + (2 * i)
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awayavgTurnoversLost")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayavgTurnoversLost"] = 0 + (0.1 * i)
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awayavgPassingYards")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayavgPassingYards"] = 200 + (15 * i)
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awayavgRushingYards")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayavgRushingYards"] = 100 + (15 * i)
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awayavgOffensiveYards")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayavgOffensiveYards"] = 200 + (30 * i)
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awayavgPassingYardsAllowed")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayavgPassingYardsAllowed"] = 200 + (15 * i)
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awayavgRushingYardsAllowed")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayavgRushingYardsAllowed"] = 100 + (15 * i)
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awayavgTurnoversForced")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayavgTurnoversForced"] = 0 + (0.25 * i)
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awayavgYardsAllowed")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayavgYardsAllowed"] = 200 + (30 * i)
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awayavgOppScore")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayavgOppScore"] = 10 + (2 * i)
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awayWins")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayWins"] = 0 + (0.1 * (i - 1))
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awayStreak")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awayWins"] = 0 + i
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    print("Modifying awaySOS")
-    samplematchups = []
-    xdata = []
-    for i in range(1,11):
-        xdata.append(i)
-        sample = samplematchup.copy()
-        sample["awaySOS"] = -2.5 + (0.5 * i)
-        samplematchups.append(sample)
-    predictions = load_and_predict(samplematchups, model=model_label, modeltype=modeltype)
-    ydata = []
-    for prediction in predictions:
-        ydata.append(round(float(prediction['prediction']),2))
-    plots.append([xdata, ydata])
-
-    plt.plot(plots[0][0], plots[0][1], label="Week")
-    plt.plot(plots[1][0], plots[1][1], label="awayAvgScore")
-    plt.plot(plots[2][0], plots[2][1], label="awayavgFirstDowns")
-    plt.plot(plots[3][0], plots[3][1], label="awayavgTurnoversLost")
-    plt.plot(plots[4][0], plots[4][1], label="awayavgPassingYards")
-    plt.plot(plots[5][0], plots[5][1], label="awayavgRushingYards")
-    plt.plot(plots[6][0], plots[6][1], label="awayavgOffensiveYards")
-    plt.plot(plots[7][0], plots[7][1], label="awayavgPassingYardsAllowed")
-    plt.plot(plots[8][0], plots[8][1], label="awayavgRushingYardsAllowed")
-    plt.plot(plots[9][0], plots[9][1], label="awayavgTurnoversForced")
-    plt.plot(plots[10][0], plots[10][1], label="awayavgYardsAllowed")
-    plt.plot(plots[11][0], plots[11][1], label="awayavgOppScore")
-    plt.plot(plots[12][0], plots[12][1], label="awayWins")
-    plt.plot(plots[13][0], plots[13][1], label="awayStreak")
-    plt.plot(plots[14][0], plots[14][1], label="awaySOS")
-    plt.ylim([-5, 30])
-    plt.xlabel('Input')
-    plt.ylabel('Spread')
-    plt.legend()
-    plt.grid(True)
-    plt.show()

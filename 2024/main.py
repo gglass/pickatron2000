@@ -81,16 +81,6 @@ def build_and_compile_classification_model_hp(hp):
     )
     return dnnmodel
 
-def plot_loss(history):
-  plt.plot(history.history['loss'], label='loss')
-  plt.plot(history.history['val_loss'], label='val_loss')
-  plt.ylim([0, 25])
-  plt.xlabel('Epoch')
-  plt.ylabel('Error [ActualSpread]')
-  plt.legend()
-  plt.grid(True)
-  plt.show()
-
 def generate_training_data():
     service = ProFootballReferenceService()
     service.generate_training_data()
@@ -1142,8 +1132,6 @@ if __name__ == '__main__':
     model_label = 'trainedClassifier.keras'
     modeltype = 'Classification'
     predictions[model_label] = predict_upcoming_week(season, week, model_label, overwrite=False, modeltype=modeltype)
-
-    print(predictions)
 
     f = open("week" + str(week) + "predictions.json", "w")
     f.write(json.dumps(predictions, indent=4))
