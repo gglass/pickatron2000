@@ -1143,12 +1143,12 @@ if __name__ == '__main__':
     # print(evaluations)
     # exit(1)
 
-    # predictions = predict_past_week(2024, 8, model_label, overwrite=False, modeltype=modeltype)
+    # predictions = predict_past_week(2024, 9, model_label, overwrite=False, modeltype=modeltype)
     # print(json.dumps(predictions, indent=4, default=float))
     # exit(1)
 
     season = 2024
-    week = 10
+    week = 11
 
     #start by going at getting the
     evaluate_past_week_and_update_running_totales(season, week)

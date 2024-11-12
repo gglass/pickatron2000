@@ -1,0 +1,146 @@
+{
+    "trainedRegressor.keras": [
+        {
+            "awayTeam": "Washington Commanders",
+            "homeTeam": "Philadelphia Eagles",
+            "prediction": "-4.1072917"
+        },
+        {
+            "awayTeam": "Cleveland Browns",
+            "homeTeam": "New Orleans Saints",
+            "prediction": "-3.9551544"
+        },
+        {
+            "awayTeam": "Indianapolis Colts",
+            "homeTeam": "New York Jets",
+            "prediction": "2.4095886"
+        },
+        {
+            "awayTeam": "Green Bay Packers",
+            "homeTeam": "Chicago Bears",
+            "prediction": "5.2373066"
+        },
+        {
+            "awayTeam": "Jacksonville Jaguars",
+            "homeTeam": "Detroit Lions",
+            "prediction": "-2.0281305"
+        },
+        {
+            "awayTeam": "Minnesota Vikings",
+            "homeTeam": "Tennessee Titans",
+            "prediction": "2.672148"
+        },
+        {
+            "awayTeam": "Las Vegas Raiders",
+            "homeTeam": "Miami Dolphins",
+            "prediction": "-0.25451714"
+        },
+        {
+            "awayTeam": "Los Angeles Rams",
+            "homeTeam": "New England Patriots",
+            "prediction": "-3.6112897"
+        },
+        {
+            "awayTeam": "Baltimore Ravens",
+            "homeTeam": "Pittsburgh Steelers",
+            "prediction": "3.452117"
+        },
+        {
+            "awayTeam": "Atlanta Falcons",
+            "homeTeam": "Denver Broncos",
+            "prediction": "1.9826161"
+        },
+        {
+            "awayTeam": "Seattle Seahawks",
+            "homeTeam": "San Francisco 49ers",
+            "prediction": "1.6221788"
+        },
+        {
+            "awayTeam": "Kansas City Chiefs",
+            "homeTeam": "Buffalo Bills",
+            "prediction": "1.9927078"
+        },
+        {
+            "awayTeam": "Cincinnati Bengals",
+            "homeTeam": "Los Angeles Chargers",
+            "prediction": "-0.1673506"
+        },
+        {
+            "awayTeam": "Houston Texans",
+            "homeTeam": "Dallas Cowboys",
+            "prediction": "-1.5844647"
+        }
+    ],
+    "trainedClassifier.keras": [
+        {
+            "awayTeam": "Washington Commanders",
+            "homeTeam": "Philadelphia Eagles",
+            "prediction": "Philadelphia Eagles"
+        },
+        {
+            "awayTeam": "Cleveland Browns",
+            "homeTeam": "New Orleans Saints",
+            "prediction": "New Orleans Saints"
+        },
+        {
+            "awayTeam": "Indianapolis Colts",
+            "homeTeam": "New York Jets",
+            "prediction": "Indianapolis Colts"
+        },
+        {
+            "awayTeam": "Green Bay Packers",
+            "homeTeam": "Chicago Bears",
+            "prediction": "Green Bay Packers"
+        },
+        {
+            "awayTeam": "Jacksonville Jaguars",
+            "homeTeam": "Detroit Lions",
+            "prediction": "Detroit Lions"
+        },
+        {
+            "awayTeam": "Minnesota Vikings",
+            "homeTeam": "Tennessee Titans",
+            "prediction": "Minnesota Vikings"
+        },
+        {
+            "awayTeam": "Las Vegas Raiders",
+            "homeTeam": "Miami Dolphins",
+            "prediction": "Miami Dolphins"
+        },
+        {
+            "awayTeam": "Los Angeles Rams",
+            "homeTeam": "New England Patriots",
+            "prediction": "New England Patriots"
+        },
+        {
+            "awayTeam": "Baltimore Ravens",
+            "homeTeam": "Pittsburgh Steelers",
+            "prediction": "Baltimore Ravens"
+        },
+        {
+            "awayTeam": "Atlanta Falcons",
+            "homeTeam": "Denver Broncos",
+            "prediction": "Atlanta Falcons"
+        },
+        {
+            "awayTeam": "Seattle Seahawks",
+            "homeTeam": "San Francisco 49ers",
+            "prediction": "San Francisco 49ers"
+        },
+        {
+            "awayTeam": "Kansas City Chiefs",
+            "homeTeam": "Buffalo Bills",
+            "prediction": "Buffalo Bills"
+        },
+        {
+            "awayTeam": "Cincinnati Bengals",
+            "homeTeam": "Los Angeles Chargers",
+            "prediction": "Los Angeles Chargers"
+        },
+        {
+            "awayTeam": "Houston Texans",
+            "homeTeam": "Dallas Cowboys",
+            "prediction": "Dallas Cowboys"
+        }
+    ]
+}
