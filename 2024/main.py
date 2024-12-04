@@ -1148,7 +1148,7 @@ if __name__ == '__main__':
     # exit(1)
 
     season = 2024
-    week = 13
+    week = 14
 
     #start by going at getting the
     evaluate_past_week_and_update_running_totales(season, week)
