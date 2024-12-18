@@ -15,7 +15,7 @@ import mysql.connector
 
 mydb = mysql.connector.connect(
   host="localhost",
-  port=49153,
+  port=32768,
   user="root",
   password="mysqlpw",
   database="pickatron"
@@ -112,7 +112,7 @@ def calculate_previous_opp_record(games, numMatchups=4):
         pastMatchups = [{columns[index][0]: column for index, column in enumerate(value)} for value in
                         mycursor.fetchall()]
 
-        if pastMatchups[0]:
+        if pastMatchups[0] and pastMatchups[0]['HomeWinPct']:
             avgs = pastMatchups[0]
             game["awayRecordAgainstOpp"] = 1 - avgs['HomeWinPct']
             game["homeRecordAgainstOpp"] = avgs['HomeWinPct']
@@ -1148,7 +1148,7 @@ if __name__ == '__main__':
     # exit(1)
 
     season = 2024
-    week = 14
+    week = 16
 
     #start by going at getting the
     evaluate_past_week_and_update_running_totales(season, week)
