@@ -1,0 +1,12 @@
+{
+    "trainedClassifier.keras": {
+        "spreadDiff": 0,
+        "correctPickNum": 8,
+        "totalmoney": 0
+    },
+    "trainedRegressor.keras": {
+        "spreadDiff": 186.89045992,
+        "correctPickNum": 8,
+        "totalmoney": -1020
+    }
+}

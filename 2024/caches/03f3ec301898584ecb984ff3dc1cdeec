@@ -76,7 +76,7 @@ loadJS( _sr_modern_url, function() { vjs_ready(sr_fire_js); });
 
 
 
-    <meta name="revised" content="06:39:55 18-Dec-2024" />
+    <meta name="revised" content="08:55:17 24-Dec-2024" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="generated-by"     content="build_year_pages.pl" />
@@ -5918,6 +5918,422 @@ loadJS( _sr_modern_url, function() { vjs_ready(sr_fire_js); });
 			"@type": "Place",
 			"name": "Allegiant Stadium"
 		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "Denver Broncos"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Los Angeles Chargers"
+			}
+		],
+		"description": "Los Angeles Chargers vs Denver Broncos on December 19, 2024",
+		"endDate": "",
+		"name": "Denver Broncos @ Los Angeles Chargers",
+			"sport": "Football",
+		"startDate": "December 19, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412190sdg.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "SoFi Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "Houston Texans"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Kansas City Chiefs"
+			}
+		],
+		"description": "Kansas City Chiefs vs Houston Texans on December 21, 2024",
+		"endDate": "",
+		"name": "Houston Texans @ Kansas City Chiefs",
+			"sport": "Football",
+		"startDate": "December 21, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412210kan.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "GEHA Field at Arrowhead Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "Pittsburgh Steelers"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Baltimore Ravens"
+			}
+		],
+		"description": "Baltimore Ravens vs Pittsburgh Steelers on December 21, 2024",
+		"endDate": "",
+		"name": "Pittsburgh Steelers @ Baltimore Ravens",
+			"sport": "Football",
+		"startDate": "December 21, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412210rav.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "M&T Bank Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "New York Giants"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Atlanta Falcons"
+			}
+		],
+		"description": "Atlanta Falcons vs New York Giants on December 22, 2024",
+		"endDate": "",
+		"name": "New York Giants @ Atlanta Falcons",
+			"sport": "Football",
+		"startDate": "December 22, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412220atl.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "Mercedes-Benz Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "Arizona Cardinals"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Carolina Panthers"
+			}
+		],
+		"description": "Carolina Panthers vs Arizona Cardinals on December 22, 2024",
+		"endDate": "",
+		"name": "Arizona Cardinals @ Carolina Panthers",
+			"sport": "Football",
+		"startDate": "December 22, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412220car.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "Bank of America Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "Detroit Lions"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Chicago Bears"
+			}
+		],
+		"description": "Chicago Bears vs Detroit Lions on December 22, 2024",
+		"endDate": "",
+		"name": "Detroit Lions @ Chicago Bears",
+			"sport": "Football",
+		"startDate": "December 22, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412220chi.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "Soldier Field"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "Cleveland Browns"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Cincinnati Bengals"
+			}
+		],
+		"description": "Cincinnati Bengals vs Cleveland Browns on December 22, 2024",
+		"endDate": "",
+		"name": "Cleveland Browns @ Cincinnati Bengals",
+			"sport": "Football",
+		"startDate": "December 22, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412220cin.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "Paycor Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "Tennessee Titans"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Indianapolis Colts"
+			}
+		],
+		"description": "Indianapolis Colts vs Tennessee Titans on December 22, 2024",
+		"endDate": "",
+		"name": "Tennessee Titans @ Indianapolis Colts",
+			"sport": "Football",
+		"startDate": "December 22, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412220clt.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "Lucas Oil Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "Los Angeles Rams"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "New York Jets"
+			}
+		],
+		"description": "New York Jets vs Los Angeles Rams on December 22, 2024",
+		"endDate": "",
+		"name": "Los Angeles Rams @ New York Jets",
+			"sport": "Football",
+		"startDate": "December 22, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412220nyj.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "MetLife Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "Philadelphia Eagles"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Washington Commanders"
+			}
+		],
+		"description": "Washington Commanders vs Philadelphia Eagles on December 22, 2024",
+		"endDate": "",
+		"name": "Philadelphia Eagles @ Washington Commanders",
+			"sport": "Football",
+		"startDate": "December 22, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412220was.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "Northwest Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "Minnesota Vikings"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Seattle Seahawks"
+			}
+		],
+		"description": "Seattle Seahawks vs Minnesota Vikings on December 22, 2024",
+		"endDate": "",
+		"name": "Minnesota Vikings @ Seattle Seahawks",
+			"sport": "Football",
+		"startDate": "December 22, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412220sea.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "Lumen Field"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "New England Patriots"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Buffalo Bills"
+			}
+		],
+		"description": "Buffalo Bills vs New England Patriots on December 22, 2024",
+		"endDate": "",
+		"name": "New England Patriots @ Buffalo Bills",
+			"sport": "Football",
+		"startDate": "December 22, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412220buf.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "Highmark Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "Jacksonville Jaguars"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Las Vegas Raiders"
+			}
+		],
+		"description": "Las Vegas Raiders vs Jacksonville Jaguars on December 22, 2024",
+		"endDate": "",
+		"name": "Jacksonville Jaguars @ Las Vegas Raiders",
+			"sport": "Football",
+		"startDate": "December 22, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412220rai.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "Allegiant Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "San Francisco 49ers"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Miami Dolphins"
+			}
+		],
+		"description": "Miami Dolphins vs San Francisco 49ers on December 22, 2024",
+		"endDate": "",
+		"name": "San Francisco 49ers @ Miami Dolphins",
+			"sport": "Football",
+		"startDate": "December 22, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412220mia.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "Hard Rock Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "Tampa Bay Buccaneers"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Dallas Cowboys"
+			}
+		],
+		"description": "Dallas Cowboys vs Tampa Bay Buccaneers on December 22, 2024",
+		"endDate": "",
+		"name": "Tampa Bay Buccaneers @ Dallas Cowboys",
+			"sport": "Football",
+		"startDate": "December 22, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412220dal.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "AT&T Stadium"
+		}
+	},
+    
+	{
+		"@context": "http://www.schema.org",
+		"@type": "SportsEvent",
+		"competitor": [
+			{
+			"@type": "SportsTeam",
+			"name": "New Orleans Saints"
+			},
+			{
+			"@type": "SportsTeam",
+			"name": "Green Bay Packers"
+			}
+		],
+		"description": "Green Bay Packers vs New Orleans Saints on December 23, 2024",
+		"endDate": "",
+		"name": "New Orleans Saints @ Green Bay Packers",
+			"sport": "Football",
+		"startDate": "December 23, 2024",
+			"url": "https://www.pro-football-reference.com/boxscores/202412230gnb.htm",
+		"eventStatus": "https://schema.org/EventScheduled",
+		"location": {
+			"@type": "Place",
+			"name": "Lambeau Field"
+		}
 	}
     
 ]</script>
@@ -5934,11 +6350,11 @@ loadJS( _sr_modern_url, function() { vjs_ready(sr_fire_js); });
     <meta property="og:site_name"    content="Pro-Football-Reference.com">
     <meta property="og:type"         content="    article" />
     <meta property="og:description"  content="Check out the 2024 NFL Regular Season Schedule, and Preseason schedule and know when does NFL regular season starts and ends.">
-    <meta property="og:image"        content="http://cdn.ssref.net/scripts/image_resize.cgi?min=200&url=https://cdn.ssref.net/req/202411271/tlogo/pfr/NFL-2024.png">
+    <meta property="og:image"        content="http://cdn.ssref.net/scripts/image_resize.cgi?min=200&url=https://cdn.ssref.net/req/202412231/tlogo/pfr/NFL-2024.png">
     <meta name="twitter:card"         content="summary">
     <meta name="twitter:site"         content="@pfref">
     <meta name="twitter:creator"      content="@pfref">
-    <meta property="twitter:image"    content="http://cdn.ssref.net/scripts/image_resize.cgi?min=200&url=https://cdn.ssref.net/req/202411271/tlogo/pfr/NFL-2024.png">
+    <meta property="twitter:image"    content="http://cdn.ssref.net/scripts/image_resize.cgi?min=200&url=https://cdn.ssref.net/req/202412231/tlogo/pfr/NFL-2024.png">
     <meta name="twitter:domain"       content="Pro-Football-Reference.com">
     <meta name="referrer" content="unsafe-url">
     <!-- HeaderSeoSocial:END -->
@@ -6037,7 +6453,7 @@ loadJS( _sr_modern_url, function() { vjs_ready(sr_fire_js); });
 	
 	
 	
-	<li><a href="https://fbref.com/de/?utm_source=pfr&utm_medium=sr_xsite&utm_campaign=2023_01_srnav">FuÃball</a></li>
+	<li><a href="https://fbref.com/pt/?utm_source=pfr&utm_medium=sr_xsite&utm_campaign=2023_01_srnav">Futebol</a></li>
 
 	<li><a href="https://www.sports-reference.com/blog/?utm_source=pfr&utm_medium=sr_xsite&utm_campaign=2023_01_srnav">Blog</a></li>
     <li><a href="https://stathead.com/?utm_source=pfr&utm_medium=sr_xsite&utm_campaign=2023_01_srnav">Stathead&#8239;&reg;</a></li>
@@ -6156,7 +6572,7 @@ sr_menus_setupMainNav_button_inline();
 
 
 	<div class="media-item logo loader">
-		<img class="teamlogo"			src="https://cdn.ssref.net/req/202411271/tlogo/pfr/NFL.png"
+		<img class="teamlogo"			src="https://cdn.ssref.net/req/202412231/tlogo/pfr/NFL.png"
 			alt=" Logo">
 		
 			<p><a href="http://www.sportslogos.net/">via Sports Logos.net</a></p>
@@ -6181,9 +6597,9 @@ sr_menus_setupMainNav_button_inline();
   
 </div>
 
-			<p><strong>Passing Leader</strong>: <a href="/players/B/BurrJo01.htm">Joe Burrow</a>, 3977 Yds</p>
-<p><strong>Rushing Leader</strong>: <a href="/players/B/BarkSa00.htm">Saquon Barkley</a>, 1688 Yds</p>
-<p><strong>Receiving Leader</strong>: <a href="/players/C/ChasJa00.htm">Ja'Marr Chase</a>, 1413 Yds</p>
+			<p><strong>Passing Leader</strong>: <a href="/players/B/BurrJo01.htm">Joe Burrow</a>, 4229 Yds</p>
+<p><strong>Rushing Leader</strong>: <a href="/players/B/BarkSa00.htm">Saquon Barkley</a>, 1838 Yds</p>
+<p><strong>Receiving Leader</strong>: <a href="/players/C/ChasJa00.htm">Ja'Marr Chase</a>, 1510 Yds</p>
 			
 			
 			
@@ -7058,9 +7474,9 @@ var sr_menus_checkInfoCookie_run_inline = true;
          <th aria-label="Day" data-stat="game_day_of_week" class=" sort_default_asc left" >Day</th>
          <th aria-label="Date" data-stat="game_date" class=" sort_default_asc center" >Date</th>
          <th aria-label="Time" data-stat="gametime" class=" sort_default_asc center" data-tip="Game Time, Eastern" >Time</th>
-         <th aria-label="Visitor" data-stat="winner" class=" sort_default_asc center" >Visitor</th>
+         <th aria-label="Winner/tie" data-stat="winner" class=" sort_default_asc center" >Winner/tie</th>
          <th aria-label="" data-stat="game_location" class=" sort_default_asc center" ></th>
-         <th aria-label="Home" data-stat="loser" class=" sort_default_asc center" >Home</th>
+         <th aria-label="Loser/tie" data-stat="loser" class=" sort_default_asc center" >Loser/tie</th>
          <th aria-label="" data-stat="boxscore_word" class=" sort_default_asc center" ></th>
          <th aria-label="PtsW" data-stat="pts_win" class=" center" data-tip="Points Scored by the winning team (first one listed)" >PtsW</th>
          <th aria-label="PtsL" data-stat="pts_lose" class=" center" data-tip="Points Scored by the losing team (second one listed)" >PtsL</th>
@@ -7069,22 +7485,22 @@ var sr_menus_checkInfoCookie_run_inline = true;
          <th aria-label="YdsL" data-stat="yards_lose" class=" center" data-tip="Yards Gained by the losing team (second one listed)" >YdsL</th>
          <th aria-label="TOL" data-stat="to_lose" class=" center" data-tip="Turnovers by the losing team (second one listed)" >TOL</th>
       </tr>
-      <tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Thu</td><td class="left " data-stat="game_date" csk="2024-12-19" >2024-12-19</td><td class="right " data-stat="gametime" csk="20:15:00" >8:15PM</td><td class="left " data-stat="winner" ><a href="/teams/cle/2024.htm">Cleveland Browns</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/cin/2024.htm">Cincinnati Bengals</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412190cin.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sat</td><td class="left " data-stat="game_date" csk="2024-12-21" >2024-12-21</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/htx/2024.htm">Houston Texans</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/kan/2024.htm">Kansas City Chiefs</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412210kan.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sat</td><td class="left " data-stat="game_date" csk="2024-12-21" >2024-12-21</td><td class="right " data-stat="gametime" csk="16:30:00" >4:30PM</td><td class="left " data-stat="winner" ><a href="/teams/pit/2024.htm">Pittsburgh Steelers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/rav/2024.htm">Baltimore Ravens</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412210rav.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/crd/2024.htm">Arizona Cardinals</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/car/2024.htm">Carolina Panthers</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220car.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/det/2024.htm">Detroit Lions</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/chi/2024.htm">Chicago Bears</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220chi.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/ram/2024.htm">Los Angeles Rams</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/nyj/2024.htm">New York Jets</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220nyj.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/nyg/2024.htm">New York Giants</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/atl/2024.htm">Atlanta Falcons</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220atl.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/oti/2024.htm">Tennessee Titans</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/clt/2024.htm">Indianapolis Colts</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220clt.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/phi/2024.htm">Philadelphia Eagles</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/was/2024.htm">Washington Commanders</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220was.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" csk="16:05:00" >4:05PM</td><td class="left " data-stat="winner" ><a href="/teams/den/2024.htm">Denver Broncos</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/sdg/2024.htm">Los Angeles Chargers</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220sdg.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" csk="16:05:00" >4:05PM</td><td class="left " data-stat="winner" ><a href="/teams/min/2024.htm">Minnesota Vikings</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/sea/2024.htm">Seattle Seahawks</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220sea.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" csk="16:25:00" >4:25PM</td><td class="left " data-stat="winner" ><a href="/teams/sfo/2024.htm">San Francisco 49ers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/mia/2024.htm">Miami Dolphins</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220mia.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" csk="16:25:00" >4:25PM</td><td class="left " data-stat="winner" ><a href="/teams/nwe/2024.htm">New England Patriots</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/buf/2024.htm">Buffalo Bills</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220buf.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" csk="16:25:00" >4:25PM</td><td class="left " data-stat="winner" ><a href="/teams/jax/2024.htm">Jacksonville Jaguars</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/rai/2024.htm">Las Vegas Raiders</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220rai.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" csk="20:20:00" >8:20PM</td><td class="left " data-stat="winner" ><a href="/teams/tam/2024.htm">Tampa Bay Buccaneers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/dal/2024.htm">Dallas Cowboys</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220dal.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Mon</td><td class="left " data-stat="game_date" csk="2024-12-23" >2024-12-23</td><td class="right " data-stat="gametime" csk="20:15:00" >8:15PM</td><td class="left " data-stat="winner" ><a href="/teams/nor/2024.htm">New Orleans Saints</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/gnb/2024.htm">Green Bay Packers</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412230gnb.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+      <tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Thu</td><td class="left " data-stat="game_date" csk="2024-12-19" >2024-12-19</td><td class="right " data-stat="gametime" >8:15PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/sdg/2024.htm">Los Angeles Chargers</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/den/2024.htm">Denver Broncos</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412190sdg.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>34</strong></td><td class="right " data-stat="pts_lose" >27</td><td class="right " data-stat="yards_win" >380</td><td class="right " data-stat="to_win" >1</td><td class="right " data-stat="yards_lose" >355</td><td class="right iz" data-stat="to_lose" >0</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sat</td><td class="left " data-stat="game_date" csk="2024-12-21" >2024-12-21</td><td class="right " data-stat="gametime" >1:00PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/kan/2024.htm">Kansas City Chiefs</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/htx/2024.htm">Houston Texans</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412210kan.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>27</strong></td><td class="right " data-stat="pts_lose" >19</td><td class="right " data-stat="yards_win" >375</td><td class="right iz" data-stat="to_win" >0</td><td class="right " data-stat="yards_lose" >311</td><td class="right " data-stat="to_lose" >2</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sat</td><td class="left " data-stat="game_date" csk="2024-12-21" >2024-12-21</td><td class="right " data-stat="gametime" >4:30PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/rav/2024.htm">Baltimore Ravens</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/pit/2024.htm">Pittsburgh Steelers</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412210rav.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>34</strong></td><td class="right " data-stat="pts_lose" >17</td><td class="right " data-stat="yards_win" >418</td><td class="right " data-stat="to_win" >1</td><td class="right " data-stat="yards_lose" >315</td><td class="right " data-stat="to_lose" >2</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" >1:00PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/atl/2024.htm">Atlanta Falcons</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/nyg/2024.htm">New York Giants</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220atl.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>34</strong></td><td class="right " data-stat="pts_lose" >7</td><td class="right " data-stat="yards_win" >329</td><td class="right " data-stat="to_win" >1</td><td class="right " data-stat="yards_lose" >234</td><td class="right " data-stat="to_lose" >3</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" >1:00PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/car/2024.htm">Carolina Panthers</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/crd/2024.htm">Arizona Cardinals</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220car.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>36</strong></td><td class="right " data-stat="pts_lose" >30</td><td class="right " data-stat="yards_win" >392</td><td class="right iz" data-stat="to_win" >0</td><td class="right " data-stat="yards_lose" >382</td><td class="right " data-stat="to_lose" >2</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" >1:00PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/det/2024.htm">Detroit Lions</a></strong></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/chi/2024.htm">Chicago Bears</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220chi.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>34</strong></td><td class="right " data-stat="pts_lose" >17</td><td class="right " data-stat="yards_win" >475</td><td class="right iz" data-stat="to_win" >0</td><td class="right " data-stat="yards_lose" >382</td><td class="right " data-stat="to_lose" >2</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" >1:00PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/cin/2024.htm">Cincinnati Bengals</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/cle/2024.htm">Cleveland Browns</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220cin.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>24</strong></td><td class="right " data-stat="pts_lose" >6</td><td class="right " data-stat="yards_win" >326</td><td class="right " data-stat="to_win" >1</td><td class="right " data-stat="yards_lose" >273</td><td class="right " data-stat="to_lose" >3</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" >1:00PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/clt/2024.htm">Indianapolis Colts</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/oti/2024.htm">Tennessee Titans</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220clt.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>38</strong></td><td class="right " data-stat="pts_lose" >30</td><td class="right " data-stat="yards_win" >458</td><td class="right " data-stat="to_win" >1</td><td class="right " data-stat="yards_lose" >307</td><td class="right " data-stat="to_lose" >3</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" >1:00PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/ram/2024.htm">Los Angeles Rams</a></strong></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/nyj/2024.htm">New York Jets</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220nyj.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>19</strong></td><td class="right " data-stat="pts_lose" >9</td><td class="right " data-stat="yards_win" >242</td><td class="right " data-stat="to_win" >1</td><td class="right " data-stat="yards_lose" >321</td><td class="right " data-stat="to_lose" >2</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" >1:00PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/was/2024.htm">Washington Commanders</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/phi/2024.htm">Philadelphia Eagles</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220was.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>36</strong></td><td class="right " data-stat="pts_lose" >33</td><td class="right " data-stat="yards_win" >368</td><td class="right " data-stat="to_win" >5</td><td class="right " data-stat="yards_lose" >338</td><td class="right " data-stat="to_lose" >2</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" >4:05PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/min/2024.htm">Minnesota Vikings</a></strong></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/sea/2024.htm">Seattle Seahawks</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220sea.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>27</strong></td><td class="right " data-stat="pts_lose" >24</td><td class="right " data-stat="yards_win" >298</td><td class="right iz" data-stat="to_win" >0</td><td class="right " data-stat="yards_lose" >361</td><td class="right " data-stat="to_lose" >2</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" >4:25PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/buf/2024.htm">Buffalo Bills</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/nwe/2024.htm">New England Patriots</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220buf.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>24</strong></td><td class="right " data-stat="pts_lose" >21</td><td class="right " data-stat="yards_win" >324</td><td class="right " data-stat="to_win" >1</td><td class="right " data-stat="yards_lose" >379</td><td class="right " data-stat="to_lose" >3</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" >4:25PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/rai/2024.htm">Las Vegas Raiders</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/jax/2024.htm">Jacksonville Jaguars</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220rai.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>19</strong></td><td class="right " data-stat="pts_lose" >14</td><td class="right " data-stat="yards_win" >314</td><td class="right iz" data-stat="to_win" >0</td><td class="right " data-stat="yards_lose" >308</td><td class="right " data-stat="to_lose" >2</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" >4:25PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/mia/2024.htm">Miami Dolphins</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/sfo/2024.htm">San Francisco 49ers</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220mia.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>29</strong></td><td class="right " data-stat="pts_lose" >17</td><td class="right " data-stat="yards_win" >381</td><td class="right iz" data-stat="to_win" >0</td><td class="right " data-stat="yards_lose" >374</td><td class="right " data-stat="to_lose" >1</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-22" >2024-12-22</td><td class="right " data-stat="gametime" >8:20PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/dal/2024.htm">Dallas Cowboys</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/tam/2024.htm">Tampa Bay Buccaneers</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412220dal.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>26</strong></td><td class="right " data-stat="pts_lose" >24</td><td class="right " data-stat="yards_win" >317</td><td class="right iz" data-stat="to_win" >0</td><td class="right " data-stat="yards_lose" >410</td><td class="right " data-stat="to_lose" >2</td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="16" >16</th><td class="left " data-stat="game_day_of_week" >Mon</td><td class="left " data-stat="game_date" csk="2024-12-23" >2024-12-23</td><td class="right " data-stat="gametime" >8:15PM</td><td class="left " data-stat="winner" ><strong><a href="/teams/gnb/2024.htm">Green Bay Packers</a></strong></td><td class="right iz" data-stat="game_location" ></td><td class="left " data-stat="loser" ><a href="/teams/nor/2024.htm">New Orleans Saints</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412230gnb.htm">boxscore</a></td><td class="right " data-stat="pts_win" ><strong>34</strong></td><td class="right iz" data-stat="pts_lose" >0</td><td class="right " data-stat="yards_win" >404</td><td class="right iz" data-stat="to_win" >0</td><td class="right " data-stat="yards_lose" >196</td><td class="right " data-stat="to_lose" >2</td></tr>
 
       
       <tr class="thead">
@@ -7106,17 +7522,17 @@ var sr_menus_checkInfoCookie_run_inline = true;
       <tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Wed</td><td class="left " data-stat="game_date" csk="2024-12-25" >2024-12-25</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/kan/2024.htm">Kansas City Chiefs</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/pit/2024.htm">Pittsburgh Steelers</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412250pit.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Wed</td><td class="left " data-stat="game_date" csk="2024-12-25" >2024-12-25</td><td class="right " data-stat="gametime" csk="16:30:00" >4:30PM</td><td class="left " data-stat="winner" ><a href="/teams/rav/2024.htm">Baltimore Ravens</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/htx/2024.htm">Houston Texans</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412250htx.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Thu</td><td class="left " data-stat="game_date" csk="2024-12-26" >2024-12-26</td><td class="right " data-stat="gametime" csk="20:15:00" >8:15PM</td><td class="left " data-stat="winner" ><a href="/teams/sea/2024.htm">Seattle Seahawks</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/chi/2024.htm">Chicago Bears</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412260chi.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/gnb/2024.htm">Green Bay Packers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/min/2024.htm">Minnesota Vikings</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290min.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/sdg/2024.htm">Los Angeles Chargers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/nwe/2024.htm">New England Patriots</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290nwe.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/den/2024.htm">Denver Broncos</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/cin/2024.htm">Cincinnati Bengals</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290cin.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/crd/2024.htm">Arizona Cardinals</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/ram/2024.htm">Los Angeles Rams</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290ram.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/clt/2024.htm">Indianapolis Colts</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/nyg/2024.htm">New York Giants</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290nyg.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/car/2024.htm">Carolina Panthers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/tam/2024.htm">Tampa Bay Buccaneers</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290tam.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/rai/2024.htm">Las Vegas Raiders</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/nor/2024.htm">New Orleans Saints</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290nor.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sat</td><td class="left " data-stat="game_date" csk="2024-12-28" >2024-12-28</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/sdg/2024.htm">Los Angeles Chargers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/nwe/2024.htm">New England Patriots</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412280nwe.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sat</td><td class="left " data-stat="game_date" csk="2024-12-28" >2024-12-28</td><td class="right " data-stat="gametime" csk="16:30:00" >4:30PM</td><td class="left " data-stat="winner" ><a href="/teams/den/2024.htm">Denver Broncos</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/cin/2024.htm">Cincinnati Bengals</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412280cin.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sat</td><td class="left " data-stat="game_date" csk="2024-12-28" >2024-12-28</td><td class="right " data-stat="gametime" csk="20:15:00" >8:15PM</td><td class="left " data-stat="winner" ><a href="/teams/crd/2024.htm">Arizona Cardinals</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/ram/2024.htm">Los Angeles Rams</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412280ram.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/nyj/2024.htm">New York Jets</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/buf/2024.htm">Buffalo Bills</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290buf.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/oti/2024.htm">Tennessee Titans</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/jax/2024.htm">Jacksonville Jaguars</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290jax.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/rai/2024.htm">Las Vegas Raiders</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/nor/2024.htm">New Orleans Saints</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290nor.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/dal/2024.htm">Dallas Cowboys</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/phi/2024.htm">Philadelphia Eagles</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290phi.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/clt/2024.htm">Indianapolis Colts</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/nyg/2024.htm">New York Giants</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290nyg.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/car/2024.htm">Carolina Panthers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/tam/2024.htm">Tampa Bay Buccaneers</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290tam.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="16:05:00" >4:05PM</td><td class="left " data-stat="winner" ><a href="/teams/mia/2024.htm">Miami Dolphins</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/cle/2024.htm">Cleveland Browns</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290cle.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="16:25:00" >4:25PM</td><td class="left " data-stat="winner" ><a href="/teams/dal/2024.htm">Dallas Cowboys</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/phi/2024.htm">Philadelphia Eagles</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290phi.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="16:25:00" >4:25PM</td><td class="left " data-stat="winner" ><a href="/teams/gnb/2024.htm">Green Bay Packers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/min/2024.htm">Minnesota Vikings</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290min.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2024-12-29" >2024-12-29</td><td class="right " data-stat="gametime" csk="20:20:00" >8:20PM</td><td class="left " data-stat="winner" ><a href="/teams/atl/2024.htm">Atlanta Falcons</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/was/2024.htm">Washington Commanders</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412290was.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="17" >17</th><td class="left " data-stat="game_day_of_week" >Mon</td><td class="left " data-stat="game_date" csk="2024-12-30" >2024-12-30</td><td class="right " data-stat="gametime" csk="20:15:00" >8:15PM</td><td class="left " data-stat="winner" ><a href="/teams/det/2024.htm">Detroit Lions</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/sfo/2024.htm">San Francisco 49ers</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202412300sfo.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 
@@ -7137,15 +7553,15 @@ var sr_menus_checkInfoCookie_run_inline = true;
          <th aria-label="YdsL" data-stat="yards_lose" class=" center" data-tip="Yards Gained by the losing team (second one listed)" >YdsL</th>
          <th aria-label="TOL" data-stat="to_lose" class=" center" data-tip="Turnovers by the losing team (second one listed)" >TOL</th>
       </tr>
-      <tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/was/2024.htm">Washington Commanders</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/dal/2024.htm">Dallas Cowboys</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050dal.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/mia/2024.htm">Miami Dolphins</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/nyj/2024.htm">New York Jets</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050nyj.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/sfo/2024.htm">San Francisco 49ers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/crd/2024.htm">Arizona Cardinals</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050crd.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+      <tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/sdg/2024.htm">Los Angeles Chargers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/rai/2024.htm">Las Vegas Raiders</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050rai.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/sea/2024.htm">Seattle Seahawks</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/ram/2024.htm">Los Angeles Rams</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050ram.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/sdg/2024.htm">Los Angeles Chargers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/rai/2024.htm">Las Vegas Raiders</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050rai.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/sfo/2024.htm">San Francisco 49ers</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/crd/2024.htm">Arizona Cardinals</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050crd.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/was/2024.htm">Washington Commanders</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/dal/2024.htm">Dallas Cowboys</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050dal.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/kan/2024.htm">Kansas City Chiefs</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/den/2024.htm">Denver Broncos</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050den.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/nyg/2024.htm">New York Giants</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/phi/2024.htm">Philadelphia Eagles</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050phi.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/nor/2024.htm">New Orleans Saints</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/tam/2024.htm">Tampa Bay Buccaneers</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050tam.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/min/2024.htm">Minnesota Vikings</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/det/2024.htm">Detroit Lions</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050det.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
-<tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/kan/2024.htm">Kansas City Chiefs</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/den/2024.htm">Denver Broncos</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050den.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
+<tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/mia/2024.htm">Miami Dolphins</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/nyj/2024.htm">New York Jets</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050nyj.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/jax/2024.htm">Jacksonville Jaguars</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/clt/2024.htm">Indianapolis Colts</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050clt.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/htx/2024.htm">Houston Texans</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/oti/2024.htm">Tennessee Titans</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050oti.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
 <tr ><th scope="row" class="right " data-stat="week_num" csk="18" >18</th><td class="left " data-stat="game_day_of_week" >Sun</td><td class="left " data-stat="game_date" csk="2025-01-05" >2025-01-05</td><td class="right " data-stat="gametime" csk="13:00:00" >1:00PM</td><td class="left " data-stat="winner" ><a href="/teams/cle/2024.htm">Cleveland Browns</a></td><td class="right " data-stat="game_location" >@</td><td class="left " data-stat="loser" ><a href="/teams/rav/2024.htm">Baltimore Ravens</a></td><td class="center " data-stat="boxscore_word" ><a href="/boxscores/202501050rav.htm">preview</a></td><td class="right iz" data-stat="pts_win" ></td><td class="right iz" data-stat="pts_lose" ></td><td class="right iz" data-stat="yards_win" ></td><td class="right iz" data-stat="to_win" ></td><td class="right iz" data-stat="yards_lose" ></td><td class="right iz" data-stat="to_lose" ></td></tr>
@@ -7311,7 +7727,7 @@ var sr_menus_checkInfoCookie_run_inline = true;
 			
 				    <ul>
 	<li><a href="/players">Players</a>
-	    <div>In the News: <a title="Brock Purdy" href="/players/P/PurdBr00.htm">Brock Purdy</a>, <a title="Dre Greenlaw" href="/players/G/GreeDr00.htm">Dre Greenlaw</a>, <a title="Russell Wilson" href="/players/W/WilsRu00.htm">Russell Wilson</a>, <a title="Sam Darnold" href="/players/D/DarnSa00.htm">Sam Darnold</a>, <a title="Isaac Guerendo" href="/players/G/GuerIs00.htm">Isaac Guerendo</a>, <a title="George Kittle" href="/players/K/KittGe00.htm">George Kittle</a> <a href="/players/">...</a></div>
+	    <div>In the News: <a title="Brock Purdy" href="/players/P/PurdBr00.htm">Brock Purdy</a>, <a title="Kirk Cousins" href="/players/C/CousKi00.htm">Kirk Cousins</a>, <a title="Russell Wilson" href="/players/W/WilsRu00.htm">Russell Wilson</a>, <a title="Sam Darnold" href="/players/D/DarnSa00.htm">Sam Darnold</a>, <a title="Dre Greenlaw" href="/players/G/GreeDr00.htm">Dre Greenlaw</a>, <a title="Aaron Rodgers" href="/players/R/RodgAa00.htm">Aaron Rodgers</a> <a href="/players/">...</a></div>
 	<div>Popular: <a title="Tom Brady" href="/players/B/BradTo00.htm">Tom Brady</a>, <a title="Cam Newton" href="/players/N/NewtCa00.htm">Cam Newton</a>, <a title="Aaron Donald" href="/players/D/DonaAa00.htm">Aaron Donald</a>, <a title="Russell Wilson" href="/players/W/WilsRu00.htm">Russell Wilson</a>, <a title="Aaron Rodgers" href="/players/R/RodgAa00.htm">Aaron Rodgers</a>, <a title="Odell Beckham" href="/players/B/BeckOd00.htm">Odell Beckham Jr.</a>, <a title="J.J. Watt" href="/players/W/WattJ.00.htm">J.J. Watt</a>, <a title="Peyton Manning" href="/players/M/MannPe00.htm">Peyton Manning</a>, <a title="Patrick Mahomes" href="/players/M/MahoPa00.htm">Patrick Mahomes</a>, <a title="Julio Jones" href="/players/J/JoneJu02.htm">Julio Jones</a>, <a title="Antonio Brown" href="/players/B/BrowAn04.htm">Antonio Brown</a>, <a title="Ben Roethlisberger" href="/players/R/RoetBe00.htm">Ben Roethlisberger</a>, <a title="Drew Brees" href="/players/B/BreeDr00.htm">Drew Brees</a>, <a title="Todd Gurley" href="/players/G/GurlTo01.htm">Todd Gurley</a> <a href="/players/">...</a></div>
 
 	<div><a href="/hof/">Hall of Famers</a>, <a href="/probowl/">Pro Bowlers</a>, <a href="/awards/ap-nfl-mvp-award.htm">MVPs</a>, <a href="/friv/linkify.cgi">Player Linker Tool</a> ...</div>
@@ -7450,7 +7866,7 @@ var sr_menus_checkInfoCookie_run_inline = true;
 	<a href="https://www.paypal.me/sportsref" data-tip="Send us money via PayPal" data-label="PayPal" aria-label="PayPal" class="poptip"><svg class="icon paypal"><use xlink:href="#ic-paypal"></use></svg></a>
 
 <p>Every <a href="https://www.sports-reference.com/blog/sports-reference-social-media/">Sports Reference Social Media Account</a></p>
-<p><strong>Site Last Updated:</strong> Wednesday, December 18,  6:54AM
+<p><strong>Site Last Updated:</strong> Tuesday, December 24,  9:05AM
 </p>
 <p><a href="https://www.sports-reference.com/feedback/" class="button" style="display: block">Question, Comment, Feedback, or Correction?</a></p>
 
@@ -7520,7 +7936,7 @@ var sr_menus_checkInfoCookie_run_inline = true;
 	
 	
 	
-	<li><a href="https://fbref.com/fr/?utm_source=pfr&utm_medium=sr_xsite&utm_campaign=2023_01_srnav_footer">Football</a></li>
+	<li><a href="https://fbref.com/it/?utm_source=pfr&utm_medium=sr_xsite&utm_campaign=2023_01_srnav_footer">Calcio</a></li>
 
 	<li><a href="https://www.sports-reference.com/blog/?utm_source=pfr&utm_medium=sr_xsite&utm_campaign=2023_01_srnav_footer">Blog</a></li>
     <li><a href="https://stathead.com/?utm_source=pfr&utm_medium=sr_xsite&utm_campaign=2023_01_srnav_footer">Stathead&#8239;&reg;</a></li>
